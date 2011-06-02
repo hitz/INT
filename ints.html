@@ -1,0 +1,1016 @@
+<!-- : /share/cvs/org/yeastgenome/templates/Reports/LocusReport/InteractionServer/result.tmpl,v  --> <!-- : /share/cvs/org/yeastgenome/templates/Reports/LocusReport/page_header.tmpl,v  -->        <!-- : /share/cvs/org/yeastgenome/templates/doc_head.tmpl,v  -->  <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<title> Interaction Server</title> <!-- : /share/cvs/org/yeastgenome/templates/Reports/LocusReport/InteractionServer/Attic/site_css.tmpl,v  -->
+<link href="http://www.yeastgenome.org/css/Site.css" rel="stylesheet" type="text/css" ./>
+<link href="http://yeastgenome-hitz-dev.stanford.edu/css/InteractionServer.css" rel="stylesheet" type="text/css" />
+<link href="/INT/css/sunny/jquery-ui-1.8.13.custom.css" rel="stylesheet" type="text/css" /> 
+<link href="http://yeastgenome-hitz-dev.stanford.edu/css/jquery-layout-default.css" rel="stylesheet" type="text/css" />
+<link href="http://yeastgenome-hitz-dev.stanford.edu/css/farbtastic.css"  rel="stylesheet" type="text/css" />
+<style type="text/css">
+   /* give outer-panes their own colors */
+    .property input.colour_sample_bg {
+       background-image:url("/INT/images/input_for_colour_picker/bg.png");
+       background-position:right center;
+       background-repeat:repeat-y;
+    }
+    input, button, textarea, select {
+       -moz-border-radius:4px 4px 4px 4px;
+       border:1px solid #C1C1C1;
+       font-family:Helvetica,Arial,Verdana,sans-serif;
+       font-size:100%;
+       padding:0.25em;
+    } 
+    .floating_widget {
+        -moz-border-radius:4px 4px 4px 4px;
+	-moz-box-shadow:0 0 50px #BBBBBB;
+  	background:none repeat scroll 0 0 rgba(54, 54, 54, 0.8);
+        z-index:9999;
+    }
+    #colour_picker {
+        clear:both;
+    	height:200px;
+    	width:200px;
+    }
+    #colour_picker .header {
+        left:0;
+    	position:absolute;
+    	top:0;
+    	z-index:1;
+    }
+    .farbtastic .wheel {
+        background:url("/INT/images/farbtastic/wheel.png") no-repeat scroll 0 0 transparent;
+    	height:195px;
+    	width:195px;
+    }
+    .farbtastic .overlay {
+    	background:url("/INT/images/farbtastic/mask.png") no-repeat scroll 0 0 transparent;
+    }
+    .farbtastic .marker {
+    	background:url("/INT/images/farbtastic/marker.png") no-repeat scroll 0 0 transparent;
+    	height:17px;
+    	margin:-8px 0 0 -8px;
+    	overflow:hidden;
+    	width:17px;
+    }
+    #nodes input {
+		display: inline;
+		float: left;
+    }
+    #nodes label.style {
+        font-size: 12px;
+    	clear:both;	   
+		display:block;
+    }
+    #nodes label.style_head {
+        font-size: 12px;
+		font-weight: bold;
+    	clear:both;	   
+		display:block;
+    }
+    #color_all_nodes { 
+        border:2px solid #C1C1C1;
+    }
+    .ui-validation-error {
+        background:none repeat scroll 0 0 #FFECEC !important;
+	border-color:#FF0000 !important;
+}
+    .ui-validation-error:focus {
+        -moz-box-shadow:0 0 5px #FF0000 !important;
+}
+    .ui-validation-error-message {
+    	color:#FF0000;
+}
+</style> <!-- put page specific css files here or else in <style> @import -->
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1" >
+
+</head>
+ <body>
+
+<div id="wrapper"> <!-- : /share/cvs/org/yeastgenome/templates/header.tmpl,v  -->      
+	<div id="header_top">
+ 	<hr>
+   	<div class="float" id="logo"><a href="http://yeastgenome-hitz-dev.stanford.edu/"><img alt="SGD" src="http://yeastgenome-hitz-dev.stanford.edu/images/SGD_logo.gif" ></a> </div>
+   	<div class="float inline" id="quicksearch">
+	<ul>
+  		<li><form method="get" action="http://yeastgenome-hitz-dev.stanford.edu/cgi-bin/search/quickSearch.fpl">
+            <p><input type="text" name="query"  size="13" ></p>
+            <p><input type="submit" name="Submit" value="Search" ></p>
+            </form></li>
+    </ul>
+	</div>
+    <div class="float inline" id="nav_aid">
+  	<ul>
+		<li><a href="http://yeastgenome-hitz-dev.stanford.edu/sitemap.html">Site Map</a> | </li>
+		<li><a href="http://yeastgenome-hitz-dev.stanford.edu/SearchContents.shtml">Search Options</a> | </li>
+		<li><a href="http://yeastgenome-hitz-dev.stanford.edu/HelpContents.shtml">Help</a> | </li>
+		<li><a href="http://yeastgenome-hitz-dev.stanford.edu/">Home</a> | </li>
+		<li><a title="Contact SGD" onMouseover="showtip(this,event,'Contact SGD')" onMouseout="hidetip()" href="http://yeastgenome-hitz-dev.stanford.edu/cgi-bin/suggestion"><img alt='Contact SGD' class='bottom' src="http://yeastgenome-hitz-dev.stanford.edu/images/mail.gif">&nbsp;</a> | </li>
+		<li><a type="application/rss+xml" href="http://yeastgenome-hitz-dev.stanford.edu/xml/news_feed.xml"><img alt='RSS' class='bottom' src="http://yeastgenome-hitz-dev.stanford.edu/images/rss.gif">&nbsp;</a> </li>
+	</ul>
+	</div><!-- end of navigation aid -->
+    <div class="inline" id="tool_bar">
+	 <ul>
+		<li>&nbsp; <!-- spacer kludge --> </li>
+		<li><a href="http://yeastgenome-hitz-dev.stanford.edu/ComContents.shtml">Community Info</a></li>
+		<li><a href="http://yeastgenome-hitz-dev.stanford.edu/SubmitContents.shtml">Submit Data</a></li>
+		<li><a href="http://yeastgenome-hitz-dev.stanford.edu/cgi-bin/blast-sgd.pl">BLAST</a></li>
+		<li><a href="http://yeastgenome-hitz-dev.stanford.edu/cgi-bin/web-primer">Primers</a></li>
+		<li><a href="http://yeastgenome-hitz-dev.stanford.edu/cgi-bin/PATMATCH/nph-patmatch">PatMatch</a></li>
+		<li><a href="http://yeastgenome-hitz-dev.stanford.edu/cgi-bin/seqTools">Gene/Seq Resources</a></li>
+		<li><a href="http://yeastgenome-hitz-dev.stanford.edu/cgi-bin/search/featureSearch">Advanced Search</a></li>
+		<li><a href="http://yeastgenome-devwiki.stanford.edu/">Community Wiki</a></li>
+	 </ul>
+	</div><!-- end of tool bar -->
+
+    <div class="spacer"></div>
+    <hr>
+
+  </div> <!-- end of header -->
+ <div id="main_page">
+  <div id="viewer">
+
+    <div id="cytoscapeweb_container" style="width: 70%; float: right;">
+            <div id="cytoscapeweb">
+            Cytoscape Web will replace the contents of this div with your graph.
+            <embed id="CytoscapeWeb1" width="100%" height="100%" align="middle" type="application/x-shockwave-flash" flashvars="id=CytoscapeWeb1" wmode="opaque" pluginspage="http://www.adobe.com/go/getflashplayer" allowscriptaccess="always" name="cytoscapeweb" bgcolor="#CCCCFF" quality="high" src="/INT/swf/CytoscapeWeb.swf">
+            </div>
+    </div>
+    <div id="sidebar" style="width: 30%;">
+    	<h3><a href="#">Gene Info</a></h3>
+    	<div>		
+    		<div id='search_box' class='ui-widget'>
+				<label for="search">Enter Gene: </label>
+				<input id="search" size=6>
+			</div>
+	 		<div id="gene_info_tabs" style="font-size: 16px;">
+			    <ul>
+				<li><a href="#info_basic">Basic Info</a></li>
+				<li><a href="#info_go">GO</a></li>
+				<li><a href="#info_pheno">Phenotype</a></li>
+			    </ul>
+			    <div id="info_basic"><p>Click on a Gene node to display</p></div>
+		    	<div id="info_go"><p>Click on a Gene node to display</p></div>
+		    	<div id="info_pheno"><p>Click on a Gene node to display</p></div>
+			</div>
+	    </div>
+     	<h3><a href="#">Node Color</a></h3>
+    	<div>
+		   <div id="reset">
+      		<input id="networkReset" type="reset" name="networkResetButton" value="Reset Network" >
+   		  </div>
+	      <div class="property" type="colour" property="ALL">
+	         <label class="style_head" for="color_all_nodes">Color all nodes</label>
+    	     <input id="color_all_nodes" type="text" name="ALL_nodes" value="#CCCCCC"> 
+   		  </div>
+		  <div id="node_color">
+								<div class="property" type="colour" property="GO_SLIM.PROCESS.GO:0009405">
+									<label class="style" for="GO:0009405_color">
+										<span class="b i">(0)</span> pathogenesis (GO:0009405)
+									</label>
+									<input id="pathogenesis" type="text" name="pathogenesis" value="#CCCCCC" >
+								</div>
+								<div class="property" type="colour" property="GO_SLIM.PROCESS.GO:0008219">
+									<label class="style" for="GO:0008219_color">
+										<span class="b i">(0)</span> cell death (GO:0008219)
+									</label>
+									<input id="cell_death" type="text" name="cell death" value="#999999" >
+								</div>
+								<div class="property" type="colour" property="GO_SLIM.PROCESS.GO:0050789">
+									<label class="style" for="GO:0050789_color">
+										<span class="b i">(0)</span> regulation of biological process (GO:0050789)
+									</label>
+									<input id="regulation_of_biological_process" type="text" name="regulation of biological process" value="#FFFFFF" >
+								</div>
+								<div class="property" type="colour" property="GO_SLIM.PROCESS.GO:0009653">
+									<label class="style" for="GO:0009653_color">
+										<span class="b i">(7)</span> anatomical structure morphogenesis (GO:0009653)
+									</label>
+									<input id="anatomical_structure_morphogenesis" type="text" name="anatomical structure morphogenesis" value="#00CC66" >
+								</div>
+								<div class="property" type="colour" property="GO_SLIM.PROCESS.GO:0006996">
+									<label class="style" for="GO:0006996_color">
+										<span class="b i">(3)</span> organelle organization and biogenesis (GO:0006996)
+									</label>
+									<input id="organelle_organization_and_biogenesis" type="text" name="organelle organization and biogenesis" value="#00CC99" >
+								</div>
+								<div class="property" type="colour" property="GO_SLIM.PROCESS.GO:0042254">
+									<label class="style" for="GO:0042254_color">
+										<span class="b i">(1)</span> ribosome biogenesis and assembly (GO:0042254)
+									</label>
+									<input id="ribosome_biogenesis_and_assembly" type="text" name="ribosome biogenesis and assembly" value="#00FF00" >
+								</div>
+								<div class="property" type="colour" property="GO_SLIM.PROCESS.GO:0007047">
+									<label class="style" for="GO:0007047_color">
+										<span class="b i">(2)</span> cell wall organization and biogenesis (GO:0007047)
+									</label>
+									<input id="cell_wall_organization_and_biogenesis" type="text" name="cell wall organization and biogenesis" value="#00CC66" >
+								</div>
+								<div class="property" type="colour" property="GO_SLIM.PROCESS.GO:0007010">
+									<label class="style" for="GO:0007010_color">
+										<span class="b i">(3)</span> cytoskeleton organization and biogenesis (GO:0007010)
+									</label>
+									<input id="cytoskeleton_organization_and_biogenesis" type="text" name="cytoskeleton organization and biogenesis" value="#33FF99" >
+								</div>
+								<div class="property" type="colour" property="GO_SLIM.PROCESS.GO:0006412">
+									<label class="style" for="GO:0006412_color">
+										<span class="b i">(1)</span> translation (GO:0006412)
+									</label>
+									<input id="translation" type="text" name="translation" value="#CCFF99" >
+								</div>
+								<div class="property" type="colour" property="GO_SLIM.PROCESS.GO:0043062">
+									<label class="style" for="GO:0043062_color">
+										<span class="b i">(0)</span> extracellular structure organization and biogenesis (GO:0043062)
+									</label>
+									<input id="extracellular_structure_organization_and_biogenesis" type="text" name="extracellular structure organization and biogenesis" value="#00CC99" >
+								</div>
+								<div class="property" type="colour" property="GO_SLIM.PROCESS.GO:0006997">
+									<label class="style" for="GO:0006997_color">
+										<span class="b i">(1)</span> nuclear organization and biogenesis (GO:0006997)
+									</label>
+									<input id="nuclear_organization_and_biogenesis" type="text" name="nuclear organization and biogenesis" value="#66FF99" >
+								</div>
+								<div class="property" type="colour" property="GO_SLIM.PROCESS.GO:0016044">
+									<label class="style" for="GO:0016044_color">
+										<span class="b i">(2)</span> membrane organization and biogenesis (GO:0016044)
+									</label>
+									<input id="membrane_organization_and_biogenesis" type="text" name="membrane organization and biogenesis" value="#339966" >
+								</div>
+								<div class="property" type="colour" property="GO_SLIM.PROCESS.GO:0007126">
+									<label class="style" for="GO:0007126_color">
+										<span class="b i">(0)</span> meiosis (GO:0007126)
+									</label>
+									<input id="meiosis" type="text" name="meiosis" value="#CC66FF" >
+								</div>
+								<div class="property" type="colour" property="GO_SLIM.PROCESS.GO:0007114">
+									<label class="style" for="GO:0007114_color">
+										<span class="b i">(2)</span> cell budding (GO:0007114)
+									</label>
+									<input id="cell_budding" type="text" name="cell budding" value="#9933FF" >
+								</div>
+								<div class="property" type="colour" property="GO_SLIM.PROCESS.GO:0007049">
+									<label class="style" for="GO:0007049_color">
+										<span class="b i">(5)</span> cell cycle (GO:0007049)
+									</label>
+									<input id="cell_cycle" type="text" name="cell cycle" value="#9966FF" >
+								</div>
+								<div class="property" type="colour" property="GO_SLIM.PROCESS.GO:0000746">
+									<label class="style" for="GO:0000746_color">
+										<span class="b i">(10)</span> conjugation (GO:0000746)
+									</label>
+									<input id="conjugation" type="text" name="conjugation" value="#9933CC" >
+								</div>
+								<div class="property" type="colour" property="GO_SLIM.PROCESS.GO:0000910">
+									<label class="style" for="GO:0000910_color">
+										<span class="b i">(2)</span> cytokinesis (GO:0000910)
+									</label>
+									<input id="cytokinesis" type="text" name="cytokinesis" value="#9900CC" >
+								</div>
+								<div class="property" type="colour" property="GO_SLIM.PROCESS.GO:0006944">
+									<label class="style" for="GO:0006944_color">
+										<span class="b i">(0)</span> membrane fusion (GO:0006944)
+									</label>
+									<input id="membrane_fusion" type="text" name="membrane fusion" value="#CC9966" >
+								</div>
+								<div class="property" type="colour" property="GO_SLIM.PROCESS.GO:0030154">
+									<label class="style" for="GO:0030154_color">
+										<span class="b i">(0)</span> cell differentiation (GO:0030154)
+									</label>
+									<input id="cell_differentiation" type="text" name="cell differentiation" value="#993300" >
+								</div>
+								<div class="property" type="colour" property="GO_SLIM.PROCESS.GO:0030435">
+									<label class="style" for="GO:0030435_color">
+										<span class="b i">(1)</span> sporulation (GO:0030435)
+									</label>
+									<input id="sporulation" type="text" name="sporulation" value="#663333" >
+								</div>
+								<div class="property" type="colour" property="GO_SLIM.PROCESS.GO:0016192">
+									<label class="style" for="GO:0016192_color">
+										<span class="b i">(2)</span> vesicle-mediated transport (GO:0016192)
+									</label>
+									<input id="vesicle-mediated_transport" type="text" name="vesicle-mediated transport" value="#996633" >
+								</div>
+								<div class="property" type="colour" property="GO_SLIM.PROCESS.GO:0019725">
+									<label class="style" for="GO:0019725_color">
+										<span class="b i">(1)</span> cell homeostasis (GO:0019725)
+									</label>
+									<input id="cell_homeostasis" type="text" name="cell homeostasis" value="#996600" >
+								</div>
+								<div class="property" type="colour" property="GO_SLIM.PROCESS.GO:0046903">
+									<label class="style" for="GO:0046903_color">
+										<span class="b i">(0)</span> secretion (GO:0046903)
+									</label>
+									<input id="secretion" type="text" name="secretion" value="#663300" >
+								</div>
+								<div class="property" type="colour" property="GO_SLIM.PROCESS.GO:0007124">
+									<label class="style" for="GO:0007124_color">
+										<span class="b i">(2)</span> pseudohyphal growth (GO:0007124)
+									</label>
+									<input id="pseudohyphal_growth" type="text" name="pseudohyphal growth" value="#996666" >
+								</div>
+								<div class="property" type="colour" property="GO_SLIM.PROCESS.GO:0006928">
+									<label class="style" for="GO:0006928_color">
+										<span class="b i">(0)</span> cell motility (GO:0006928)
+									</label>
+									<input id="cell_motility" type="text" name="cell motility" value="#CC9900" >
+								</div>
+								<div class="property" type="colour" property="GO_SLIM.PROCESS.GO:0007165">
+									<label class="style" for="GO:0007165_color">
+										<span class="b i">(14)</span> signal transduction (GO:0007165)
+									</label>
+									<input id="signal_transduction" type="text" name="signal transduction" value="#FF9933" >
+								</div>
+								<div class="property" type="colour" property="GO_SLIM.PROCESS.GO:0006350">
+									<label class="style" for="GO:0006350_color">
+										<span class="b i">(2)</span> transcription (GO:0006350)
+									</label>
+									<input id="transcription" type="text" name="transcription" value="#FFFF00" >
+								</div>
+								<div class="property" type="colour" property="GO_SLIM.PROCESS.GO:0007610">
+									<label class="style" for="GO:0007610_color">
+										<span class="b i">(0)</span> behavior (GO:0007610)
+									</label>
+									<input id="behavior" type="text" name="behavior" value="#CC3300" >
+								</div>
+								<div class="property" type="colour" property="GO_SLIM.PROCESS.GO:0006950">
+									<label class="style" for="GO:0006950_color">
+										<span class="b i">(3)</span> response to stress (GO:0006950)
+									</label>
+									<input id="response_to_stress" type="text" name="response to stress" value="#FF6633" >
+								</div>
+								<div class="property" type="colour" property="GO_SLIM.PROCESS.GO:0006464">
+									<label class="style" for="GO:0006464_color">
+										<span class="b i">(3)</span> protein modification (GO:0006464)
+									</label>
+									<input id="protein_modification" type="text" name="protein modification" value="#FF5050" >
+								</div>
+								<div class="property" type="colour" property="GO_SLIM.PROCESS.GO:0007154">
+									<label class="style" for="GO:0007154_color">
+										<span class="b i">(0)</span> cell communication (GO:0007154)
+									</label>
+									<input id="cell_communication" type="text" name="cell communication" value="#FFCC99" >
+								</div>
+								<div class="property" type="colour" property="GO_SLIM.PROCESS.GO:0016070">
+									<label class="style" for="GO:0016070_color">
+										<span class="b i">(4)</span> RNA metabolic process (GO:0016070)
+									</label>
+									<input id="RNA_metabolic_process" type="text" name="RNA metabolic process" value="#0000FF" >
+								</div>
+								<div class="property" type="colour" property="GO_SLIM.PROCESS.GO:0005975">
+									<label class="style" for="GO:0005975_color">
+										<span class="b i">(2)</span> carbohydrate metabolic process (GO:0005975)
+									</label>
+									<input id="carbohydrate_metabolic_process" type="text" name="carbohydrate metabolic process" value="#3399CC" >
+								</div>
+								<div class="property" type="colour" property="GO_SLIM.PROCESS.GO:0006629">
+									<label class="style" for="GO:0006629_color">
+										<span class="b i">(0)</span> lipid metabolic process (GO:0006629)
+									</label>
+									<input id="lipid_metabolic_process" type="text" name="lipid metabolic process" value="#0066FF" >
+								</div>
+								<div class="property" type="colour" property="GO_SLIM.PROCESS.GO:0043170">
+									<label class="style" for="GO:0043170_color">
+										<span class="b i">(0)</span> macromolecule metabolic process (GO:0043170)
+									</label>
+									<input id="macromolecule_metabolic_process" type="text" name="macromolecule metabolic process" value="#000066" >
+								</div>
+								<div class="property" type="colour" property="GO_SLIM.PROCESS.GO:0006139">
+									<label class="style" for="GO:0006139_color">
+										<span class="b i">(0)</span> nucleobase, nucleoside, nucleotide and nucleic acid metabolic process  (GO:0006139)
+									</label>
+									<input id="nucleobase_nucleoside_nucleotide_and_nucleic_acid_metabolic_process " type="text" name="nucleobase, nucleoside, nucleotide and nucleic acid metabolic process " value="#00CCFF" >
+								</div>
+								<div class="property" type="colour" property="GO_SLIM.PROCESS.GO:0006519">
+									<label class="style" for="GO:0006519_color">
+										<span class="b i">(2)</span> amino acid and derivative metabolic process (GO:0006519)
+									</label>
+									<input id="amino_acid_and_derivative_metabolic_process" type="text" name="amino acid and derivative metabolic process" value="#99CCFF" >
+								</div>
+								<div class="property" type="colour" property="GO_SLIM.PROCESS.GO:0006766">
+									<label class="style" for="GO:0006766_color">
+										<span class="b i">(0)</span> vitamin metabolic process (GO:0006766)
+									</label>
+									<input id="vitamin_metabolic_process" type="text" name="vitamin metabolic process" value="#0000CC" >
+								</div>
+								<div class="property" type="colour" property="GO_SLIM.PROCESS.GO:0006259">
+									<label class="style" for="GO:0006259_color">
+										<span class="b i">(0)</span> DNA metabolic process (GO:0006259)
+									</label>
+									<input id="DNA_metabolic_process" type="text" name="DNA metabolic process" value="#0033FF" >
+								</div>
+								<div class="property" type="colour" property="GO_SLIM.PROCESS.GO:0006810">
+									<label class="style" for="GO:0006810_color">
+										<span class="b i">(4)</span> transport (GO:0006810)
+									</label>
+									<input id="transport" type="text" name="transport" value="#FF3333" >
+								</div>
+								<div class="property" type="colour" property="GO_SLIM.PROCESS.GO:0006091">
+									<label class="style" for="GO:0006091_color">
+										<span class="b i">(1)</span> generation of precursor metabolites and energy (GO:0006091)
+									</label>
+									<input id="generation_of_precursor_metabolites_and_energy" type="text" name="generation of precursor metabolites and energy" value="#FF33CC" >
+								</div>
+								<div class="property" type="colour" property="GO_SLIM.PROCESS.GO:0006118">
+									<label class="style" for="GO:0006118_color">
+										<span class="b i">(0)</span> electron transport (GO:0006118)
+									</label>
+									<input id="electron_transport" type="text" name="electron transport" value="#FF66CC" >
+								</div>
+							</div>
+		</div>
+    	<h3><a href="#">Node Shape</a></h3>
+    	<div></div>
+    	<h3><a href="#">Edges</a></h3>
+    	<div></div>
+    </div>
+  </div> 	
+</div> 
+<div class='spacer'></div>
+<!-- BELOW IS FOR DEBUGGING CGI --> <!-- : /share/cvs/org/yeastgenome/templates/dump_param.tmpl,v  -->
+<!-- This template is for debugging purposes only -->  
+ <div id="footer">
+    <hr>
+
+	<form method="post" action="http://yeastgenome-hitz-dev.stanford.edu/cgi-bin/suggestion" enctype="" name="suggestion">
+
+	<div class='inline'><span class='left'><a href="http://yeastgenome-hitz-dev.stanford.edu/"><img src="http://yeastgenome-hitz-dev.stanford.edu/images/arrow_small_up.gif" alt="arrow">SGD Home</a></span>
+    
+	<span class='right'><label><a href="javascript:document.suggestion.submit()">Send a Message to the SGD Curators<img src="http://yeastgenome-hitz-dev.stanford.edu/images/mail.gif" alt="mail"></a></label></span>
+	</div>
+
+     </form>
+     <div class="spacer">&nbsp;</div>
+     <hr>
+     <p>SGD<sup>tm</sup> pages Database Copyright &#169; 1997-2010 The
+     Board of Trustees of Leland Stanford Junior
+     University. Permission to use the information contained in this
+     database was given by the researchers/institutes who contributed
+     or published the information. Users of the database are solely
+     responsible for compliance with any copyright restrictions,
+     including those applying to the author abstracts. Documents from
+     this server are provided "AS-IS" without any warranty, expressed
+     or implied. The SGD project at Stanford University is supported
+     by a Genome Research Resource Grant from the US National Human
+     Genome Research Institute, part of the US National Institutes of
+     Health.
+     </p>
+</div> <!-- end of footer -->
+</div>
+
+</div> <!-- end of wrapper --> <!-- : /share/cvs/org/yeastgenome/templates/Reports/LocusReport/InteractionServer/Attic/site_js.tmpl,v  -->
+<!-- jquery 1.6.1 for ajax-->
+<script type="text/javascript" src="/INT/js/min/jquery-1.6.1.min.js"></script>
+
+<!-- jquery ui custom (sunny) -->
+<script type="text/javascript" src="/INT/js/min/jquery-ui-1.8.13.custom.min.js"></script> 
+
+<!-- jquery layout -->
+<script type="text/javascript" src="http://yeastgenome-hitz-dev.stanford.edu/javascript/jquery.layout-latest.js"></script> 
+
+<!-- jquery-jsonp (from another online repository) -->
+<script src="http://jquery-jsonp.googlecode.com/files/jquery.jsonp-2.1.4.min.js" type="text/javascript"></script>
+
+<!-- Similarly imbedding.js is hosted on intermine.org -->
+<script src="http://www.intermine.org/lib/imbedding/0.1/imbedding.min.js" type="text/javascript"></script>
+<!-- Have local copy in case I need it -->
+
+<!-- farbtastic color picker -->
+<script type="text/javascript" src="http://yeastgenome-hitz-dev.stanford.edu/javascript/farbtastic.js"></script>
+
+<!-- input validation -->
+<script type="text/javascript" src="http://yeastgenome-hitz-dev.stanford.edu/javascript/jquery.validate.min.js"></script>
+
+<!-- JSON support for IE (needed to use JS API) 
+<script type="text/javascript" src="/INT/js/min/json2.min.js"></script>
+Hoping that jquery-json handles this
+-->
+
+<!-- Flash embedding utility (needed to embed Cytoscape Web) -->
+<script type="text/javascript" src="/INT/js/min/AC_OETags.min.js"></script>
+
+<!-- Cytoscape Web JS API (needed to reference org.cytoscapeweb.Visualization) -->
+<script type="text/javascript" src="/INT/js/min/cytoscapeweb.min.js"></script>
+<script type="text/javascript" src="/INT/js/yeastmine.js"></script>
+<script type="text/javascript">
+var outerLayout, westLayout;
+
+$(function() {
+
+	getGeneList();
+    // id of Cytoscape Web container div
+    var div_id = "cytoscapeweb";
+
+    // network data could alternatively be grabbed via ajax
+    var xml = $.ajax({ 
+	url: '/INT/tmp/interactions.2305.xgmml',
+	async: false,
+    }).responseText;
+
+    // initialization options
+    var options = {
+	// where you have the Cytoscape Web SWF
+	swfPath: "/INT/swf/CytoscapeWeb",
+	// where you have the Flash installer SWF
+	flashInstallerPath: "/INT/swf/playerProductInstall"
+    };
+
+    // init 
+    var vis = new org.cytoscapeweb.Visualization(div_id, options);
+
+    // function to set up filters
+    var filters = new Array();
+    var nodeColors = new Array();
+
+    function resetFilters() {
+ 	$('.edgeFilter').each(function() {
+     	   
+	   filters[$(this).attr('id')] = true;
+      	   $(this).attr('checked', true);
+        });
+
+ 	$('.typeFilter').each(function() {
+     	   
+	   filters[$(this).attr('id')] = true;
+      	   $(this).attr('checked', true);
+        });    
+
+	$('.property input').each(function() {
+	   $(this).val(nodeColors[$(this).attr('id')]);
+	});
+   
+    }
+
+    // init and draw
+    var vis = new org.cytoscapeweb.Visualization(div_id, options);
+
+    function edge_toggle(type) {
+ 
+	filters[type] = !filters[type]; // invert state
+        var show = filters[type];
+
+	vis.filter("edges", function(n) {
+            var label = n.data.experimentType;
+	    var spaceRegex = / /g;
+	    if (label.replace(spaceRegex,"") == type) {
+		return show;
+            } else {
+	        return n.visible;
+            }
+        });
+
+    }
+
+    $(".edgeFilter").change(function() {
+
+    	edge_toggle($(this).attr('id'));
+
+    });
+  
+    $("#geneticinteractions").change(function(){
+
+       var type;
+       var state = $(this).attr('checked');
+       $('.genetic').each(function(n) {
+            if($(this).attr('checked') != state) {
+	         edge_toggle($(this).attr('id'));
+		 $(this).attr('checked', state);
+	   }
+       });
+    });
+
+    $("#physicalinteractions").change(function(){
+
+      var type;
+       var state = $(this).attr('checked');
+       $('.physical').each(function(n) {
+            if($(this).attr('checked') != state) {
+	         edge_toggle($(this).attr('id'));
+		 $(this).attr('checked', state);
+	   }
+       });
+    });
+ 
+
+    function showGo(goInfo, aspect) {
+
+    	     var goRows = "";
+
+	     for (var i=0; i < goInfo.length; i++) {
+                 var term = goInfo[i];
+	     	 if (term != aspect) {  // skip unknowns
+		    goRows += "<tr><th></th><td>" + term + "</td></tr>";
+		 }
+             }
+
+	     if (goRows == "") {
+	     	goRows += '<tr><th></th><td><span class="i">Unknown</span></td></tr>';
+    	     }
+
+	     return goRows;
+    }
+
+    function displayGeneProps(info) {
+
+    	     var commonHead = "<table class='summary_mini'><tbody>";
+	     var hasGeneName = false;
+             if (info.canonicalName != info.systematicName) {
+	     	     commonHead += "<tr><th>Standard Name</th><td>" + info.canonicalName + "</td></tr>";
+		     hasGeneName = true;
+             } else {
+	     	     commonHead += "<tr><th>Systematic Name</th><td>" + info.systematicName + "</td></tr>";
+             }
+	     basic = commonHead;
+	     if (hasGeneName) {
+	             basic += "<tr><th>Systematic Name</th><td>" + info.systematicName + "</td></tr>";
+             }
+	     basic += "<tr><th>Name Description</th><td>" + info.geneDescription + "</td></tr>";
+
+	     var pathways = ""
+	     for (var i=0; i<info.PATHWAY.length; i++) { if(info.PATHWAY[i]) { pathways += "<tr><th></<th><td>" + info.PATHWAY[i] + "</td></tr>";} }
+
+	     if (pathways != "") {
+	          basic += "<tr><th class='b'>Pathways</th><td></td></tr>";
+		  basic += pathways;
+             
+             }
+	     basic += "</tbody></table>";
+	     
+	     $("#info_basic").html(basic);
+
+	     var go =  commonHead;
+             go += "<tr><th>"
+	     go += "<tr><th>Molecular Function</th><td></td></tr>" + showGo(info.GO_MOLECULAR_FUNCTION, 'molecular_function');
+	     go += "<tr><th>Biological Process</th><td></td></tr>" + showGo(info.GO_BIOLOGICAL_PROCESS, 'biological_process');
+	     go += "<tr><th>Cellular Component</th><td></td></tr>" + showGo(info.GO_CELLULAR_COMPONENT, 'cellular_component');
+	     go += "</tbody></table>";
+
+
+	     $("#info_go").html(go);
+
+	     var pheno =  commonHead;
+           
+	     pheno += "<tr><th class='b'>Phenotypes</th><td></td></tr>"
+	     for (var i=0; i<info.PHENOTYPE.length; i++) { pheno += "<tr><th></th><td>" + info.PHENOTYPE[i] +"</td></tr>";}
+	     	 
+	     pheno += "</tbody></table>";
+
+	     $("#info_pheno").html(pheno);
+ 
+    }
+
+   	     
+        // utility for pickers
+        function position_at_input(picker, input){
+            $(picker).css({
+                position: "absolute",
+                left: $(input).offset().left,
+                top: $(input).offset().top + $(input).outerHeight()
+            });
+            
+            if( $(picker).offset().top + $(picker).outerHeight() > $(window).height() ){
+                $(picker).css({
+                    top: $(input).offset().top - $(picker).outerHeight()
+                });
+            }       
+        }
+
+        function hide_with_input(picker, input, fn){
+        	if ($(picker).find(".header").is(":visible")) {
+        		// IE set focus to picker, forcing a blur on input, so blur cannot be used here.
+        		// Let's just create a close button instead:
+        		$("#colour_picker .ui-icon-close").bind("click", function(evt){
+        			fn();
+        			evt.preventDefault();
+        		});
+        	} else {
+        		// Regular GOOD browsers!
+	        	$(input).bind("blur", function(){
+	            	fn();
+	            });
+        	}
+            
+            $(parent).parent().bind("scroll", function(){
+                fn();
+            });
+            
+            $(window).bind("resize", function(){
+                fn();
+            });
+
+	}
+
+        // add colour pickers
+        var picker; // parent div to farbtastic
+        var picker_internals; // farbtastic instance
+        
+        function remove_picker(){
+            if( picker != undefined ){
+                $(picker).remove();
+                picker = undefined;
+                picker_internals = undefined;
+            }
+        }
+
+       function valid_value(value, type){
+            switch( type ) {
+                case "colour":
+                    return value.match(/^(\#)([0-9]|[a-f]|[A-F]){6}/);
+                case "number":
+                    return value.match(/^(-){0,1}([0-9])+((\.)([0-9])+){0,1}/);
+                case "per cent number":
+                    return value.match(/^((1)|(0)((\.)([0-9])+){0,1})/);
+                case "integer":
+                    return value.match(/^([0-9])+/);
+                case "string":
+                    return true;
+                case "non-empty string":
+                    return value != null && value != "";
+                case "node shape":
+                    return value.match(/^(ellipse)|(diamond)|(rectangle)|(triangle)|(hexagon)|(roundrect)|(parallelogram)|(octagon)|(vee)|(v)/i);
+                case "edge shape":
+                    return value.match(/^(circle)|(diamond)|(delta)|(arrow)|(T)|(none)/i);
+            }
+            
+            return false;
+        }
+        
+        $(document).find(".property input").each(function(){
+            var input = $(this);
+            var property = "colour";
+
+	    nodeColors[$(input).attr('id')] = $(input).val(); // save old value
+
+            $(input).addClass("colour_sample_bg");
+
+            $(input).validate({
+                errorMessage: function(str){
+                    return "must be a valid " + property;
+                },
+                valid: function(str){
+                    return valid_value( str, property);
+                }
+            });
+            
+	    function set_property(viz_objects, filter, value, property) {
+
+	             // note: viz_objects = "nodes" and property = "color" ignored for now
+		     var style = vis.visualStyle();		     
+
+	    	     vis["customNodeColor"] = function(data) {
+
+		        if (filter == "ALL_nodes") {
+			   // could also be a visualBypass
+			   return value;
+			}
+			for (var i=0;i<data.GO_SLIM_PROCESS.length; i++) {
+			        if (data.GO_SLIM_PROCESS[i] == filter) {
+				   return value;
+				}
+		        }
+			// else
+                        return vis.node(data.id).color;  
+                        //return "#CCCCCC";   // neutral I guess
+			
+                     }
+		     style.nodes.color = { customMapper: { functionName: "customNodeColor" } };
+		     vis.visualStyle(style);
+            }
+
+            function set_colour(){
+                $(input).css({
+                    backgroundColor: $(input).val()
+                });
+		
+            }
+            set_colour();
+            
+            // update colour on picker after typing
+            $(input).bind("valid", function(){
+                if( picker_internals != undefined ){
+                    picker_internals.setColor( $(input).val() );
+                }
+                set_property( "nodes", $(input).attr("name"), ""+$(input).val(), "fillColor");
+                
+                set_colour();
+            });		
+            
+	    $(input).bind("invalid", function(){
+                $(input).css("background-color", "transparent");
+            });
+            
+            // on empty put # so user doesn't have to
+            $(input).bind("keyup", function(){
+                if( $(this).val() == "" ){
+                    $(this).val("#");
+                }
+            });
+            
+            // add clicker near input when clicked
+            $(input).bind("click", function(){
+                remove_picker();
+            
+                picker = $('<div id="colour_picker" class="floating_widget">' +
+                		   '<div class="header ui-state-default"><div class="ui-icon ui-icon-close"/></div><div class="content"/></div>');
+                $("body").append(picker);
+                
+                if (!$.browser.msie) { $("#colour_picker .header").hide(); }
+                
+                picker_internals = $.farbtastic($("#colour_picker .content"), function(colour){
+                    $(input).val(colour).trigger("validate");
+                });
+
+                position_at_input($(picker), $(input));
+                
+                $(input).trigger("validate");
+                
+                hide_with_input($(picker), $(input), function(){
+                    remove_picker();
+                });
+            });
+        });
+ 
+    $('input:reset').button();
+    $('input:reset').click(function() {
+			     vis.draw({layout: {
+			     		       name: "ForceDirected",
+                                               options: {
+					 	        mass: 300,
+					      		gravitation: -500,
+					    		tension: 0.1,
+					       		restLength: "auto",
+					       		drag: 0.4,
+					       		iterations: 400 ,
+					       		maxTime: 20000 ,
+					       		minDistance: 1,
+					       		maxDistance: 10000,
+					       		autoStabilize: true
+						       }
+
+    						},
+				       network: xml,
+ 	                               edgeTooltipsEnabled: true,
+	                               nodeTooltipsEnabled: true,              
+				       });
+		             resetFilters();
+
+			     }); 
+			     
+	/* Layout stuff
+
+	 */
+	$( "#sidebar" ).accordion();
+    $( "#gene_info_tabs" ).tabs();
+  
+
+    // Control Panel (jquery-ui)
+    //$("#accordion").accordion({ header: "h3" });
+ 
+    vis.ready(function () {
+
+    		       vis.addContextMenuItem("Delete node", "nodes", function(evt) {
+            	       		 vis.removeNode(evt.target, true);
+            	       });
+         			 
+		        vis.addListener("click", "nodes", function(event) {
+			    displayGeneProps(event.target.data);
+			});
+
+			vis.addListener("dblclick", "nodes",
+				function (event) {
+
+			        alert("Get new edges (unimplemented)");
+				return;
+		
+			    var data = event.target.data;
+
+			    var eCount = edgeCounts[data.id];
+			    var nodeDegree = data.NODE_DEGREE;
+			    var hiddenEdges = nodeDegree-eCount;
+			    if ( hiddenEdges > 0)
+			    {
+				fetchGraph(event.target.data.ENTITY_TYPE, event.target.data.ENTITY_ID, data.id);
+			    }
+			    else if (hiddenEdges < 1)
+			    {
+				alert("This node is fully expanded -- all its edges are displayed.")
+			    }
+			    else 
+			    {
+				alert("The number of hidden edges (" + hiddenEdges + ") is too large, this node cannot be expanded with this graph.");
+			    }
+
+			});
+
+   		        vis.addContextMenuItem("Select first neighbors", "nodes", 
+			    function (evt) {
+			    // Get the right-clicked node:
+			    var rootNode = evt.target;
+
+			    // Get the first neighbors of that node:
+			    var fNeighbors = vis.firstNeighbors([rootNode]);
+			    var neighborNodes = fNeighbors.neighbors;
+
+			    // Select the root node and its neighbors:
+			    vis.select([rootNode]).select(neighborNodes);
+			    }
+     			 );
+			 vis.addContextMenuItem("Radial layout", "none",
+			     function () {
+			     vis.draw({layout: {
+			     		       name: "Radial", 
+					       options: {
+					           angleWidth: 360,
+					           radius: "auto"
+						}
+					},
+				       network: xml,
+ 	                               edgeTooltipsEnabled: true,
+	                               nodeTooltipsEnabled: true,              
+				       }
+				       );
+		             resetFilters();
+                             }
+			 );
+			 vis.addContextMenuItem("Tree layout", "none",
+			     function () {
+			     vis.draw({layout: {
+			     		       name: "Tree",
+					       options: {
+					           orientation: "leftToRight",
+					       	   depthSpace: 900,
+					       	   breadthSpace: 30,
+					       	   angleWidth: 30,
+						}
+						   
+					},
+				       network: xml,
+ 	                               edgeTooltipsEnabled: true,
+	                               nodeTooltipsEnabled: true,              
+				       }
+				       );
+			     resetFilters();
+                             }
+			 );
+			 vis.addContextMenuItem("Force-directed layout", "none",
+			     function () {
+			     vis.draw({layout: {
+			     		       name: "ForceDirected",
+                                               options: {
+					 	        mass: 300,
+					      		gravitation: -500,
+					    		tension: 0.1,
+					       		restLength: "auto",
+					       		drag: 0.4,
+					       		iterations: 400 ,
+					       		maxTime: 20000 ,
+					       		minDistance: 1,
+					       		maxDistance: 10000,
+					       		autoStabilize: true
+						       }
+
+    						},
+				       network: xml,
+ 	                               edgeTooltipsEnabled: true,
+	                               nodeTooltipsEnabled: true,              
+				       }
+				       );;
+		             resetFilters();
+                             }
+			 );
+			 vis["customTooltip"] = function (data) {
+			        var slimData = "SLIM FUNCTION: " + data.GO_SLIM_FUNCTION.toString();
+
+				slimData += "\nSLIM PROCESS: " + data.GO_SLIM_PROCESS.toString();
+
+				slimData += "\nSLIM COMPONENT: " + data.GO_SLIM_COMPONENT.toString();
+
+				return slimData;
+                         };
+  
+ // 2. Now create a new visual style (or get the current one) and register
+ //    the custom mapper to one or more visual properties:
+       	   	  	var style = vis.visualStyle();
+			style.nodes.tooltipText = { customMapper: { functionName: "customTooltip" } };
+			style.edges.tooltipText = { passthroughMapper: { attrName: "label" } };
+ 
+			vis.visualStyle(style);
+
+
+ 
+    });
+    vis.draw({ network: xml ,
+    	       edgeTooltipsEnabled: true,
+	       nodeTooltipsEnabled: true,
+    });
+
+    $(window).load(function() { resetFilters(); });
+
+});
+</script>
+ <!-- put page specific javascript files here -->
+
+</body>
+
+</html>
+
+ 

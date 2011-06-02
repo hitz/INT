@@ -1,0 +1,2510 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<graph label="interactions.2305.xgmml" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:cy="http://www.cytoscape.org" xmlns="http://www.cs.rpi.edu/XGMML" >
+  <att name="documentVersion" value="1.1"/>
+    <att name="networkMetadata">
+        <rdf:RDF>
+            <rdf:Description rdf:about="http://www.cytoscape.org/">
+                <dc:type>Protein-Protein Interaction</dc:type>
+                <dc:description>N/A</dc:description>
+                <dc:identifier>N/A</dc:identifier>
+                <dc:date>YYYY-MM-YYHH:MM:SS</dc:date>
+                <dc:title>interactions.2305.xgmml</dc:title>
+                <dc:source>http://www.cytoscape.org/</dc:source>
+                <dc:format>Cytoscape-XGMML</dc:format>
+            </rdf:Description>
+        </rdf:RDF>
+    </att>
+    <att name="backgroundColor" value="#FFFFCC"/>
+    <att name="curator" label="curator" type="string"/>
+    <att name="GRAPH_VIEW_ZOOM" label="GRAPH_VIEW_ZOOM" value="1" type="real"/>
+    <att name="GRAPH_VIEW_CENTER_X" label="GRAPH_VIEW_CENTER_X" value="0.0" type="real"/>
+    <att name="GRAPH_VIEW_CENTER_Y" label="GRAPH_VIEW_CENTER_Y" value="0.0" type="real"/>
+  <node id="-YDR188W" label="CCT6">
+    <att name="GO_BIOLOGICAL_PROCESS" label="GO_BIOLOGICAL_PROCESS" type="list">
+      <att type="string" value="protein folding" />
+      <att type="string" value="cellular protein metabolic process" />
+    </att>
+    <att name="GO_CELLULAR_COMPONENT" label="GO_CELLULAR_COMPONENT" type="list">
+      <att type="string" value="chaperonin-containing T-complex" />
+      <att type="string" value="cytoplasm" />
+    </att>
+    <att name="GO_MOLECULAR_FUNCTION" label="GO_MOLECULAR_FUNCTION" type="list">
+      <att type="string" value="nucleotide binding" />
+      <att type="string" value="unfolded protein binding" />
+      <att type="string" value="ATP binding" />
+    </att>
+    <att name="GO_SLIM_COMPONENT" label="GO_SLIM_COMPONENT" type="list">
+      <att type="string" value="cytoplasm" />
+    </att>
+    <att name="GO_SLIM_FUNCTION" label="GO_SLIM_FUNCTION" type="list">
+      <att type="string" value="protein binding" />
+    </att>
+    <att name="GO_SLIM_PROCESS" label="GO_SLIM_PROCESS" type="list">
+      <att type="string" value="No Mapping" />
+    </att>
+    <att name="PATHWAY" label="pathways" type="list">
+    </att>
+    <att name="PHENOTYPE" label="phenotypes" type="list">
+      <att type="string" value="inviable" />
+      <att type="string" value="competitive fitness: decreased" />
+      <att type="string" value="haploinsufficient" />
+      <att type="string" value="growth in exponential phase: increased rate" />
+      <att type="string" value="mitochondrial morphology: abnormal" />
+      <att type="string" value="vegetative growth: decreased" />
+    </att>
+    <att name="canonicalName" label="canonicalName" type="string" value="CCT6" />
+    <att name="geneDescription" label="geneDescription" type="string" value="Subunit of the cytosolic chaperonin Cct ring complex" />
+    <att name="node.labelColor" label="node.labelColor" type="string" value="0,0,0" />
+    <att name="systematicName" label="systematicName" type="string" value="YDR188W" />
+    <graphics cy:borderLineType="solid" cy:nodeLabelFont="Arial Bold-0-12" cy:nodeTransparency="1.0" fill="#aaaabb" h="50" outline="#AAAABB" type="ellipse" w="50" width="3" x="700" y="100" />
+  </node>
+  <node id="-YDR212W" label="TCP1">
+    <att name="GO_BIOLOGICAL_PROCESS" label="GO_BIOLOGICAL_PROCESS" type="list">
+      <att type="string" value="protein folding" />
+      <att type="string" value="cellular protein metabolic process" />
+    </att>
+    <att name="GO_CELLULAR_COMPONENT" label="GO_CELLULAR_COMPONENT" type="list">
+      <att type="string" value="chaperonin-containing T-complex" />
+      <att type="string" value="cytoplasm" />
+      <att type="string" value="plasma membrane enriched fraction" />
+    </att>
+    <att name="GO_MOLECULAR_FUNCTION" label="GO_MOLECULAR_FUNCTION" type="list">
+      <att type="string" value="nucleotide binding" />
+      <att type="string" value="unfolded protein binding" />
+      <att type="string" value="ATP binding" />
+    </att>
+    <att name="GO_SLIM_COMPONENT" label="GO_SLIM_COMPONENT" type="list">
+      <att type="string" value="cytoplasm" />
+      <att type="string" value="membrane fraction" />
+    </att>
+    <att name="GO_SLIM_FUNCTION" label="GO_SLIM_FUNCTION" type="list">
+      <att type="string" value="protein binding" />
+    </att>
+    <att name="GO_SLIM_PROCESS" label="GO_SLIM_PROCESS" type="list">
+      <att type="string" value="No Mapping" />
+    </att>
+    <att name="PATHWAY" label="pathways" type="list">
+    </att>
+    <att name="PHENOTYPE" label="phenotypes" type="list">
+      <att type="string" value="inviable" />
+      <att type="string" value="competitive fitness: decreased" />
+      <att type="string" value="haploinsufficient" />
+      <att type="string" value="filamentous growth: decreased" />
+      <att type="string" value="invasive growth: absent" />
+    </att>
+    <att name="canonicalName" label="canonicalName" type="string" value="TCP1" />
+    <att name="geneDescription" label="geneDescription" type="string" value="Alpha subunit of chaperonin-containing T-complex" />
+    <att name="node.labelColor" label="node.labelColor" type="string" value="0,0,0" />
+    <att name="systematicName" label="systematicName" type="string" value="YDR212W" />
+    <graphics cy:borderLineType="solid" cy:nodeLabelFont="Arial Bold-0-12" cy:nodeTransparency="1.0" fill="#aaaabb" h="50" outline="#AAAABB" type="ellipse" w="50" width="3" x="1000" y="0" />
+  </node>
+  <node id="-YCL032W" label="STE50">
+    <att name="GO_BIOLOGICAL_PROCESS" label="GO_BIOLOGICAL_PROCESS" type="list">
+      <att type="string" value="MAPKKK cascade involved in osmosensory signaling pathway" />
+      <att type="string" value="signal transduction involved in filamentous growth" />
+      <att type="string" value="pheromone-dependent signal transduction involved in conjugation with cellular fusion" />
+      <att type="string" value="cell cycle" />
+      <att type="string" value="cell cycle arrest" />
+      <att type="string" value="response to pheromone" />
+      <att type="string" value="signal transduction" />
+    </att>
+    <att name="GO_CELLULAR_COMPONENT" label="GO_CELLULAR_COMPONENT" type="list">
+      <att type="string" value="cytoplasm" />
+    </att>
+    <att name="GO_MOLECULAR_FUNCTION" label="GO_MOLECULAR_FUNCTION" type="list">
+      <att type="string" value="protein kinase regulator activity" />
+      <att type="string" value="SAM domain binding" />
+    </att>
+    <att name="GO_SLIM_COMPONENT" label="GO_SLIM_COMPONENT" type="list">
+      <att type="string" value="cytoplasm" />
+    </att>
+    <att name="GO_SLIM_FUNCTION" label="GO_SLIM_FUNCTION" type="list">
+      <att type="string" value="enzyme regulator activity" />
+      <att type="string" value="protein binding" />
+    </att>
+    <att name="GO_SLIM_PROCESS" label="GO_SLIM_PROCESS" type="list">
+      <att type="string" value="signal transduction" />
+      <att type="string" value="cell cycle" />
+      <att type="string" value="conjugation" />
+      <att type="string" value="response to stress" />
+    </att>
+    <att name="PATHWAY" label="pathways" type="list">
+    </att>
+    <att name="PHENOTYPE" label="phenotypes" type="list">
+      <att type="string" value="viable" />
+      <att type="string" value="pheromone sensitivity: absent" />
+      <att type="string" value="competitive fitness: decreased" />
+      <att type="string" value="hyperosmotic stress resistance: decreased" />
+      <att type="string" value="pheromone-induced cell cycle arrest: decreased" />
+      <att type="string" value="resistance to enzymatic treatment: decreased" />
+      <att type="string" value="resistance to ethanol: decreased" />
+      <att type="string" value="resistance to arsenite(3-): decreased" />
+      <att type="string" value="transposable element transposition: decreased" />
+      <att type="string" value="auxotrophy" />
+    </att>
+    <att name="canonicalName" label="canonicalName" type="string" value="STE50" />
+    <att name="geneDescription" label="geneDescription" type="string" value="Protein involved in mating response" />
+    <att name="node.labelColor" label="node.labelColor" type="string" value="0,0,0" />
+    <att name="systematicName" label="systematicName" type="string" value="YCL032W" />
+    <graphics cy:borderLineType="solid" cy:nodeLabelFont="Arial Bold-0-12" cy:nodeTransparency="1.0" fill="#FF9933" h="50" outline="#AAAABB" type="rectangle" w="50" width="3" x="1300" y="0" />
+  </node>
+  <node id="-YDL029W" label="ARP2">
+    <att name="GO_BIOLOGICAL_PROCESS" label="GO_BIOLOGICAL_PROCESS" type="list">
+      <att type="string" value="actin filament organization" />
+      <att type="string" value="mitochondrion inheritance" />
+      <att type="string" value="ascospore wall assembly" />
+      <att type="string" value="ATP catabolic process" />
+      <att type="string" value="Arp2/3 complex-mediated actin nucleation" />
+      <att type="string" value="establishment of mitochondrion localization" />
+    </att>
+    <att name="GO_CELLULAR_COMPONENT" label="GO_CELLULAR_COMPONENT" type="list">
+      <att type="string" value="Arp2/3 protein complex" />
+      <att type="string" value="mitochondrion" />
+      <att type="string" value="actin cortical patch" />
+      <att type="string" value="cytoplasm" />
+      <att type="string" value="cytoskeleton" />
+    </att>
+    <att name="GO_MOLECULAR_FUNCTION" label="GO_MOLECULAR_FUNCTION" type="list">
+      <att type="string" value="ATP binding" />
+      <att type="string" value="nucleotide binding" />
+      <att type="string" value="actin binding" />
+      <att type="string" value="ATPase activity" />
+    </att>
+    <att name="GO_SLIM_COMPONENT" label="GO_SLIM_COMPONENT" type="list">
+      <att type="string" value="cytoskeleton" />
+      <att type="string" value="cell cortex" />
+      <att type="string" value="cytoplasm" />
+      <att type="string" value="mitochondrion" />
+    </att>
+    <att name="GO_SLIM_FUNCTION" label="GO_SLIM_FUNCTION" type="list">
+      <att type="string" value="hydrolase activity" />
+      <att type="string" value="protein binding" />
+    </att>
+    <att name="GO_SLIM_PROCESS" label="GO_SLIM_PROCESS" type="list">
+      <att type="string" value="cytoskeleton organization and biogenesis" />
+      <att type="string" value="sporulation" />
+      <att type="string" value="cell wall organization and biogenesis" />
+      <att type="string" value="organelle organization and biogenesis" />
+    </att>
+    <att name="PATHWAY" label="pathways" type="list">
+    </att>
+    <att name="PHENOTYPE" label="phenotypes" type="list">
+      <att type="string" value="inviable" />
+      <att type="string" value="mitochondrial morphology: abnormal" />
+      <att type="string" value="spore germination: decreased" />
+      <att type="string" value="growth in exponential phase: decreased rate" />
+      <att type="string" value="actin cytoskeleton morphology: abnormal" />
+      <att type="string" value="metal resistance: increased" />
+      <att type="string" value="competitive fitness: decreased" />
+      <att type="string" value="resistance to tunicamycin: decreased" />
+      <att type="string" value="telomere length: decreased" />
+    </att>
+    <att name="canonicalName" label="canonicalName" type="string" value="ARP2" />
+    <att name="geneDescription" label="geneDescription" type="string" value="Essential component of the Arp2/3 complex" />
+    <att name="node.labelColor" label="node.labelColor" type="string" value="0,0,0" />
+    <att name="systematicName" label="systematicName" type="string" value="YDL029W" />
+    <graphics cy:borderLineType="solid" cy:nodeLabelFont="Arial Bold-0-12" cy:nodeTransparency="1.0" fill="#33FF99" h="50" outline="#AAAABB" type="diamond" w="50" width="3" x="800" y="100" />
+  </node>
+  <node id="-YMR105C" label="PGM2">
+    <att name="GO_BIOLOGICAL_PROCESS" label="GO_BIOLOGICAL_PROCESS" type="list">
+      <att type="string" value="glucose 1-phosphate metabolic process" />
+      <att type="string" value="glucose 6-phosphate metabolic process" />
+      <att type="string" value="glucose metabolic process" />
+      <att type="string" value="galactose catabolic process" />
+      <att type="string" value="cellular calcium ion homeostasis" />
+      <att type="string" value="cellular cation homeostasis" />
+      <att type="string" value="UDP-glucose metabolic process" />
+      <att type="string" value="glycogen biosynthetic process" />
+      <att type="string" value="trehalose biosynthetic process" />
+      <att type="string" value="carbohydrate metabolic process" />
+    </att>
+    <att name="GO_CELLULAR_COMPONENT" label="GO_CELLULAR_COMPONENT" type="list">
+      <att type="string" value="cytoplasm" />
+      <att type="string" value="cytosol" />
+    </att>
+    <att name="GO_MOLECULAR_FUNCTION" label="GO_MOLECULAR_FUNCTION" type="list">
+      <att type="string" value="phosphoglucomutase activity" />
+      <att type="string" value="isomerase activity" />
+      <att type="string" value="metal ion binding" />
+      <att type="string" value="magnesium ion binding" />
+      <att type="string" value="intramolecular transferase activity, phosphotransferases" />
+    </att>
+    <att name="GO_SLIM_COMPONENT" label="GO_SLIM_COMPONENT" type="list">
+      <att type="string" value="cytoplasm" />
+    </att>
+    <att name="GO_SLIM_FUNCTION" label="GO_SLIM_FUNCTION" type="list">
+      <att type="string" value="isomerase activity" />
+    </att>
+    <att name="GO_SLIM_PROCESS" label="GO_SLIM_PROCESS" type="list">
+      <att type="string" value="generation of precursor metabolites and energy" />
+      <att type="string" value="carbohydrate metabolic process" />
+      <att type="string" value="cell homeostasis" />
+    </att>
+    <att name="PATHWAY" label="pathways" type="list">
+      <att type="string" value="galactose degradation" />
+      <att type="string" value="dolichyl glucosyl phosphate biosynthesis" />
+      <att type="string" value="glycogen biosynthesis" />
+    </att>
+    <att name="PHENOTYPE" label="phenotypes" type="list">
+      <att type="string" value="viable" />
+      <att type="string" value="competitive fitness: decreased" />
+      <att type="string" value="utilization of carbon source: decreased" />
+      <att type="string" value="utilization of carbon source: absent" />
+      <att type="string" value="glucose-1-phosphate accumulation: increased" />
+      <att type="string" value="calcium(2+) accumulation: increased" />
+      <att type="string" value="small molecule transport: increased" />
+      <att type="string" value="resistance to cyclosporin A: decreased" />
+      <att type="string" value="ionic stress resistance: decreased" />
+      <att type="string" value="resistance to caffeine: decreased" />
+      <att type="string" value="resistance to calcofluor white: decreased" />
+      <att type="string" value="resistance to sodium dodecyl sulfate: decreased" />
+      <att type="string" value="nutrient utilization: decreased" />
+      <att type="string" value="fermentative growth: increased rate" />
+    </att>
+    <att name="canonicalName" label="canonicalName" type="string" value="PGM2" />
+    <att name="geneDescription" label="geneDescription" type="string" value="Phosphoglucomutase" />
+    <att name="node.labelColor" label="node.labelColor" type="string" value="0,0,0" />
+    <att name="systematicName" label="systematicName" type="string" value="YMR105C" />
+    <graphics cy:borderLineType="solid" cy:nodeLabelFont="Arial Bold-0-12" cy:nodeTransparency="1.0" fill="#FF33CC" h="50" outline="#AAAABB" type="diamond" w="50" width="3" x="300" y="100" />
+  </node>
+  <node id="-YCL028W" label="RNQ1">
+    <att name="GO_BIOLOGICAL_PROCESS" label="GO_BIOLOGICAL_PROCESS" type="list">
+      <att type="string" value="biological_process" />
+    </att>
+    <att name="GO_CELLULAR_COMPONENT" label="GO_CELLULAR_COMPONENT" type="list">
+      <att type="string" value="cytosol" />
+      <att type="string" value="nucleus" />
+      <att type="string" value="cytoplasm" />
+    </att>
+    <att name="GO_MOLECULAR_FUNCTION" label="GO_MOLECULAR_FUNCTION" type="list">
+      <att type="string" value="molecular_function" />
+      <att type="string" value="binding" />
+    </att>
+    <att name="GO_SLIM_COMPONENT" label="GO_SLIM_COMPONENT" type="list">
+      <att type="string" value="nucleus" />
+      <att type="string" value="cytoplasm" />
+    </att>
+    <att name="GO_SLIM_FUNCTION" label="GO_SLIM_FUNCTION" type="list">
+      <att type="string" value="No Mapping" />
+    </att>
+    <att name="GO_SLIM_PROCESS" label="GO_SLIM_PROCESS" type="list">
+      <att type="string" value="No Mapping" />
+    </att>
+    <att name="PATHWAY" label="pathways" type="list">
+    </att>
+    <att name="PHENOTYPE" label="phenotypes" type="list">
+      <att type="string" value="viable" />
+      <att type="string" value="toxin resistance: increased" />
+      <att type="string" value="prion formation: decreased" />
+      <att type="string" value="sporulation: abnormal" />
+      <att type="string" value="inviable" />
+      <att type="string" value="competitive fitness: increased" />
+      <att type="string" value="cell cycle progression: abnormal" />
+      <att type="string" value="cell cycle progression in M phase: decreased" />
+      <att type="string" value="prion loss: increased" />
+      <att type="string" value="resistance to rapamycin: decreased" />
+    </att>
+    <att name="canonicalName" label="canonicalName" type="string" value="RNQ1" />
+    <att name="geneDescription" label="geneDescription" type="string" value="[PIN(+)] prion" />
+    <att name="node.labelColor" label="node.labelColor" type="string" value="0,0,0" />
+    <att name="systematicName" label="systematicName" type="string" value="YCL028W" />
+    <graphics cy:borderLineType="solid" cy:nodeLabelFont="Arial Bold-0-12" cy:nodeTransparency="1.0" fill="#aaaabb" h="50" outline="#AAAABB" type="ellipse" w="50" width="3" x="1100" y="0" />
+  </node>
+  <node id="-YOR281C" label="PLP2">
+    <att name="GO_BIOLOGICAL_PROCESS" label="GO_BIOLOGICAL_PROCESS" type="list">
+      <att type="string" value="positive regulation of transcription from RNA polymerase II promoter by pheromones" />
+      <att type="string" value="negative regulation of signal transduction" />
+      <att type="string" value="response to pheromone" />
+      <att type="string" value="protein folding" />
+    </att>
+    <att name="GO_CELLULAR_COMPONENT" label="GO_CELLULAR_COMPONENT" type="list">
+      <att type="string" value="cytoplasm" />
+    </att>
+    <att name="GO_MOLECULAR_FUNCTION" label="GO_MOLECULAR_FUNCTION" type="list">
+      <att type="string" value="G-protein beta/gamma-subunit complex binding" />
+      <att type="string" value="actin binding" />
+    </att>
+    <att name="GO_SLIM_COMPONENT" label="GO_SLIM_COMPONENT" type="list">
+      <att type="string" value="cytoplasm" />
+    </att>
+    <att name="GO_SLIM_FUNCTION" label="GO_SLIM_FUNCTION" type="list">
+      <att type="string" value="protein binding" />
+    </att>
+    <att name="GO_SLIM_PROCESS" label="GO_SLIM_PROCESS" type="list">
+      <att type="string" value="signal transduction" />
+      <att type="string" value="transcription" />
+      <att type="string" value="RNA metabolic process" />
+    </att>
+    <att name="PATHWAY" label="pathways" type="list">
+    </att>
+    <att name="PHENOTYPE" label="phenotypes" type="list">
+      <att type="string" value="inviable" />
+      <att type="string" value="vegetative growth: decreased" />
+      <att type="string" value="pheromone sensitivity: normal" />
+      <att type="string" value="competitive fitness: decreased" />
+      <att type="string" value="resistance to tunicamycin: normal" />
+      <att type="string" value="viable" />
+    </att>
+    <att name="canonicalName" label="canonicalName" type="string" value="PLP2" />
+    <att name="geneDescription" label="geneDescription" type="string" value="Protein that interacts with the CCT complex to stimulate actin folding" />
+    <att name="node.labelColor" label="node.labelColor" type="string" value="0,0,0" />
+    <att name="systematicName" label="systematicName" type="string" value="YOR281C" />
+    <graphics cy:borderLineType="solid" cy:nodeLabelFont="Arial Bold-0-12" cy:nodeTransparency="1.0" fill="#FF9933" h="50" outline="#AAAABB" type="ellipse" w="50" width="3" x="800" y="0" />
+  </node>
+  <node id="-YPR165W" label="RHO1">
+    <att name="GO_BIOLOGICAL_PROCESS" label="GO_BIOLOGICAL_PROCESS" type="list">
+      <att type="string" value="regulation of cell size" />
+      <att type="string" value="budding cell bud growth" />
+      <att type="string" value="regulation of vacuole fusion, non-autophagic" />
+      <att type="string" value="regulation of fungal-type cell wall organization" />
+      <att type="string" value="positive regulation of protein kinase C signaling cascade" />
+      <att type="string" value="regulation of protein localization" />
+      <att type="string" value="actin cytoskeleton reorganization" />
+      <att type="string" value="actin cytoskeleton organization" />
+      <att type="string" value="regulation of fungal-type cell wall 1,3-alpha-glucan biosynthetic process" />
+      <att type="string" value="positive regulation of endocytosis" />
+      <att type="string" value="small GTPase mediated signal transduction" />
+      <att type="string" value="regulation of exocyst localization" />
+    </att>
+    <att name="GO_CELLULAR_COMPONENT" label="GO_CELLULAR_COMPONENT" type="list">
+      <att type="string" value="1,3-beta-D-glucan synthase complex" />
+      <att type="string" value="mating projection tip" />
+      <att type="string" value="mitochondrion" />
+      <att type="string" value="peroxisome" />
+      <att type="string" value="mitochondrial outer membrane" />
+      <att type="string" value="membrane fraction" />
+      <att type="string" value="membrane" />
+      <att type="string" value="endosome" />
+      <att type="string" value="plasma membrane enriched fraction" />
+      <att type="string" value="plasma membrane" />
+      <att type="string" value="incipient cellular bud site" />
+      <att type="string" value="cellular bud tip" />
+      <att type="string" value="cellular bud neck" />
+      <att type="string" value="Golgi apparatus" />
+      <att type="string" value="peroxisomal membrane" />
+      <att type="string" value="endosome membrane" />
+      <att type="string" value="intracellular" />
+    </att>
+    <att name="GO_MOLECULAR_FUNCTION" label="GO_MOLECULAR_FUNCTION" type="list">
+      <att type="string" value="signal transducer activity" />
+      <att type="string" value="nucleotide binding" />
+      <att type="string" value="GTPase activity" />
+      <att type="string" value="GTP binding" />
+    </att>
+    <att name="GO_SLIM_COMPONENT" label="GO_SLIM_COMPONENT" type="list">
+      <att type="string" value="membrane" />
+      <att type="string" value="mitochondrial envelope" />
+      <att type="string" value="peroxisome" />
+      <att type="string" value="cytoplasm" />
+      <att type="string" value="Golgi apparatus" />
+      <att type="string" value="site of polarized growth" />
+      <att type="string" value="membrane fraction" />
+      <att type="string" value="mitochondrion" />
+      <att type="string" value="plasma membrane" />
+      <att type="string" value="bud" />
+    </att>
+    <att name="GO_SLIM_FUNCTION" label="GO_SLIM_FUNCTION" type="list">
+      <att type="string" value="signal transducer activity" />
+      <att type="string" value="hydrolase activity" />
+    </att>
+    <att name="GO_SLIM_PROCESS" label="GO_SLIM_PROCESS" type="list">
+      <att type="string" value="signal transduction" />
+      <att type="string" value="cytoskeleton organization and biogenesis" />
+      <att type="string" value="cell budding" />
+      <att type="string" value="vesicle-mediated transport" />
+      <att type="string" value="anatomical structure morphogenesis" />
+      <att type="string" value="membrane organization and biogenesis" />
+      <att type="string" value="organelle organization and biogenesis" />
+    </att>
+    <att name="PATHWAY" label="pathways" type="list">
+    </att>
+    <att name="PHENOTYPE" label="phenotypes" type="list">
+      <att type="string" value="inviable" />
+      <att type="string" value="budding index: decreased" />
+    </att>
+    <att name="canonicalName" label="canonicalName" type="string" value="RHO1" />
+    <att name="geneDescription" label="geneDescription" type="string" value="GTP-binding protein of the rho subfamily of Ras-like proteins" />
+    <att name="node.labelColor" label="node.labelColor" type="string" value="0,0,0" />
+    <att name="systematicName" label="systematicName" type="string" value="YPR165W" />
+    <graphics cy:borderLineType="solid" cy:nodeLabelFont="Arial Bold-0-12" cy:nodeTransparency="1.0" fill="#FF9933" h="50" outline="#AAAABB" type="triangle" w="50" width="3" x="1100" y="100" />
+  </node>
+  <node id="-YHR005C" label="GPA1">
+    <att name="GO_BIOLOGICAL_PROCESS" label="GO_BIOLOGICAL_PROCESS" type="list">
+      <att type="string" value="pheromone-dependent signal transduction involved in conjugation with cellular fusion" />
+      <att type="string" value="inositol lipid-mediated signaling" />
+      <att type="string" value="heterotrimeric G-protein complex cycle" />
+      <att type="string" value="adaptation of signaling pathway by response to pheromone involved in conjugation with cellular fusion" />
+      <att type="string" value="response to pheromone" />
+      <att type="string" value="nuclear migration involved in conjugation with cellular fusion" />
+      <att type="string" value="karyogamy involved in conjugation with cellular fusion" />
+      <att type="string" value="regulation of MAPK export from nucleus" />
+      <att type="string" value="signal transduction" />
+      <att type="string" value="G-protein coupled receptor protein signaling pathway" />
+    </att>
+    <att name="GO_CELLULAR_COMPONENT" label="GO_CELLULAR_COMPONENT" type="list">
+      <att type="string" value="plasma membrane" />
+      <att type="string" value="endosome" />
+      <att type="string" value="heterotrimeric G-protein complex" />
+      <att type="string" value="membrane" />
+      <att type="string" value="endosome membrane" />
+    </att>
+    <att name="GO_MOLECULAR_FUNCTION" label="GO_MOLECULAR_FUNCTION" type="list">
+      <att type="string" value="GTPase activity" />
+      <att type="string" value="nucleotide binding" />
+      <att type="string" value="signal transducer activity" />
+      <att type="string" value="GTP binding" />
+      <att type="string" value="guanyl nucleotide binding" />
+    </att>
+    <att name="GO_SLIM_COMPONENT" label="GO_SLIM_COMPONENT" type="list">
+      <att type="string" value="membrane" />
+      <att type="string" value="cytoplasm" />
+      <att type="string" value="plasma membrane" />
+    </att>
+    <att name="GO_SLIM_FUNCTION" label="GO_SLIM_FUNCTION" type="list">
+      <att type="string" value="signal transducer activity" />
+      <att type="string" value="hydrolase activity" />
+    </att>
+    <att name="GO_SLIM_PROCESS" label="GO_SLIM_PROCESS" type="list">
+      <att type="string" value="signal transduction" />
+      <att type="string" value="cytoskeleton organization and biogenesis" />
+      <att type="string" value="nuclear organization and biogenesis" />
+      <att type="string" value="transport" />
+      <att type="string" value="conjugation" />
+    </att>
+    <att name="PATHWAY" label="pathways" type="list">
+    </att>
+    <att name="PHENOTYPE" label="phenotypes" type="list">
+      <att type="string" value="viable" />
+      <att type="string" value="resistance to 4-(N-(S-glutathionylacetyl)amino) phenylarsenoxide (GSAO): decreased" />
+      <att type="string" value="cell cycle progression in G1 phase: abnormal" />
+      <att type="string" value="cell cycle progression in G1 phase: arrested" />
+      <att type="string" value="heat sensitivity: increased" />
+      <att type="string" value="|transcript from sigma element accumulation: increased" />
+      <att type="string" value="cell shape: abnormal" />
+      <att type="string" value="cell size: increased" />
+      <att type="string" value="inviable" />
+      <att type="string" value="pheromone-induced cell cycle arrest: absent" />
+      <att type="string" value="vegetative growth: decreased" />
+      <att type="string" value="nuclear position: abnormal" />
+      <att type="string" value="cell fusion: decreased" />
+      <att type="string" value="Kar3p distribution: abnormal" />
+      <att type="string" value="lifespan: increased" />
+      <att type="string" value="competitive fitness: decreased" />
+      <att type="string" value="resistance to tunicamycin: increased" />
+      <att type="string" value="resistance to cycloheximide: decreased" />
+    </att>
+    <att name="canonicalName" label="canonicalName" type="string" value="GPA1" />
+    <att name="geneDescription" label="geneDescription" type="string" value="GTP-binding alpha subunit of the heterotrimeric G protein" />
+    <att name="node.labelColor" label="node.labelColor" type="string" value="0,0,0" />
+    <att name="systematicName" label="systematicName" type="string" value="YHR005C" />
+    <graphics cy:borderLineType="solid" cy:nodeLabelFont="Arial Bold-0-12" cy:nodeTransparency="1.0" fill="#FF9933" h="50" outline="#AAAABB" type="triangle" w="50" width="3" x="300" y="0" />
+  </node>
+  <node id="-YHL007C" label="STE20">
+    <att name="GO_BIOLOGICAL_PROCESS" label="GO_BIOLOGICAL_PROCESS" type="list">
+      <att type="string" value="cellular bud site selection" />
+      <att type="string" value="protein phosphorylation" />
+      <att type="string" value="invasive growth in response to glucose limitation" />
+      <att type="string" value="regulation of exit from mitosis" />
+      <att type="string" value="activation of MAPKKK activity" />
+      <att type="string" value="osmosensory signaling pathway via Sho1 osmosensor" />
+      <att type="string" value="pheromone-dependent signal transduction involved in conjugation with cellular fusion" />
+      <att type="string" value="pseudohyphal growth" />
+      <att type="string" value="signal transduction involved in filamentous growth" />
+      <att type="string" value="positive regulation of apoptosis" />
+      <att type="string" value="cell cycle" />
+      <att type="string" value="response to pheromone" />
+      <att type="string" value="vacuole inheritance" />
+      <att type="string" value="negative regulation of gene expression" />
+      <att type="string" value="sterol import" />
+      <att type="string" value="auxin biosynthetic process" />
+      <att type="string" value="stress granule assembly" />
+    </att>
+    <att name="GO_CELLULAR_COMPONENT" label="GO_CELLULAR_COMPONENT" type="list">
+      <att type="string" value="incipient cellular bud site" />
+      <att type="string" value="mating projection tip" />
+      <att type="string" value="nucleus" />
+      <att type="string" value="cytoplasm" />
+      <att type="string" value="plasma membrane enriched fraction" />
+    </att>
+    <att name="GO_MOLECULAR_FUNCTION" label="GO_MOLECULAR_FUNCTION" type="list">
+      <att type="string" value="MAP kinase kinase kinase kinase activity" />
+      <att type="string" value="histone serine kinase activity" />
+      <att type="string" value="nucleotide binding" />
+      <att type="string" value="kinase activity" />
+      <att type="string" value="transferase activity" />
+      <att type="string" value="protein kinase activity" />
+      <att type="string" value="protein serine/threonine kinase activity" />
+      <att type="string" value="ATP binding" />
+    </att>
+    <att name="GO_SLIM_COMPONENT" label="GO_SLIM_COMPONENT" type="list">
+      <att type="string" value="nucleus" />
+      <att type="string" value="cytoplasm" />
+      <att type="string" value="site of polarized growth" />
+      <att type="string" value="membrane fraction" />
+    </att>
+    <att name="GO_SLIM_FUNCTION" label="GO_SLIM_FUNCTION" type="list">
+      <att type="string" value="protein kinase activity" />
+      <att type="string" value="signal transducer activity" />
+      <att type="string" value="transferase activity" />
+    </att>
+    <att name="GO_SLIM_PROCESS" label="GO_SLIM_PROCESS" type="list">
+      <att type="string" value="signal transduction" />
+      <att type="string" value="cell cycle" />
+      <att type="string" value="pseudohyphal growth" />
+      <att type="string" value="cytokinesis" />
+      <att type="string" value="anatomical structure morphogenesis" />
+      <att type="string" value="protein modification" />
+      <att type="string" value="conjugation" />
+      <att type="string" value="response to stress" />
+      <att type="string" value="organelle organization and biogenesis" />
+    </att>
+    <att name="PATHWAY" label="pathways" type="list">
+    </att>
+    <att name="PHENOTYPE" label="phenotypes" type="list">
+      <att type="string" value="viable" />
+      <att type="string" value="budding pattern: abnormal" />
+      <att type="string" value="hyperosmotic stress resistance: decreased" />
+      <att type="string" value="resistance to L-1,4-dithiothreitol: decreased" />
+      <att type="string" value="resistance to tunicamycin: decreased" />
+      <att type="string" value="acid pH resistance: decreased" />
+      <att type="string" value="sterile" />
+      <att type="string" value="pseudohyphal growth: absent" />
+      <att type="string" value="invasive growth: absent" />
+      <att type="string" value="colony appearance: abnormal" />
+      <att type="string" value="heat sensitivity: increased" />
+      <att type="string" value="AUS1-lacZ accumulation: decreased" />
+      <att type="string" value="AUS1-lacZ accumulation: increased" />
+      <att type="string" value="sterol ester accumulation: increased" />
+      <att type="string" value="Fus-Mid-GFP distribution: abnormal" />
+      <att type="string" value="Dcp2p-GFP distribution: abnormal" />
+    </att>
+    <att name="canonicalName" label="canonicalName" type="string" value="STE20" />
+    <att name="geneDescription" label="geneDescription" type="string" value="Cdc42p-activated signal transducing kinase of the PAK family" />
+    <att name="node.labelColor" label="node.labelColor" type="string" value="0,0,0" />
+    <att name="systematicName" label="systematicName" type="string" value="YHL007C" />
+    <graphics cy:borderLineType="solid" cy:nodeLabelFont="Arial Bold-0-12" cy:nodeTransparency="1.0" fill="#FF9933" h="50" outline="#AAAABB" type="octagon" w="50" width="3" x="600" y="100" />
+  </node>
+  <node id="-YDR214W" label="AHA1">
+    <att name="GO_BIOLOGICAL_PROCESS" label="GO_BIOLOGICAL_PROCESS" type="list">
+      <att type="string" value="protein folding" />
+      <att type="string" value="response to stress" />
+    </att>
+    <att name="GO_CELLULAR_COMPONENT" label="GO_CELLULAR_COMPONENT" type="list">
+      <att type="string" value="cytoplasm" />
+    </att>
+    <att name="GO_MOLECULAR_FUNCTION" label="GO_MOLECULAR_FUNCTION" type="list">
+      <att type="string" value="ATPase activator activity" />
+      <att type="string" value="chaperone binding" />
+    </att>
+    <att name="GO_SLIM_COMPONENT" label="GO_SLIM_COMPONENT" type="list">
+      <att type="string" value="cytoplasm" />
+    </att>
+    <att name="GO_SLIM_FUNCTION" label="GO_SLIM_FUNCTION" type="list">
+      <att type="string" value="enzyme regulator activity" />
+      <att type="string" value="protein binding" />
+    </att>
+    <att name="GO_SLIM_PROCESS" label="GO_SLIM_PROCESS" type="list">
+      <att type="string" value="response to stress" />
+    </att>
+    <att name="PATHWAY" label="pathways" type="list">
+    </att>
+    <att name="PHENOTYPE" label="phenotypes" type="list">
+      <att type="string" value="viable" />
+      <att type="string" value="competitive fitness: increased" />
+      <att type="string" value="heat sensitivity: increased" />
+    </att>
+    <att name="canonicalName" label="canonicalName" type="string" value="AHA1" />
+    <att name="geneDescription" label="geneDescription" type="string" value="Co-chaperone that binds to Hsp82p and activates its ATPase activity" />
+    <att name="node.labelColor" label="node.labelColor" type="string" value="0,0,0" />
+    <att name="systematicName" label="systematicName" type="string" value="YDR214W" />
+    <graphics cy:borderLineType="solid" cy:nodeLabelFont="Arial Bold-0-12" cy:nodeTransparency="1.0" fill="#FF6633" h="50" outline="#AAAABB" type="rectangle" w="50" width="3" x="500" y="100" />
+  </node>
+  <node id="-YGL122C" label="NAB2">
+    <att name="GO_BIOLOGICAL_PROCESS" label="GO_BIOLOGICAL_PROCESS" type="list">
+      <att type="string" value="poly(A)+ mRNA export from nucleus" />
+      <att type="string" value="mRNA polyadenylation" />
+      <att type="string" value="regulation of mRNA stability" />
+    </att>
+    <att name="GO_CELLULAR_COMPONENT" label="GO_CELLULAR_COMPONENT" type="list">
+      <att type="string" value="nucleus" />
+      <att type="string" value="cytoplasm" />
+    </att>
+    <att name="GO_MOLECULAR_FUNCTION" label="GO_MOLECULAR_FUNCTION" type="list">
+      <att type="string" value="poly(A) RNA binding" />
+      <att type="string" value="RNA binding" />
+      <att type="string" value="metal ion binding" />
+    </att>
+    <att name="GO_SLIM_COMPONENT" label="GO_SLIM_COMPONENT" type="list">
+      <att type="string" value="nucleus" />
+      <att type="string" value="cytoplasm" />
+    </att>
+    <att name="GO_SLIM_FUNCTION" label="GO_SLIM_FUNCTION" type="list">
+      <att type="string" value="RNA binding" />
+    </att>
+    <att name="GO_SLIM_PROCESS" label="GO_SLIM_PROCESS" type="list">
+      <att type="string" value="transport" />
+      <att type="string" value="RNA metabolic process" />
+    </att>
+    <att name="PATHWAY" label="pathways" type="list">
+    </att>
+    <att name="PHENOTYPE" label="phenotypes" type="list">
+      <att type="string" value="inviable" />
+      <att type="string" value="vegetative growth: decreased" />
+    </att>
+    <att name="canonicalName" label="canonicalName" type="string" value="NAB2" />
+    <att name="geneDescription" label="geneDescription" type="string" value="Nuclear polyadenylated RNA-binding protein" />
+    <att name="node.labelColor" label="node.labelColor" type="string" value="0,0,0" />
+    <att name="systematicName" label="systematicName" type="string" value="YGL122C" />
+    <graphics cy:borderLineType="solid" cy:nodeLabelFont="Arial Bold-0-12" cy:nodeTransparency="1.0" fill="#FF3333" h="50" outline="#AAAABB" type="rectangle" w="50" width="3" x="200" y="100" />
+  </node>
+  <node id="-YJR064W" label="CCT5">
+    <att name="GO_BIOLOGICAL_PROCESS" label="GO_BIOLOGICAL_PROCESS" type="list">
+      <att type="string" value="protein folding" />
+      <att type="string" value="cellular protein metabolic process" />
+    </att>
+    <att name="GO_CELLULAR_COMPONENT" label="GO_CELLULAR_COMPONENT" type="list">
+      <att type="string" value="chaperonin-containing T-complex" />
+      <att type="string" value="cytoplasm" />
+    </att>
+    <att name="GO_MOLECULAR_FUNCTION" label="GO_MOLECULAR_FUNCTION" type="list">
+      <att type="string" value="nucleotide binding" />
+      <att type="string" value="unfolded protein binding" />
+      <att type="string" value="ATP binding" />
+    </att>
+    <att name="GO_SLIM_COMPONENT" label="GO_SLIM_COMPONENT" type="list">
+      <att type="string" value="cytoplasm" />
+    </att>
+    <att name="GO_SLIM_FUNCTION" label="GO_SLIM_FUNCTION" type="list">
+      <att type="string" value="protein binding" />
+    </att>
+    <att name="GO_SLIM_PROCESS" label="GO_SLIM_PROCESS" type="list">
+      <att type="string" value="No Mapping" />
+    </att>
+    <att name="PATHWAY" label="pathways" type="list">
+    </att>
+    <att name="PHENOTYPE" label="phenotypes" type="list">
+      <att type="string" value="inviable" />
+      <att type="string" value="competitive fitness: decreased" />
+      <att type="string" value="haploinsufficient" />
+      <att type="string" value="filamentous growth: increased" />
+    </att>
+    <att name="canonicalName" label="canonicalName" type="string" value="CCT5" />
+    <att name="geneDescription" label="geneDescription" type="string" value="Subunit of the cytosolic chaperonin Cct ring complex" />
+    <att name="node.labelColor" label="node.labelColor" type="string" value="0,0,0" />
+    <att name="systematicName" label="systematicName" type="string" value="YJR064W" />
+    <graphics cy:borderLineType="solid" cy:nodeLabelFont="Arial Bold-0-12" cy:nodeTransparency="1.0" fill="#aaaabb" h="50" outline="#AAAABB" type="ellipse" w="50" width="3" x="900" y="100" />
+  </node>
+  <node id="-YFL026W" label="STE2">
+    <att name="GO_BIOLOGICAL_PROCESS" label="GO_BIOLOGICAL_PROCESS" type="list">
+      <att type="string" value="cell projection assembly" />
+      <att type="string" value="cytogamy" />
+      <att type="string" value="pheromone-dependent signal transduction involved in conjugation with cellular fusion" />
+      <att type="string" value="protein homooligomerization" />
+      <att type="string" value="signal transduction" />
+      <att type="string" value="G-protein coupled receptor protein signaling pathway" />
+      <att type="string" value="response to pheromone" />
+    </att>
+    <att name="GO_CELLULAR_COMPONENT" label="GO_CELLULAR_COMPONENT" type="list">
+      <att type="string" value="integral to plasma membrane" />
+      <att type="string" value="membrane fraction" />
+      <att type="string" value="integral to membrane" />
+      <att type="string" value="membrane" />
+    </att>
+    <att name="GO_MOLECULAR_FUNCTION" label="GO_MOLECULAR_FUNCTION" type="list">
+      <att type="string" value="mating-type alpha-factor pheromone receptor activity" />
+      <att type="string" value="signal transducer activity" />
+      <att type="string" value="receptor activity" />
+      <att type="string" value="G-protein coupled receptor activity" />
+      <att type="string" value="mating-type factor pheromone receptor activity" />
+    </att>
+    <att name="GO_SLIM_COMPONENT" label="GO_SLIM_COMPONENT" type="list">
+      <att type="string" value="membrane" />
+      <att type="string" value="membrane fraction" />
+      <att type="string" value="plasma membrane" />
+    </att>
+    <att name="GO_SLIM_FUNCTION" label="GO_SLIM_FUNCTION" type="list">
+      <att type="string" value="signal transducer activity" />
+    </att>
+    <att name="GO_SLIM_PROCESS" label="GO_SLIM_PROCESS" type="list">
+      <att type="string" value="signal transduction" />
+      <att type="string" value="anatomical structure morphogenesis" />
+      <att type="string" value="conjugation" />
+    </att>
+    <att name="PATHWAY" label="pathways" type="list">
+    </att>
+    <att name="PHENOTYPE" label="phenotypes" type="list">
+      <att type="string" value="viable" />
+      <att type="string" value="pheromone sensitivity: absent" />
+      <att type="string" value="sterile" />
+      <att type="string" value="shmoo formation: normal" />
+      <att type="string" value="cell fusion: decreased" />
+      <att type="string" value="pheromone-induced cell cycle arrest: decreased" />
+      <att type="string" value="pheromone production: increased" />
+      <att type="string" value="shmoo formation: absent" />
+      <att type="string" value="pheromone-induced cell cycle arrest: absent" />
+    </att>
+    <att name="canonicalName" label="canonicalName" type="string" value="STE2" />
+    <att name="geneDescription" label="geneDescription" type="string" value="Receptor for alpha-factor pheromone" />
+    <att name="node.labelColor" label="node.labelColor" type="string" value="0,0,0" />
+    <att name="systematicName" label="systematicName" type="string" value="YFL026W" />
+    <graphics cy:borderLineType="solid" cy:nodeLabelFont="Arial Bold-0-12" cy:nodeTransparency="1.0" fill="#FF9933" h="50" outline="#AAAABB" type="triangle" w="50" width="3" x="100" y="100" />
+  </node>
+  <node id="-YDR183W" label="PLP1">
+    <att name="GO_BIOLOGICAL_PROCESS" label="GO_BIOLOGICAL_PROCESS" type="list">
+      <att type="string" value="positive regulation of transcription from RNA polymerase II promoter by pheromones" />
+      <att type="string" value="negative regulation of signal transduction" />
+      <att type="string" value="response to pheromone" />
+      <att type="string" value="protein folding" />
+    </att>
+    <att name="GO_CELLULAR_COMPONENT" label="GO_CELLULAR_COMPONENT" type="list">
+      <att type="string" value="cytoplasm" />
+      <att type="string" value="cellular_component" />
+    </att>
+    <att name="GO_MOLECULAR_FUNCTION" label="GO_MOLECULAR_FUNCTION" type="list">
+      <att type="string" value="G-protein beta/gamma-subunit complex binding" />
+    </att>
+    <att name="GO_SLIM_COMPONENT" label="GO_SLIM_COMPONENT" type="list">
+      <att type="string" value="cytoplasm" />
+    </att>
+    <att name="GO_SLIM_FUNCTION" label="GO_SLIM_FUNCTION" type="list">
+      <att type="string" value="protein binding" />
+    </att>
+    <att name="GO_SLIM_PROCESS" label="GO_SLIM_PROCESS" type="list">
+      <att type="string" value="signal transduction" />
+      <att type="string" value="transcription" />
+      <att type="string" value="RNA metabolic process" />
+    </att>
+    <att name="PATHWAY" label="pathways" type="list">
+    </att>
+    <att name="PHENOTYPE" label="phenotypes" type="list">
+      <att type="string" value="viable" />
+      <att type="string" value="sporulation: normal" />
+      <att type="string" value="cell cycle progression through the G2/M phase transition: normal rate" />
+      <att type="string" value="Tub2p accumulation: abnormal" />
+      <att type="string" value="resistance to benomyl: increased" />
+      <att type="string" value="competitive fitness: decreased" />
+    </att>
+    <att name="canonicalName" label="canonicalName" type="string" value="PLP1" />
+    <att name="geneDescription" label="geneDescription" type="string" value="Protein that interacts with CCT (chaperonin containing TCP-1) complex" />
+    <att name="node.labelColor" label="node.labelColor" type="string" value="0,0,0" />
+    <att name="systematicName" label="systematicName" type="string" value="YDR183W" />
+    <graphics cy:borderLineType="solid" cy:nodeLabelFont="Arial Bold-0-12" cy:nodeTransparency="1.0" fill="#FF9933" h="50" outline="#AAAABB" type="ellipse" w="50" width="3" x="1200" y="100" />
+  </node>
+  <node id="-YFL045C" label="SEC53">
+    <att name="GO_BIOLOGICAL_PROCESS" label="GO_BIOLOGICAL_PROCESS" type="list">
+      <att type="string" value="protein targeting to ER" />
+      <att type="string" value="metabolic process" />
+      <att type="string" value="mannose biosynthetic process" />
+    </att>
+    <att name="GO_CELLULAR_COMPONENT" label="GO_CELLULAR_COMPONENT" type="list">
+      <att type="string" value="cytosol" />
+      <att type="string" value="cytoplasm" />
+    </att>
+    <att name="GO_MOLECULAR_FUNCTION" label="GO_MOLECULAR_FUNCTION" type="list">
+      <att type="string" value="phosphomannomutase activity" />
+      <att type="string" value="isomerase activity" />
+      <att type="string" value="catalytic activity" />
+    </att>
+    <att name="GO_SLIM_COMPONENT" label="GO_SLIM_COMPONENT" type="list">
+      <att type="string" value="cytoplasm" />
+    </att>
+    <att name="GO_SLIM_FUNCTION" label="GO_SLIM_FUNCTION" type="list">
+      <att type="string" value="isomerase activity" />
+    </att>
+    <att name="GO_SLIM_PROCESS" label="GO_SLIM_PROCESS" type="list">
+      <att type="string" value="carbohydrate metabolic process" />
+      <att type="string" value="transport" />
+    </att>
+    <att name="PATHWAY" label="pathways" type="list">
+      <att type="string" value="dolichyl phosphate D-mannose biosynthesis" />
+    </att>
+    <att name="PHENOTYPE" label="phenotypes" type="list">
+      <att type="string" value="inviable" />
+      <att type="string" value="mitochondrial morphology: abnormal" />
+      <att type="string" value="secreted protein modification: decreased" />
+      <att type="string" value="heat sensitivity: increased" />
+      <att type="string" value="resistance to hygromycin B: decreased" />
+      <att type="string" value="resistance to gentamycin: decreased" />
+      <att type="string" value="resistance to kanamycin: decreased" />
+      <att type="string" value="resistance to neomycin B sulfate: decreased" />
+      <att type="string" value="fermentative growth: increased rate" />
+    </att>
+    <att name="canonicalName" label="canonicalName" type="string" value="SEC53" />
+    <att name="geneDescription" label="geneDescription" type="string" value="Phosphomannomutase" />
+    <att name="node.labelColor" label="node.labelColor" type="string" value="0,0,0" />
+    <att name="systematicName" label="systematicName" type="string" value="YFL045C" />
+    <graphics cy:borderLineType="solid" cy:nodeLabelFont="Arial Bold-0-12" cy:nodeTransparency="1.0" fill="#3399CC" h="50" outline="#AAAABB" type="diamond" w="50" width="3" x="1200" y="0" />
+  </node>
+  <node id="-YOR212W" label="STE4">
+    <att name="GO_BIOLOGICAL_PROCESS" label="GO_BIOLOGICAL_PROCESS" type="list">
+      <att type="string" value="pheromone-dependent signal transduction involved in conjugation with cellular fusion" />
+      <att type="string" value="invasive growth in response to glucose limitation" />
+      <att type="string" value="heterotrimeric G-protein complex cycle" />
+      <att type="string" value="signal transduction" />
+      <att type="string" value="response to pheromone" />
+      <att type="string" value="regulation of transposition, RNA-mediated" />
+    </att>
+    <att name="GO_CELLULAR_COMPONENT" label="GO_CELLULAR_COMPONENT" type="list">
+      <att type="string" value="plasma membrane" />
+      <att type="string" value="heterotrimeric G-protein complex" />
+      <att type="string" value="mating projection" />
+    </att>
+    <att name="GO_MOLECULAR_FUNCTION" label="GO_MOLECULAR_FUNCTION" type="list">
+      <att type="string" value="signal transducer activity" />
+    </att>
+    <att name="GO_SLIM_COMPONENT" label="GO_SLIM_COMPONENT" type="list">
+      <att type="string" value="plasma membrane" />
+    </att>
+    <att name="GO_SLIM_FUNCTION" label="GO_SLIM_FUNCTION" type="list">
+      <att type="string" value="signal transducer activity" />
+    </att>
+    <att name="GO_SLIM_PROCESS" label="GO_SLIM_PROCESS" type="list">
+      <att type="string" value="signal transduction" />
+      <att type="string" value="anatomical structure morphogenesis" />
+      <att type="string" value="conjugation" />
+    </att>
+    <att name="PATHWAY" label="pathways" type="list">
+    </att>
+    <att name="PHENOTYPE" label="phenotypes" type="list">
+      <att type="string" value="viable" />
+      <att type="string" value="pheromone sensitivity: absent" />
+      <att type="string" value="vegetative growth: decreased" />
+      <att type="string" value="cellular morphology: abnormal" />
+      <att type="string" value="cell size: increased" />
+      <att type="string" value="budding index: abnormal" />
+      <att type="string" value="cell cycle progression in G1 phase: abnormal" />
+      <att type="string" value="cell cycle progression in S phase: abnormal" />
+      <att type="string" value="sterile" />
+      <att type="string" value="pheromone production: decreased" />
+      <att type="string" value="shmoo formation: absent" />
+      <att type="string" value="pheromone-induced cell cycle arrest: absent" />
+      <att type="string" value="cell cycle progression: abnormal" />
+      <att type="string" value="Fus3p modification: increased" />
+      <att type="string" value="transposable element transposition: decreased" />
+    </att>
+    <att name="canonicalName" label="canonicalName" type="string" value="STE4" />
+    <att name="geneDescription" label="geneDescription" type="string" value="G protein beta subunit, forms a dimer with Ste18p to activate the mat" />
+    <att name="node.labelColor" label="node.labelColor" type="string" value="0,0,0" />
+    <att name="systematicName" label="systematicName" type="string" value="YOR212W" />
+    <graphics cy:borderLineType="solid" cy:nodeLabelFont="Arial Bold-0-12" cy:nodeTransparency="1.0" fill="#FF9933" h="50" outline="#AAAABB" type="triangle" w="50" width="3" x="100" y="0" />
+  </node>
+  <node id="-YJL157C" label="FAR1">
+    <att name="GO_BIOLOGICAL_PROCESS" label="GO_BIOLOGICAL_PROCESS" type="list">
+      <att type="string" value="pheromone-dependent signal transduction involved in conjugation with cellular fusion" />
+      <att type="string" value="cell cycle" />
+      <att type="string" value="cell division" />
+      <att type="string" value="cell cycle arrest in response to pheromone" />
+      <att type="string" value="maintenance of protein location in nucleus" />
+    </att>
+    <att name="GO_CELLULAR_COMPONENT" label="GO_CELLULAR_COMPONENT" type="list">
+      <att type="string" value="cytoplasm" />
+      <att type="string" value="nucleus" />
+      <att type="string" value="mating projection tip" />
+      <att type="string" value="membrane" />
+    </att>
+    <att name="GO_MOLECULAR_FUNCTION" label="GO_MOLECULAR_FUNCTION" type="list">
+      <att type="string" value="cyclin-dependent protein kinase inhibitor activity" />
+      <att type="string" value="protein kinase inhibitor activity" />
+      <att type="string" value="metal ion binding" />
+      <att type="string" value="zinc ion binding" />
+    </att>
+    <att name="GO_SLIM_COMPONENT" label="GO_SLIM_COMPONENT" type="list">
+      <att type="string" value="membrane" />
+      <att type="string" value="nucleus" />
+      <att type="string" value="cytoplasm" />
+      <att type="string" value="site of polarized growth" />
+    </att>
+    <att name="GO_SLIM_FUNCTION" label="GO_SLIM_FUNCTION" type="list">
+      <att type="string" value="enzyme regulator activity" />
+    </att>
+    <att name="GO_SLIM_PROCESS" label="GO_SLIM_PROCESS" type="list">
+      <att type="string" value="signal transduction" />
+      <att type="string" value="cell cycle" />
+      <att type="string" value="conjugation" />
+    </att>
+    <att name="PATHWAY" label="pathways" type="list">
+    </att>
+    <att name="PHENOTYPE" label="phenotypes" type="list">
+      <att type="string" value="viable" />
+      <att type="string" value="inviable" />
+      <att type="string" value="cellular morphology: abnormal" />
+      <att type="string" value="cell size: increased" />
+      <att type="string" value="budding index: abnormal" />
+      <att type="string" value="cell cycle progression in G1 phase: abnormal" />
+      <att type="string" value="hyperosmotic stress resistance: decreased" />
+      <att type="string" value="shmoo formation: absent" />
+      <att type="string" value="mating efficiency: decreased" />
+      <att type="string" value="pheromone-induced cell cycle arrest: absent" />
+      <att type="string" value="pheromone sensitivity: abnormal" />
+      <att type="string" value="calcium(2+) accumulation: decreased" />
+      <att type="string" value="SLT2-LacZ accumulation: decreased" />
+      <att type="string" value="Fig1p-Myc accumulation: decreased" />
+      <att type="string" value="necrotic cell death: decreased" />
+      <att type="string" value="competitive fitness: increased" />
+      <att type="string" value="resistance to tellurite: decreased" />
+      <att type="string" value="resistance to streptomycin: decreased" />
+      <att type="string" value="resistance to cycloheximide: decreased" />
+    </att>
+    <att name="canonicalName" label="canonicalName" type="string" value="FAR1" />
+    <att name="geneDescription" label="geneDescription" type="string" value="Cyclin-dependent kinase inhibitor" />
+    <att name="node.labelColor" label="node.labelColor" type="string" value="0,0,0" />
+    <att name="systematicName" label="systematicName" type="string" value="YJL157C" />
+    <graphics cy:borderLineType="solid" cy:nodeLabelFont="Arial Bold-0-12" cy:nodeTransparency="1.0" fill="#FF9933" h="50" outline="#AAAABB" type="rectangle" w="50" width="3" x="0" y="100" />
+  </node>
+  <node id="-YIL142W" label="CCT2">
+    <att name="GO_BIOLOGICAL_PROCESS" label="GO_BIOLOGICAL_PROCESS" type="list">
+      <att type="string" value="protein folding" />
+      <att type="string" value="cellular protein metabolic process" />
+    </att>
+    <att name="GO_CELLULAR_COMPONENT" label="GO_CELLULAR_COMPONENT" type="list">
+      <att type="string" value="cytoplasm" />
+      <att type="string" value="chaperonin-containing T-complex" />
+    </att>
+    <att name="GO_MOLECULAR_FUNCTION" label="GO_MOLECULAR_FUNCTION" type="list">
+      <att type="string" value="nucleotide binding" />
+      <att type="string" value="unfolded protein binding" />
+      <att type="string" value="ATP binding" />
+    </att>
+    <att name="GO_SLIM_COMPONENT" label="GO_SLIM_COMPONENT" type="list">
+      <att type="string" value="cytoplasm" />
+    </att>
+    <att name="GO_SLIM_FUNCTION" label="GO_SLIM_FUNCTION" type="list">
+      <att type="string" value="protein binding" />
+    </att>
+    <att name="GO_SLIM_PROCESS" label="GO_SLIM_PROCESS" type="list">
+      <att type="string" value="No Mapping" />
+    </att>
+    <att name="PATHWAY" label="pathways" type="list">
+    </att>
+    <att name="PHENOTYPE" label="phenotypes" type="list">
+      <att type="string" value="inviable" />
+      <att type="string" value="competitive fitness: decreased" />
+      <att type="string" value="haploinsufficient" />
+      <att type="string" value="resistance to tunicamycin: decreased" />
+    </att>
+    <att name="canonicalName" label="canonicalName" type="string" value="CCT2" />
+    <att name="geneDescription" label="geneDescription" type="string" value="Subunit beta of the cytosolic chaperonin Cct ring complex" />
+    <att name="node.labelColor" label="node.labelColor" type="string" value="0,0,0" />
+    <att name="systematicName" label="systematicName" type="string" value="YIL142W" />
+    <graphics cy:borderLineType="solid" cy:nodeLabelFont="Arial Bold-0-12" cy:nodeTransparency="1.0" fill="#aaaabb" h="50" outline="#AAAABB" type="ellipse" w="50" width="3" x="900" y="0" />
+  </node>
+  <node id="-YJL014W" label="CCT3">
+    <att name="GO_BIOLOGICAL_PROCESS" label="GO_BIOLOGICAL_PROCESS" type="list">
+      <att type="string" value="protein folding" />
+      <att type="string" value="cellular protein metabolic process" />
+    </att>
+    <att name="GO_CELLULAR_COMPONENT" label="GO_CELLULAR_COMPONENT" type="list">
+      <att type="string" value="chaperonin-containing T-complex" />
+      <att type="string" value="cytoplasm" />
+    </att>
+    <att name="GO_MOLECULAR_FUNCTION" label="GO_MOLECULAR_FUNCTION" type="list">
+      <att type="string" value="nucleotide binding" />
+      <att type="string" value="unfolded protein binding" />
+      <att type="string" value="ATP binding" />
+    </att>
+    <att name="GO_SLIM_COMPONENT" label="GO_SLIM_COMPONENT" type="list">
+      <att type="string" value="cytoplasm" />
+    </att>
+    <att name="GO_SLIM_FUNCTION" label="GO_SLIM_FUNCTION" type="list">
+      <att type="string" value="protein binding" />
+    </att>
+    <att name="GO_SLIM_PROCESS" label="GO_SLIM_PROCESS" type="list">
+      <att type="string" value="No Mapping" />
+    </att>
+    <att name="PATHWAY" label="pathways" type="list">
+    </att>
+    <att name="PHENOTYPE" label="phenotypes" type="list">
+      <att type="string" value="inviable" />
+      <att type="string" value="competitive fitness: decreased" />
+      <att type="string" value="haploinsufficient" />
+      <att type="string" value="competitive fitness: increased" />
+      <att type="string" value="resistance to tunicamycin: increased" />
+    </att>
+    <att name="canonicalName" label="canonicalName" type="string" value="CCT3" />
+    <att name="geneDescription" label="geneDescription" type="string" value="Subunit of the cytosolic chaperonin Cct ring complex" />
+    <att name="node.labelColor" label="node.labelColor" type="string" value="0,0,0" />
+    <att name="systematicName" label="systematicName" type="string" value="YJL014W" />
+    <graphics cy:borderLineType="solid" cy:nodeLabelFont="Arial Bold-0-12" cy:nodeTransparency="1.0" fill="#aaaabb" h="50" outline="#AAAABB" type="ellipse" w="50" width="3" x="400" y="100" />
+  </node>
+  <node id="-YJR086W" label="STE18">
+    <att name="GO_BIOLOGICAL_PROCESS" label="GO_BIOLOGICAL_PROCESS" type="list">
+      <att type="string" value="pheromone-dependent signal transduction involved in conjugation with cellular fusion" />
+      <att type="string" value="heterotrimeric G-protein complex cycle" />
+      <att type="string" value="signal transduction" />
+      <att type="string" value="response to pheromone" />
+      <att type="string" value="G-protein coupled receptor protein signaling pathway" />
+    </att>
+    <att name="GO_CELLULAR_COMPONENT" label="GO_CELLULAR_COMPONENT" type="list">
+      <att type="string" value="cytoplasm" />
+      <att type="string" value="heterotrimeric G-protein complex" />
+      <att type="string" value="plasma membrane" />
+      <att type="string" value="membrane" />
+    </att>
+    <att name="GO_MOLECULAR_FUNCTION" label="GO_MOLECULAR_FUNCTION" type="list">
+      <att type="string" value="signal transducer activity" />
+    </att>
+    <att name="GO_SLIM_COMPONENT" label="GO_SLIM_COMPONENT" type="list">
+      <att type="string" value="membrane" />
+      <att type="string" value="cytoplasm" />
+      <att type="string" value="plasma membrane" />
+    </att>
+    <att name="GO_SLIM_FUNCTION" label="GO_SLIM_FUNCTION" type="list">
+      <att type="string" value="signal transducer activity" />
+    </att>
+    <att name="GO_SLIM_PROCESS" label="GO_SLIM_PROCESS" type="list">
+      <att type="string" value="signal transduction" />
+      <att type="string" value="conjugation" />
+    </att>
+    <att name="PATHWAY" label="pathways" type="list">
+    </att>
+    <att name="PHENOTYPE" label="phenotypes" type="list">
+      <att type="string" value="pheromone sensitivity: abnormal" />
+      <att type="string" value="sterile" />
+      <att type="string" value="pheromone sensitivity: decreased" />
+      <att type="string" value="mating efficiency: decreased" />
+      <att type="string" value="Ste4p accumulation: decreased" />
+      <att type="string" value="Ste4p distribution: abnormal" />
+      <att type="string" value="TEC1 mRNA accumulation: decreased" />
+      <att type="string" value="SST2 mRNA accumulation: decreased" />
+      <att type="string" value="Sst2p modification: decreased" />
+    </att>
+    <att name="canonicalName" label="canonicalName" type="string" value="STE18" />
+    <att name="geneDescription" label="geneDescription" type="string" value="G protein gamma subunit" />
+    <att name="node.labelColor" label="node.labelColor" type="string" value="0,0,0" />
+    <att name="systematicName" label="systematicName" type="string" value="YJR086W" />
+    <graphics cy:borderLineType="solid" cy:nodeLabelFont="Arial Bold-0-12" cy:nodeTransparency="1.0" fill="#FF9933" h="50" outline="#AAAABB" type="triangle" w="50" width="3" x="500" y="0" />
+  </node>
+  <node id="-YIL047C" label="SYG1">
+    <att name="GO_BIOLOGICAL_PROCESS" label="GO_BIOLOGICAL_PROCESS" type="list">
+      <att type="string" value="signal transduction" />
+    </att>
+    <att name="GO_CELLULAR_COMPONENT" label="GO_CELLULAR_COMPONENT" type="list">
+      <att type="string" value="plasma membrane" />
+      <att type="string" value="mitochondrion" />
+      <att type="string" value="membrane" />
+      <att type="string" value="integral to membrane" />
+    </att>
+    <att name="GO_MOLECULAR_FUNCTION" label="GO_MOLECULAR_FUNCTION" type="list">
+      <att type="string" value="molecular_function" />
+    </att>
+    <att name="GO_SLIM_COMPONENT" label="GO_SLIM_COMPONENT" type="list">
+      <att type="string" value="membrane" />
+      <att type="string" value="mitochondrion" />
+      <att type="string" value="plasma membrane" />
+    </att>
+    <att name="GO_SLIM_FUNCTION" label="GO_SLIM_FUNCTION" type="list">
+      <att type="string" value="No Mapping" />
+    </att>
+    <att name="GO_SLIM_PROCESS" label="GO_SLIM_PROCESS" type="list">
+      <att type="string" value="signal transduction" />
+    </att>
+    <att name="PATHWAY" label="pathways" type="list">
+    </att>
+    <att name="PHENOTYPE" label="phenotypes" type="list">
+      <att type="string" value="viable" />
+      <att type="string" value="resistance to farnesol: decreased" />
+      <att type="string" value="respiratory growth: absent" />
+      <att type="string" value="mitochondrial morphology: abnormal" />
+      <att type="string" value="bud morphology: abnormal" />
+      <att type="string" value="resistance to rapamycin: increased" />
+      <att type="string" value="competitive fitness: increased" />
+      <att type="string" value="resistance to tirapazamine: increased" />
+      <att type="string" value="cell size: increased" />
+    </att>
+    <att name="canonicalName" label="canonicalName" type="string" value="SYG1" />
+    <att name="geneDescription" label="geneDescription" type="string" value="Plasma membrane protein of unknown function" />
+    <att name="node.labelColor" label="node.labelColor" type="string" value="0,0,0" />
+    <att name="systematicName" label="systematicName" type="string" value="YIL047C" />
+    <graphics cy:borderLineType="solid" cy:nodeLabelFont="Arial Bold-0-12" cy:nodeTransparency="1.0" fill="#FF9933" h="50" outline="#AAAABB" type="ellipse" w="50" width="3" x="100" y="200" />
+  </node>
+  <node id="-YHR033W" label="YHR033W">
+    <att name="GO_BIOLOGICAL_PROCESS" label="GO_BIOLOGICAL_PROCESS" type="list">
+      <att type="string" value="biological_process" />
+      <att type="string" value="proline biosynthetic process" />
+      <att type="string" value="cellular amino acid biosynthetic process" />
+    </att>
+    <att name="GO_CELLULAR_COMPONENT" label="GO_CELLULAR_COMPONENT" type="list">
+      <att type="string" value="cytoplasm" />
+    </att>
+    <att name="GO_MOLECULAR_FUNCTION" label="GO_MOLECULAR_FUNCTION" type="list">
+      <att type="string" value="molecular_function" />
+      <att type="string" value="kinase activity" />
+      <att type="string" value="transferase activity" />
+      <att type="string" value="RNA binding" />
+      <att type="string" value="glutamate 5-kinase activity" />
+    </att>
+    <att name="GO_SLIM_COMPONENT" label="GO_SLIM_COMPONENT" type="list">
+      <att type="string" value="cytoplasm" />
+    </att>
+    <att name="GO_SLIM_FUNCTION" label="GO_SLIM_FUNCTION" type="list">
+      <att type="string" value="RNA binding" />
+      <att type="string" value="transferase activity" />
+    </att>
+    <att name="GO_SLIM_PROCESS" label="GO_SLIM_PROCESS" type="list">
+      <att type="string" value="amino acid and derivative metabolic process" />
+    </att>
+    <att name="PATHWAY" label="pathways" type="list">
+    </att>
+    <att name="PHENOTYPE" label="phenotypes" type="list">
+      <att type="string" value="viable" />
+      <att type="string" value="filamentous growth: decreased" />
+      <att type="string" value="invasive growth: absent" />
+      <att type="string" value="vegetative growth: decreased" />
+      <att type="string" value="hyperosmotic stress resistance: decreased" />
+      <att type="string" value="resistance to nickel sulfate: decreased" />
+      <att type="string" value="competitive fitness: decreased" />
+    </att>
+    <att name="canonicalName" label="canonicalName" type="string" value="YHR033W" />
+    <att name="geneDescription" label="geneDescription" type="string" value="Putative protein of unknown function" />
+    <att name="node.labelColor" label="node.labelColor" type="string" value="0,0,0" />
+    <att name="systematicName" label="systematicName" type="string" value="YHR033W" />
+    <graphics cy:borderLineType="solid" cy:nodeLabelFont="Arial Bold-0-12" cy:nodeTransparency="1.0" fill="#99CCFF" h="50" outline="#AAAABB" type="rectangle" w="50" width="3" x="0" y="200" />
+  </node>
+  <node id="-YER124C" label="DSE1">
+    <att name="GO_BIOLOGICAL_PROCESS" label="GO_BIOLOGICAL_PROCESS" type="list">
+      <att type="string" value="cytokinesis, completion of separation" />
+      <att type="string" value="cell cycle" />
+      <att type="string" value="cell division" />
+      <att type="string" value="cellular cell wall organization" />
+      <att type="string" value="regulation of pheromone-dependent signal transduction involved in conjugation with cellular fusion" />
+      <att type="string" value="invasive growth in response to glucose limitation" />
+    </att>
+    <att name="GO_CELLULAR_COMPONENT" label="GO_CELLULAR_COMPONENT" type="list">
+      <att type="string" value="cellular bud neck" />
+    </att>
+    <att name="GO_MOLECULAR_FUNCTION" label="GO_MOLECULAR_FUNCTION" type="list">
+      <att type="string" value="molecular_function" />
+    </att>
+    <att name="GO_SLIM_COMPONENT" label="GO_SLIM_COMPONENT" type="list">
+      <att type="string" value="site of polarized growth" />
+      <att type="string" value="bud" />
+    </att>
+    <att name="GO_SLIM_FUNCTION" label="GO_SLIM_FUNCTION" type="list">
+      <att type="string" value="No Mapping" />
+    </att>
+    <att name="GO_SLIM_PROCESS" label="GO_SLIM_PROCESS" type="list">
+      <att type="string" value="cell cycle" />
+      <att type="string" value="cytokinesis" />
+      <att type="string" value="anatomical structure morphogenesis" />
+      <att type="string" value="cell wall organization and biogenesis" />
+    </att>
+    <att name="PATHWAY" label="pathways" type="list">
+    </att>
+    <att name="PHENOTYPE" label="phenotypes" type="list">
+      <att type="string" value="viable" />
+      <att type="string" value="pheromone sensitivity: increased" />
+      <att type="string" value="pheromone sensitivity: decreased" />
+      <att type="string" value="invasive growth: increased" />
+      <att type="string" value="competitive fitness: decreased" />
+      <att type="string" value="cytokinesis: decreased" />
+      <att type="string" value="resistance to sodium dodecyl sulfate: decreased" />
+      <att type="string" value="resistance to caffeine: decreased" />
+      <att type="string" value="resistance to Calcofluor White: decreased" />
+      <att type="string" value="resistance to (S)-lactic acid: increased" />
+    </att>
+    <att name="canonicalName" label="canonicalName" type="string" value="DSE1" />
+    <att name="geneDescription" label="geneDescription" type="string" value="Daughter cell-specific protein" />
+    <att name="node.labelColor" label="node.labelColor" type="string" value="0,0,0" />
+    <att name="systematicName" label="systematicName" type="string" value="YER124C" />
+    <graphics cy:borderLineType="solid" cy:nodeLabelFont="Arial Bold-0-12" cy:nodeTransparency="1.0" fill="#9966FF" h="50" outline="#AAAABB" type="ellipse" w="50" width="3" x="1300" y="100" />
+  </node>
+  <node id="-YMR120C" label="ADE17">
+    <att name="GO_BIOLOGICAL_PROCESS" label="GO_BIOLOGICAL_PROCESS" type="list">
+      <att type="string" value="'de novo' IMP biosynthetic process" />
+      <att type="string" value="purine nucleotide biosynthetic process" />
+      <att type="string" value="IMP biosynthetic process" />
+    </att>
+    <att name="GO_CELLULAR_COMPONENT" label="GO_CELLULAR_COMPONENT" type="list">
+      <att type="string" value="cytosol" />
+      <att type="string" value="plasma membrane enriched fraction" />
+    </att>
+    <att name="GO_MOLECULAR_FUNCTION" label="GO_MOLECULAR_FUNCTION" type="list">
+      <att type="string" value="IMP cyclohydrolase activity" />
+      <att type="string" value="phosphoribosylaminoimidazolecarboxamide formyltransferase activity" />
+      <att type="string" value="transferase activity" />
+      <att type="string" value="hydrolase activity" />
+      <att type="string" value="catalytic activity" />
+    </att>
+    <att name="GO_SLIM_COMPONENT" label="GO_SLIM_COMPONENT" type="list">
+      <att type="string" value="cytoplasm" />
+      <att type="string" value="membrane fraction" />
+    </att>
+    <att name="GO_SLIM_FUNCTION" label="GO_SLIM_FUNCTION" type="list">
+      <att type="string" value="hydrolase activity" />
+      <att type="string" value="transferase activity" />
+    </att>
+    <att name="GO_SLIM_PROCESS" label="GO_SLIM_PROCESS" type="list">
+      <att type="string" value="No Mapping" />
+    </att>
+    <att name="PATHWAY" label="pathways" type="list">
+      <att type="string" value="de novo biosynthesis of purine nucleotides" />
+      <att type="string" value="superpathway of histidine, purine, and pyrimidine biosynthesis" />
+      <att type="string" value="superpathway of purine biosynthesis and salvage pathways" />
+    </att>
+    <att name="PHENOTYPE" label="phenotypes" type="list">
+      <att type="string" value="viable" />
+      <att type="string" value="resistance to cisplatin: increased" />
+      <att type="string" value="competitive fitness: decreased" />
+    </att>
+    <att name="canonicalName" label="canonicalName" type="string" value="ADE17" />
+    <att name="geneDescription" label="geneDescription" type="string" value="Bifunctional AICAR transformylase and IMP cyclohydrolase" />
+    <att name="node.labelColor" label="node.labelColor" type="string" value="0,0,0" />
+    <att name="systematicName" label="systematicName" type="string" value="YMR120C" />
+    <graphics cy:borderLineType="solid" cy:nodeLabelFont="Arial Bold-0-12" cy:nodeTransparency="1.0" fill="#aaaabb" h="50" outline="#AAAABB" type="diamond" w="50" width="3" x="1000" y="100" />
+  </node>
+  <node id="-YDR103W" label="STE5">
+    <att name="GO_BIOLOGICAL_PROCESS" label="GO_BIOLOGICAL_PROCESS" type="list">
+      <att type="string" value="pheromone-dependent signal transduction involved in conjugation with cellular fusion" />
+      <att type="string" value="invasive growth in response to glucose limitation" />
+      <att type="string" value="negative regulation of MAPKKK cascade" />
+      <att type="string" value="response to pheromone" />
+      <att type="string" value="positive regulation of protein phosphorylation" />
+      <att type="string" value="regulation of transposition, RNA-mediated" />
+    </att>
+    <att name="GO_CELLULAR_COMPONENT" label="GO_CELLULAR_COMPONENT" type="list">
+      <att type="string" value="plasma membrane" />
+      <att type="string" value="nucleus" />
+      <att type="string" value="cytoplasm" />
+      <att type="string" value="mating projection tip" />
+    </att>
+    <att name="GO_MOLECULAR_FUNCTION" label="GO_MOLECULAR_FUNCTION" type="list">
+      <att type="string" value="MAP-kinase scaffold activity" />
+      <att type="string" value="phospholipid binding" />
+      <att type="string" value="zinc ion binding" />
+    </att>
+    <att name="GO_SLIM_COMPONENT" label="GO_SLIM_COMPONENT" type="list">
+      <att type="string" value="nucleus" />
+      <att type="string" value="cytoplasm" />
+      <att type="string" value="site of polarized growth" />
+      <att type="string" value="plasma membrane" />
+    </att>
+    <att name="GO_SLIM_FUNCTION" label="GO_SLIM_FUNCTION" type="list">
+      <att type="string" value="protein binding" />
+    </att>
+    <att name="GO_SLIM_PROCESS" label="GO_SLIM_PROCESS" type="list">
+      <att type="string" value="signal transduction" />
+      <att type="string" value="amino acid and derivative metabolic process" />
+      <att type="string" value="anatomical structure morphogenesis" />
+      <att type="string" value="protein modification" />
+      <att type="string" value="conjugation" />
+    </att>
+    <att name="PATHWAY" label="pathways" type="list">
+    </att>
+    <att name="PHENOTYPE" label="phenotypes" type="list">
+      <att type="string" value="viable" />
+      <att type="string" value="pheromone sensitivity: absent" />
+      <att type="string" value="sterile" />
+      <att type="string" value="pheromone production: decreased" />
+      <att type="string" value="shmoo formation: absent" />
+      <att type="string" value="pheromone-induced cell cycle arrest: absent" />
+      <att type="string" value="transposable element transposition: decreased" />
+      <att type="string" value="toxin resistance: increased" />
+    </att>
+    <att name="canonicalName" label="canonicalName" type="string" value="STE5" />
+    <att name="geneDescription" label="geneDescription" type="string" value="Pheromone-response scaffold protein that controls the mating decision" />
+    <att name="node.labelColor" label="node.labelColor" type="string" value="0,0,0" />
+    <att name="systematicName" label="systematicName" type="string" value="YDR103W" />
+    <graphics cy:borderLineType="solid" cy:nodeLabelFont="Arial Bold-0-12" cy:nodeTransparency="1.0" fill="#FF9933" h="50" outline="#AAAABB" type="ellipse" w="50" width="3" x="0" y="0" />
+  </node>
+  <node id="-YDR264C" label="AKR1">
+    <att name="GO_BIOLOGICAL_PROCESS" label="GO_BIOLOGICAL_PROCESS" type="list">
+      <att type="string" value="endocytosis" />
+      <att type="string" value="pheromone-dependent signal transduction involved in conjugation with cellular fusion" />
+      <att type="string" value="protein targeting to membrane" />
+      <att type="string" value="protein palmitoylation" />
+    </att>
+    <att name="GO_CELLULAR_COMPONENT" label="GO_CELLULAR_COMPONENT" type="list">
+      <att type="string" value="membrane" />
+      <att type="string" value="endosome" />
+      <att type="string" value="Golgi apparatus" />
+      <att type="string" value="Golgi membrane" />
+      <att type="string" value="integral to membrane" />
+      <att type="string" value="early endosome membrane" />
+    </att>
+    <att name="GO_MOLECULAR_FUNCTION" label="GO_MOLECULAR_FUNCTION" type="list">
+      <att type="string" value="protein-cysteine S-palmitoleyltransferase activity" />
+      <att type="string" value="acyltransferase activity" />
+      <att type="string" value="transferase activity" />
+      <att type="string" value="metal ion binding" />
+      <att type="string" value="zinc ion binding" />
+    </att>
+    <att name="GO_SLIM_COMPONENT" label="GO_SLIM_COMPONENT" type="list">
+      <att type="string" value="membrane" />
+      <att type="string" value="cytoplasm" />
+      <att type="string" value="Golgi apparatus" />
+    </att>
+    <att name="GO_SLIM_FUNCTION" label="GO_SLIM_FUNCTION" type="list">
+      <att type="string" value="transferase activity" />
+    </att>
+    <att name="GO_SLIM_PROCESS" label="GO_SLIM_PROCESS" type="list">
+      <att type="string" value="signal transduction" />
+      <att type="string" value="vesicle-mediated transport" />
+      <att type="string" value="transport" />
+      <att type="string" value="protein modification" />
+      <att type="string" value="conjugation" />
+      <att type="string" value="membrane organization and biogenesis" />
+    </att>
+    <att name="PATHWAY" label="pathways" type="list">
+    </att>
+    <att name="PHENOTYPE" label="phenotypes" type="list">
+      <att type="string" value="viable" />
+      <att type="string" value="competitive fitness: decreased" />
+      <att type="string" value="sporulation: decreased" />
+      <att type="string" value="fermentative growth: decreased rate" />
+      <att type="string" value="resistance to L-1,4-dithiothreitol: decreased" />
+      <att type="string" value="resistance to calcium dichloride: decreased" />
+      <att type="string" value="metal resistance: decreased" />
+      <att type="string" value="resistance to caffeine: decreased" />
+      <att type="string" value="resistance to cycloheximide: decreased" />
+      <att type="string" value="resistance to ethanol: decreased" />
+      <att type="string" value="resistance to hydroxyurea: decreased" />
+      <att type="string" value="resistance to hygromycin B: decreased" />
+      <att type="string" value="utilization of phosphorus source: decreased" />
+      <att type="string" value="hyperosmotic stress resistance: decreased" />
+      <att type="string" value="resistance to rapamycin: decreased" />
+      <att type="string" value="utilization of carbon source: decreased" />
+      <att type="string" value="resistance to oleate: decreased" />
+      <att type="string" value="polyphosphate accumulation: abnormal" />
+      <att type="string" value="cell size: increased" />
+      <att type="string" value="resistance to 1,2-bis(2-aminophenoxy)ethane-N,N,N',N'-tetraacetic acid: decreased" />
+      <att type="string" value="freeze-thaw resistance: decreased" />
+      <att type="string" value="resistance to Calcofluor White: decreased" />
+      <att type="string" value="palmitoylated protein modification: decreased" />
+      <att type="string" value="vegetative growth: decreased" />
+      <att type="string" value="resistance to monensin: decreased" />
+      <att type="string" value="carboxypeptidase Y (Prc1p) modification: decreased" />
+      <att type="string" value="resistance to 5-fluorouracil: decreased" />
+      <att type="string" value="acid pH resistance: decreased" />
+      <att type="string" value="bud morphology: abnormal" />
+      <att type="string" value="resistance to doxorubicin: decreased" />
+      <att type="string" value="toxin resistance: decreased" />
+      <att type="string" value="resistance to propan-1-ol: decreased" />
+      <att type="string" value="heat sensitivity: increased" />
+      <att type="string" value="resistance to CTBT: decreased" />
+      <att type="string" value="resistance to tirapazamine: decreased" />
+      <att type="string" value="Fus-Mid-GFP distribution: abnormal" />
+      <att type="string" value="glutathione excretion: increased" />
+      <att type="string" value="respiratory growth: absent" />
+      <att type="string" value="resistance to 1,4-dithiothreitol: decreased" />
+      <att type="string" value="resistance to camptothecin: decreased" />
+      <att type="string" value="resistance to benomyl: decreased" />
+      <att type="string" value="resistance to tunicamycin: decreased" />
+      <att type="string" value="transposable element transposition: decreased" />
+    </att>
+    <att name="canonicalName" label="canonicalName" type="string" value="AKR1" />
+    <att name="geneDescription" label="geneDescription" type="string" value="Palmitoyl transferase involved in protein palmitoylation" />
+    <att name="node.labelColor" label="node.labelColor" type="string" value="0,0,0" />
+    <att name="systematicName" label="systematicName" type="string" value="YDR264C" />
+    <graphics cy:borderLineType="solid" cy:nodeLabelFont="Arial Bold-0-12" cy:nodeTransparency="1.0" fill="#FF9933" h="50" outline="#AAAABB" type="diamond" w="50" width="3" x="600" y="0" />
+  </node>
+  <node id="-YER025W" label="GCD11">
+    <att name="GO_BIOLOGICAL_PROCESS" label="GO_BIOLOGICAL_PROCESS" type="list">
+      <att type="string" value="translation" />
+      <att type="string" value="positive regulation of translational fidelity" />
+    </att>
+    <att name="GO_CELLULAR_COMPONENT" label="GO_CELLULAR_COMPONENT" type="list">
+      <att type="string" value="ribosome" />
+      <att type="string" value="eukaryotic translation initiation factor 2 complex" />
+      <att type="string" value="multi-eIF complex" />
+    </att>
+    <att name="GO_MOLECULAR_FUNCTION" label="GO_MOLECULAR_FUNCTION" type="list">
+      <att type="string" value="translation initiation factor activity" />
+      <att type="string" value="nucleotide binding" />
+      <att type="string" value="GTP binding" />
+      <att type="string" value="tRNA binding" />
+      <att type="string" value="GTPase activity" />
+    </att>
+    <att name="GO_SLIM_COMPONENT" label="GO_SLIM_COMPONENT" type="list">
+      <att type="string" value="ribosome" />
+      <att type="string" value="cytoplasm" />
+    </att>
+    <att name="GO_SLIM_FUNCTION" label="GO_SLIM_FUNCTION" type="list">
+      <att type="string" value="translation regulator activity" />
+      <att type="string" value="RNA binding" />
+      <att type="string" value="hydrolase activity" />
+    </att>
+    <att name="GO_SLIM_PROCESS" label="GO_SLIM_PROCESS" type="list">
+      <att type="string" value="translation" />
+    </att>
+    <att name="PATHWAY" label="pathways" type="list">
+    </att>
+    <att name="PHENOTYPE" label="phenotypes" type="list">
+      <att type="string" value="inviable" />
+      <att type="string" value="vegetative growth: decreased rate" />
+      <att type="string" value="vegetative growth: absent" />
+      <att type="string" value="competitive fitness: decreased" />
+      <att type="string" value="resistance to tunicamycin: decreased" />
+    </att>
+    <att name="canonicalName" label="canonicalName" type="string" value="GCD11" />
+    <att name="geneDescription" label="geneDescription" type="string" value="Gamma subunit of the translation initiation factor eIF2" />
+    <att name="node.labelColor" label="node.labelColor" type="string" value="0,0,0" />
+    <att name="systematicName" label="systematicName" type="string" value="YER025W" />
+    <graphics cy:borderLineType="solid" cy:nodeLabelFont="Arial Bold-0-12" cy:nodeTransparency="1.0" fill="#CCFF99" h="50" outline="#AAAABB" type="parallelogram" w="50" width="3" x="400" y="0" />
+  </node>
+  <node id="-YAL041W" label="CDC24">
+    <att name="GO_BIOLOGICAL_PROCESS" label="GO_BIOLOGICAL_PROCESS" type="list">
+      <att type="string" value="small GTPase mediated signal transduction" />
+      <att type="string" value="chitin localization" />
+      <att type="string" value="budding cell apical bud growth" />
+      <att type="string" value="pseudohyphal growth" />
+      <att type="string" value="budding cell isotropic bud growth" />
+      <att type="string" value="invasive growth in response to glucose limitation" />
+      <att type="string" value="pheromone-dependent signal transduction involved in conjugation with cellular fusion" />
+      <att type="string" value="establishment of cell polarity" />
+      <att type="string" value="regulation of exit from mitosis" />
+      <att type="string" value="cell morphogenesis involved in conjugation with cellular fusion" />
+      <att type="string" value="regulation of Rho protein signal transduction" />
+    </att>
+    <att name="GO_CELLULAR_COMPONENT" label="GO_CELLULAR_COMPONENT" type="list">
+      <att type="string" value="nucleus" />
+      <att type="string" value="incipient cellular bud site" />
+      <att type="string" value="mating projection tip" />
+      <att type="string" value="cellular bud neck" />
+      <att type="string" value="cellular bud tip" />
+      <att type="string" value="cytoplasm" />
+      <att type="string" value="intracellular" />
+    </att>
+    <att name="GO_MOLECULAR_FUNCTION" label="GO_MOLECULAR_FUNCTION" type="list">
+      <att type="string" value="Rho guanyl-nucleotide exchange factor activity" />
+      <att type="string" value="guanyl-nucleotide exchange factor activity" />
+    </att>
+    <att name="GO_SLIM_COMPONENT" label="GO_SLIM_COMPONENT" type="list">
+      <att type="string" value="nucleus" />
+      <att type="string" value="cytoplasm" />
+      <att type="string" value="site of polarized growth" />
+      <att type="string" value="bud" />
+    </att>
+    <att name="GO_SLIM_FUNCTION" label="GO_SLIM_FUNCTION" type="list">
+      <att type="string" value="enzyme regulator activity" />
+    </att>
+    <att name="GO_SLIM_PROCESS" label="GO_SLIM_PROCESS" type="list">
+      <att type="string" value="signal transduction" />
+      <att type="string" value="cell cycle" />
+      <att type="string" value="pseudohyphal growth" />
+      <att type="string" value="cell budding" />
+      <att type="string" value="anatomical structure morphogenesis" />
+      <att type="string" value="conjugation" />
+    </att>
+    <att name="PATHWAY" label="pathways" type="list">
+    </att>
+    <att name="PHENOTYPE" label="phenotypes" type="list">
+      <att type="string" value="inviable" />
+      <att type="string" value="cellular morphology: abnormal" />
+      <att type="string" value="heat sensitivity: increased" />
+      <att type="string" value="cell cycle progression: arrested" />
+      <att type="string" value="budding: absent" />
+      <att type="string" value="nuclear morphology: abnormal" />
+      <att type="string" value="shmoo formation: abnormal" />
+      <att type="string" value="competitive fitness: decreased" />
+      <att type="string" value="resistance to tunicamycin: decreased" />
+      <att type="string" value="cell size: decreased" />
+      <att type="string" value="mating efficiency: decreased" />
+    </att>
+    <att name="canonicalName" label="canonicalName" type="string" value="CDC24" />
+    <att name="geneDescription" label="geneDescription" type="string" value="Guanine nucleotide exchange factor for Cdc42p" />
+    <att name="node.labelColor" label="node.labelColor" type="string" value="0,0,0" />
+    <att name="systematicName" label="systematicName" type="string" value="YAL041W" />
+    <graphics cy:borderLineType="solid" cy:nodeLabelFont="Arial Bold-0-12" cy:nodeTransparency="1.0" fill="#FF9933" h="50" outline="#AAAABB" type="rectangle" w="50" width="3" x="700" y="0" />
+  </node>
+  <node id="-YJL050W" label="MTR4">
+    <att name="GO_BIOLOGICAL_PROCESS" label="GO_BIOLOGICAL_PROCESS" type="list">
+      <att type="string" value="rRNA catabolic process" />
+      <att type="string" value="rRNA processing" />
+      <att type="string" value="exonucleolytic trimming to generate mature 3'-end of 5.8S rRNA from tricistronic rRNA transcript (SSU-rRNA, 5.8S rRNA, LSU-rRNA)" />
+      <att type="string" value="U4 snRNA 3'-end processing" />
+      <att type="string" value="U5 snRNA 3'-end processing" />
+      <att type="string" value="ncRNA polyadenylation" />
+      <att type="string" value="nuclear polyadenylation-dependent tRNA catabolic process" />
+      <att type="string" value="nuclear polyadenylation-dependent rRNA catabolic process" />
+      <att type="string" value="nuclear retention of pre-mRNA with aberrant 3'-ends at the site of transcription" />
+      <att type="string" value="nuclear mRNA surveillance of mRNA 3'-end processing" />
+      <att type="string" value="nuclear polyadenylation-dependent mRNA catabolic process" />
+      <att type="string" value="polyadenylation-dependent snoRNA 3'-end processing" />
+    </att>
+    <att name="GO_CELLULAR_COMPONENT" label="GO_CELLULAR_COMPONENT" type="list">
+      <att type="string" value="nucleus" />
+      <att type="string" value="TRAMP complex" />
+      <att type="string" value="nucleolus" />
+    </att>
+    <att name="GO_MOLECULAR_FUNCTION" label="GO_MOLECULAR_FUNCTION" type="list">
+      <att type="string" value="nucleotide binding" />
+      <att type="string" value="hydrolase activity" />
+      <att type="string" value="ATP-dependent 3'-5' RNA helicase activity" />
+      <att type="string" value="poly(A) RNA binding" />
+      <att type="string" value="nucleic acid binding" />
+      <att type="string" value="catalytic activity" />
+      <att type="string" value="helicase activity" />
+      <att type="string" value="ATP binding" />
+      <att type="string" value="ATP-dependent helicase activity" />
+      <att type="string" value="hydrolase activity, acting on acid anhydrides, in phosphorus-containing anhydrides" />
+    </att>
+    <att name="GO_SLIM_COMPONENT" label="GO_SLIM_COMPONENT" type="list">
+      <att type="string" value="nucleus" />
+      <att type="string" value="nucleolus" />
+    </att>
+    <att name="GO_SLIM_FUNCTION" label="GO_SLIM_FUNCTION" type="list">
+      <att type="string" value="helicase activity" />
+      <att type="string" value="RNA binding" />
+      <att type="string" value="hydrolase activity" />
+    </att>
+    <att name="GO_SLIM_PROCESS" label="GO_SLIM_PROCESS" type="list">
+      <att type="string" value="ribosome biogenesis and assembly" />
+      <att type="string" value="RNA metabolic process" />
+    </att>
+    <att name="PATHWAY" label="pathways" type="list">
+    </att>
+    <att name="PHENOTYPE" label="phenotypes" type="list">
+      <att type="string" value="inviable" />
+      <att type="string" value="poly(A)+ RNA accumulation: increased" />
+      <att type="string" value="3'-extended forms of 5.8S rRNA accumulation: increased" />
+      <att type="string" value="5'ETS region of pre-rRNA accumulation: increased" />
+      <att type="string" value="3'-extended forms of snRNA accumulation: increased" />
+      <att type="string" value="3'-extended forms of snoRNA accumulation: increased" />
+      <att type="string" value="polyadenylated snoRNA accumulation: increased" />
+      <att type="string" value="poly(A)+ pre-rRNA accumulation: increased" />
+      <att type="string" value="35S pre-rRNA accumulation: increased" />
+      <att type="string" value="vegetative growth: decreased" />
+      <att type="string" value="7S pre-rRNA accumulation: increased" />
+      <att type="string" value="poly(A)+ RNA accumulation: abnormal" />
+      <att type="string" value="NAB2 mRNA accumulation: increased" />
+      <att type="string" value="competitive fitness: decreased" />
+      <att type="string" value="resistance to tunicamycin: decreased" />
+    </att>
+    <att name="canonicalName" label="canonicalName" type="string" value="MTR4" />
+    <att name="geneDescription" label="geneDescription" type="string" value="ATP-dependent 3'-5' RNA helicase of the Dead-box family" />
+    <att name="node.labelColor" label="node.labelColor" type="string" value="0,0,0" />
+    <att name="systematicName" label="systematicName" type="string" value="YJL050W" />
+    <graphics cy:borderLineType="solid" cy:nodeLabelFont="Arial Bold-0-12" cy:nodeTransparency="1.0" fill="#00FF00" h="50" outline="#AAAABB" type="diamond" w="50" width="3" x="200" y="0" />
+  </node>
+  <edge id="STE4 (Affinity Capture-MS) CCT6" label="Affinity Capture-MS" source="-YOR212W" target="-YDR188W">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE4 (Affinity Capture-MS) CCT6" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-MS" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF9933" cy:targetArrow="0" cy:targetArrowColor="#FF9933" fill="#FF9933" width="2" />
+  </edge>
+  <edge id="PLP2 (Affinity Capture-MS) CCT6" label="Affinity Capture-MS" source="-YOR281C" target="-YDR188W">
+    <att name="canonicalName" label="canonicalName" type="string" value="PLP2 (Affinity Capture-MS) CCT6" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-MS" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF9933" cy:targetArrow="0" cy:targetArrowColor="#FF9933" fill="#FF9933" width="2" />
+  </edge>
+  <edge id="CCT3 (Affinity Capture-Western) CCT6" label="Affinity Capture-Western" source="-YJL014W" target="-YDR188W">
+    <att name="canonicalName" label="canonicalName" type="string" value="CCT3 (Affinity Capture-Western) CCT6" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-Western" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#CC3300" cy:targetArrow="0" cy:targetArrowColor="#CC3300" fill="#CC3300" width="2" />
+  </edge>
+  <edge id="CCT3 (Co-purification) CCT6" label="Co-purification" source="-YJL014W" target="-YDR188W">
+    <att name="canonicalName" label="canonicalName" type="string" value="CCT3 (Co-purification) CCT6" />
+    <att name="experimentType" label="experimentType" type="string" value="Co-purification" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF66CC" cy:targetArrow="0" cy:targetArrowColor="#FF66CC" fill="#FF66CC" width="2" />
+  </edge>
+  <edge id="CCT3 (Affinity Capture-MS) CCT6" label="Affinity Capture-MS" source="-YJL014W" target="-YDR188W">
+    <att name="canonicalName" label="canonicalName" type="string" value="CCT3 (Affinity Capture-MS) CCT6" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-MS" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF9933" cy:targetArrow="0" cy:targetArrowColor="#FF9933" fill="#FF9933" width="2" />
+  </edge>
+  <edge id="CCT6 (Affinity Capture-MS) TCP1" label="Affinity Capture-MS" source="-YDR188W" target="-YDR212W">
+    <att name="canonicalName" label="canonicalName" type="string" value="CCT6 (Affinity Capture-MS) TCP1" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-MS" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF9933" cy:targetArrow="0" cy:targetArrowColor="#FF9933" fill="#FF9933" width="2" />
+  </edge>
+  <edge id="STE4 (Affinity Capture-MS) TCP1" label="Affinity Capture-MS" source="-YOR212W" target="-YDR212W">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE4 (Affinity Capture-MS) TCP1" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-MS" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF9933" cy:targetArrow="0" cy:targetArrowColor="#FF9933" fill="#FF9933" width="2" />
+  </edge>
+  <edge id="CCT3 (Affinity Capture-Western) TCP1" label="Affinity Capture-Western" source="-YJL014W" target="-YDR212W">
+    <att name="canonicalName" label="canonicalName" type="string" value="CCT3 (Affinity Capture-Western) TCP1" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-Western" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#CC3300" cy:targetArrow="0" cy:targetArrowColor="#CC3300" fill="#CC3300" width="2" />
+  </edge>
+  <edge id="CCT3 (Co-purification) TCP1" label="Co-purification" source="-YJL014W" target="-YDR212W">
+    <att name="canonicalName" label="canonicalName" type="string" value="CCT3 (Co-purification) TCP1" />
+    <att name="experimentType" label="experimentType" type="string" value="Co-purification" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF66CC" cy:targetArrow="0" cy:targetArrowColor="#FF66CC" fill="#FF66CC" width="2" />
+  </edge>
+  <edge id="CCT3 (Affinity Capture-MS) TCP1" label="Affinity Capture-MS" source="-YJL014W" target="-YDR212W">
+    <att name="canonicalName" label="canonicalName" type="string" value="CCT3 (Affinity Capture-MS) TCP1" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-MS" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF9933" cy:targetArrow="0" cy:targetArrowColor="#FF9933" fill="#FF9933" width="2" />
+  </edge>
+  <edge id="STE50 (Two-hybrid) STE50" label="Two-hybrid" source="-YCL032W" target="-YCL032W">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE50 (Two-hybrid) STE50" />
+    <att name="experimentType" label="experimentType" type="string" value="Two-hybrid" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#CCCCCC" cy:targetArrow="0" cy:targetArrowColor="#CCCCCC" fill="#CCCCCC" width="2" />
+  </edge>
+  <edge id="STE50 (Reconstituted Complex) STE50" label="Reconstituted Complex (2)" source="-YCL032W" target="-YCL032W">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE50 (Reconstituted Complex) STE50" />
+    <att name="experimentType" label="experimentType" type="string" value="Reconstituted Complex" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="2" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF6699" cy:targetArrow="0" cy:targetArrowColor="#FF6699" fill="#FF6699" width="4" />
+  </edge>
+  <edge id="STE4 (Affinity Capture-MS) ARP2" label="Affinity Capture-MS" source="-YOR212W" target="-YDL029W">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE4 (Affinity Capture-MS) ARP2" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-MS" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF9933" cy:targetArrow="0" cy:targetArrowColor="#FF9933" fill="#FF9933" width="2" />
+  </edge>
+  <edge id="NAB2 (Affinity Capture-RNA) ARP2" label="Affinity Capture-RNA" source="-YGL122C" target="-YDL029W">
+    <att name="canonicalName" label="canonicalName" type="string" value="NAB2 (Affinity Capture-RNA) ARP2" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-RNA" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#993300" cy:targetArrow="9" cy:targetArrowColor="#993300" fill="#993300" width="2" />
+  </edge>
+  <edge id="CCT3 (Affinity Capture-MS) ARP2" label="Affinity Capture-MS" source="-YJL014W" target="-YDL029W">
+    <att name="canonicalName" label="canonicalName" type="string" value="CCT3 (Affinity Capture-MS) ARP2" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-MS" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF9933" cy:targetArrow="0" cy:targetArrowColor="#FF9933" fill="#FF9933" width="2" />
+  </edge>
+  <edge id="CCT6 (Affinity Capture-MS) PLP2" label="Affinity Capture-MS" source="-YDR188W" target="-YOR281C">
+    <att name="canonicalName" label="canonicalName" type="string" value="CCT6 (Affinity Capture-MS) PLP2" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-MS" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF9933" cy:targetArrow="0" cy:targetArrowColor="#FF9933" fill="#FF9933" width="2" />
+  </edge>
+  <edge id="STE4 (Reconstituted Complex) PLP2" label="Reconstituted Complex" source="-YOR212W" target="-YOR281C">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE4 (Reconstituted Complex) PLP2" />
+    <att name="experimentType" label="experimentType" type="string" value="Reconstituted Complex" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF6699" cy:targetArrow="0" cy:targetArrowColor="#FF6699" fill="#FF6699" width="2" />
+  </edge>
+  <edge id="CCT2 (Affinity Capture-MS) PLP2" label="Affinity Capture-MS" source="-YIL142W" target="-YOR281C">
+    <att name="canonicalName" label="canonicalName" type="string" value="CCT2 (Affinity Capture-MS) PLP2" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-MS" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF9933" cy:targetArrow="0" cy:targetArrowColor="#FF9933" fill="#FF9933" width="2" />
+  </edge>
+  <edge id="NAB2 (Affinity Capture-RNA) PLP2" label="Affinity Capture-RNA" source="-YGL122C" target="-YOR281C">
+    <att name="canonicalName" label="canonicalName" type="string" value="NAB2 (Affinity Capture-RNA) PLP2" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-RNA" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#993300" cy:targetArrow="9" cy:targetArrowColor="#993300" fill="#993300" width="2" />
+  </edge>
+  <edge id="CCT3 (Affinity Capture-MS) PLP2" label="Affinity Capture-MS" source="-YJL014W" target="-YOR281C">
+    <att name="canonicalName" label="canonicalName" type="string" value="CCT3 (Affinity Capture-MS) PLP2" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-MS" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF9933" cy:targetArrow="0" cy:targetArrowColor="#FF9933" fill="#FF9933" width="2" />
+  </edge>
+  <edge id="ARP2 (PCA) PGM2" label="PCA" source="-YDL029W" target="-YMR105C">
+    <att name="canonicalName" label="canonicalName" type="string" value="ARP2 (PCA) PGM2" />
+    <att name="experimentType" label="experimentType" type="string" value="PCA" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#00CC66" cy:targetArrow="0" cy:targetArrowColor="#00CC66" fill="#00CC66" width="2" />
+  </edge>
+  <edge id="STE4 (Affinity Capture-MS) PGM2" label="Affinity Capture-MS" source="-YOR212W" target="-YMR105C">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE4 (Affinity Capture-MS) PGM2" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-MS" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF9933" cy:targetArrow="0" cy:targetArrowColor="#FF9933" fill="#FF9933" width="2" />
+  </edge>
+  <edge id="PGM2 (PCA) PGM2" label="PCA" source="-YMR105C" target="-YMR105C">
+    <att name="canonicalName" label="canonicalName" type="string" value="PGM2 (PCA) PGM2" />
+    <att name="experimentType" label="experimentType" type="string" value="PCA" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#00CC66" cy:targetArrow="0" cy:targetArrowColor="#00CC66" fill="#00CC66" width="2" />
+  </edge>
+  <edge id="NAB2 (Affinity Capture-RNA) PGM2" label="Affinity Capture-RNA" source="-YGL122C" target="-YMR105C">
+    <att name="canonicalName" label="canonicalName" type="string" value="NAB2 (Affinity Capture-RNA) PGM2" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-RNA" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#993300" cy:targetArrow="9" cy:targetArrowColor="#993300" fill="#993300" width="2" />
+  </edge>
+  <edge id="STE4 (Affinity Capture-MS) RNQ1" label="Affinity Capture-MS" source="-YOR212W" target="-YCL028W">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE4 (Affinity Capture-MS) RNQ1" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-MS" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF9933" cy:targetArrow="0" cy:targetArrowColor="#FF9933" fill="#FF9933" width="2" />
+  </edge>
+  <edge id="RNQ1 (Two-hybrid) RNQ1" label="Two-hybrid" source="-YCL028W" target="-YCL028W">
+    <att name="canonicalName" label="canonicalName" type="string" value="RNQ1 (Two-hybrid) RNQ1" />
+    <att name="experimentType" label="experimentType" type="string" value="Two-hybrid" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#CCCCCC" cy:targetArrow="0" cy:targetArrowColor="#CCCCCC" fill="#CCCCCC" width="2" />
+  </edge>
+  <edge id="RNQ1 (Reconstituted Complex) RNQ1" label="Reconstituted Complex (6)" source="-YCL028W" target="-YCL028W">
+    <att name="canonicalName" label="canonicalName" type="string" value="RNQ1 (Reconstituted Complex) RNQ1" />
+    <att name="experimentType" label="experimentType" type="string" value="Reconstituted Complex" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="6" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF6699" cy:targetArrow="0" cy:targetArrowColor="#FF6699" fill="#FF6699" width="12" />
+  </edge>
+  <edge id="RNQ1 (Co-crystal Structure) RNQ1" label="Co-crystal Structure (2)" source="-YCL028W" target="-YCL028W">
+    <att name="canonicalName" label="canonicalName" type="string" value="RNQ1 (Co-crystal Structure) RNQ1" />
+    <att name="experimentType" label="experimentType" type="string" value="Co-crystal Structure" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="2" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#00CC66" cy:targetArrow="0" cy:targetArrowColor="#00CC66" fill="#00CC66" width="4" />
+  </edge>
+  <edge id="STE4 (Affinity Capture-Western) RHO1" label="Affinity Capture-Western" source="-YOR212W" target="-YPR165W">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE4 (Affinity Capture-Western) RHO1" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-Western" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#CC3300" cy:targetArrow="0" cy:targetArrowColor="#CC3300" fill="#CC3300" width="2" />
+  </edge>
+  <edge id="NAB2 (Affinity Capture-RNA) RHO1" label="Affinity Capture-RNA" source="-YGL122C" target="-YPR165W">
+    <att name="canonicalName" label="canonicalName" type="string" value="NAB2 (Affinity Capture-RNA) RHO1" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-RNA" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#993300" cy:targetArrow="9" cy:targetArrowColor="#993300" fill="#993300" width="2" />
+  </edge>
+  <edge id="STE2 (Two-hybrid) GPA1" label="Two-hybrid" source="-YFL026W" target="-YHR005C">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE2 (Two-hybrid) GPA1" />
+    <att name="experimentType" label="experimentType" type="string" value="Two-hybrid" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#CCCCCC" cy:targetArrow="0" cy:targetArrowColor="#CCCCCC" fill="#CCCCCC" width="2" />
+  </edge>
+  <edge id="STE4 (Affinity Capture-Western) GPA1" label="Affinity Capture-Western (2)" source="-YOR212W" target="-YHR005C">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE4 (Affinity Capture-Western) GPA1" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-Western" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="2" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#CC3300" cy:targetArrow="0" cy:targetArrowColor="#CC3300" fill="#CC3300" width="4" />
+  </edge>
+  <edge id="STE4 (Two-hybrid) GPA1" label="Two-hybrid (4)" source="-YOR212W" target="-YHR005C">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE4 (Two-hybrid) GPA1" />
+    <att name="experimentType" label="experimentType" type="string" value="Two-hybrid" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="4" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#CCCCCC" cy:targetArrow="0" cy:targetArrowColor="#CCCCCC" fill="#CCCCCC" width="8" />
+  </edge>
+  <edge id="STE4 (Reconstituted Complex) GPA1" label="Reconstituted Complex" source="-YOR212W" target="-YHR005C">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE4 (Reconstituted Complex) GPA1" />
+    <att name="experimentType" label="experimentType" type="string" value="Reconstituted Complex" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF6699" cy:targetArrow="0" cy:targetArrowColor="#FF6699" fill="#FF6699" width="2" />
+  </edge>
+  <edge id="STE4 (Affinity Capture-MS) GPA1" label="Affinity Capture-MS (2)" source="-YOR212W" target="-YHR005C">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE4 (Affinity Capture-MS) GPA1" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-MS" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="2" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF9933" cy:targetArrow="0" cy:targetArrowColor="#FF9933" fill="#FF9933" width="4" />
+  </edge>
+  <edge id="NAB2 (Affinity Capture-RNA) GPA1" label="Affinity Capture-RNA" source="-YGL122C" target="-YHR005C">
+    <att name="canonicalName" label="canonicalName" type="string" value="NAB2 (Affinity Capture-RNA) GPA1" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-RNA" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#993300" cy:targetArrow="9" cy:targetArrowColor="#993300" fill="#993300" width="2" />
+  </edge>
+  <edge id="STE20 (Biochemical Activity) STE20" label="Biochemical Activity (2)" source="-YHL007C" target="-YHL007C">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE20 (Biochemical Activity) STE20" />
+    <att name="experimentType" label="experimentType" type="string" value="Biochemical Activity" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="2" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#000000" cy:targetArrow="3" cy:targetArrowColor="#000000" fill="#000000" width="4" />
+  </edge>
+  <edge id="STE4 (Affinity Capture-Western) STE20" label="Affinity Capture-Western" source="-YOR212W" target="-YHL007C">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE4 (Affinity Capture-Western) STE20" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-Western" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#CC3300" cy:targetArrow="0" cy:targetArrowColor="#CC3300" fill="#CC3300" width="2" />
+  </edge>
+  <edge id="STE4 (Reconstituted Complex) STE20" label="Reconstituted Complex" source="-YOR212W" target="-YHL007C">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE4 (Reconstituted Complex) STE20" />
+    <att name="experimentType" label="experimentType" type="string" value="Reconstituted Complex" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF6699" cy:targetArrow="0" cy:targetArrowColor="#FF6699" fill="#FF6699" width="2" />
+  </edge>
+  <edge id="CDC24 (Two-hybrid) STE20" label="Two-hybrid" source="-YAL041W" target="-YHL007C">
+    <att name="canonicalName" label="canonicalName" type="string" value="CDC24 (Two-hybrid) STE20" />
+    <att name="experimentType" label="experimentType" type="string" value="Two-hybrid" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#CCCCCC" cy:targetArrow="0" cy:targetArrowColor="#CCCCCC" fill="#CCCCCC" width="2" />
+  </edge>
+  <edge id="NAB2 (Affinity Capture-RNA) STE20" label="Affinity Capture-RNA" source="-YGL122C" target="-YHL007C">
+    <att name="canonicalName" label="canonicalName" type="string" value="NAB2 (Affinity Capture-RNA) STE20" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-RNA" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#993300" cy:targetArrow="9" cy:targetArrowColor="#993300" fill="#993300" width="2" />
+  </edge>
+  <edge id="STE4 (Affinity Capture-MS) AHA1" label="Affinity Capture-MS" source="-YOR212W" target="-YDR214W">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE4 (Affinity Capture-MS) AHA1" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-MS" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF9933" cy:targetArrow="0" cy:targetArrowColor="#FF9933" fill="#FF9933" width="2" />
+  </edge>
+  <edge id="NAB2 (Affinity Capture-RNA) AHA1" label="Affinity Capture-RNA" source="-YGL122C" target="-YDR214W">
+    <att name="canonicalName" label="canonicalName" type="string" value="NAB2 (Affinity Capture-RNA) AHA1" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-RNA" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#993300" cy:targetArrow="9" cy:targetArrowColor="#993300" fill="#993300" width="2" />
+  </edge>
+  <edge id="NAB2 (Two-hybrid) NAB2" label="Two-hybrid" source="-YGL122C" target="-YGL122C">
+    <att name="canonicalName" label="canonicalName" type="string" value="NAB2 (Two-hybrid) NAB2" />
+    <att name="experimentType" label="experimentType" type="string" value="Two-hybrid" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#CCCCCC" cy:targetArrow="0" cy:targetArrowColor="#CCCCCC" fill="#CCCCCC" width="2" />
+  </edge>
+  <edge id="NAB2 (PCA) NAB2" label="PCA" source="-YGL122C" target="-YGL122C">
+    <att name="canonicalName" label="canonicalName" type="string" value="NAB2 (PCA) NAB2" />
+    <att name="experimentType" label="experimentType" type="string" value="PCA" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#00CC66" cy:targetArrow="0" cy:targetArrowColor="#00CC66" fill="#00CC66" width="2" />
+  </edge>
+  <edge id="NAB2 (Affinity Capture-RNA) NAB2" label="Affinity Capture-RNA" source="-YGL122C" target="-YGL122C">
+    <att name="canonicalName" label="canonicalName" type="string" value="NAB2 (Affinity Capture-RNA) NAB2" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-RNA" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#993300" cy:targetArrow="9" cy:targetArrowColor="#993300" fill="#993300" width="2" />
+  </edge>
+  <edge id="NAB2 (Affinity Capture-MS) NAB2" label="Affinity Capture-MS" source="-YGL122C" target="-YGL122C">
+    <att name="canonicalName" label="canonicalName" type="string" value="NAB2 (Affinity Capture-MS) NAB2" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-MS" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF9933" cy:targetArrow="0" cy:targetArrowColor="#FF9933" fill="#FF9933" width="2" />
+  </edge>
+  <edge id="CCT6 (Affinity Capture-MS) CCT5" label="Affinity Capture-MS" source="-YDR188W" target="-YJR064W">
+    <att name="canonicalName" label="canonicalName" type="string" value="CCT6 (Affinity Capture-MS) CCT5" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-MS" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF9933" cy:targetArrow="0" cy:targetArrowColor="#FF9933" fill="#FF9933" width="2" />
+  </edge>
+  <edge id="ARP2 (Affinity Capture-MS) CCT5" label="Affinity Capture-MS (2)" source="-YDL029W" target="-YJR064W">
+    <att name="canonicalName" label="canonicalName" type="string" value="ARP2 (Affinity Capture-MS) CCT5" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-MS" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="2" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF9933" cy:targetArrow="0" cy:targetArrowColor="#FF9933" fill="#FF9933" width="4" />
+  </edge>
+  <edge id="STE4 (Affinity Capture-MS) CCT5" label="Affinity Capture-MS" source="-YOR212W" target="-YJR064W">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE4 (Affinity Capture-MS) CCT5" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-MS" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF9933" cy:targetArrow="0" cy:targetArrowColor="#FF9933" fill="#FF9933" width="2" />
+  </edge>
+  <edge id="CCT3 (Affinity Capture-Western) CCT5" label="Affinity Capture-Western" source="-YJL014W" target="-YJR064W">
+    <att name="canonicalName" label="canonicalName" type="string" value="CCT3 (Affinity Capture-Western) CCT5" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-Western" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#CC3300" cy:targetArrow="0" cy:targetArrowColor="#CC3300" fill="#CC3300" width="2" />
+  </edge>
+  <edge id="CCT3 (Co-purification) CCT5" label="Co-purification" source="-YJL014W" target="-YJR064W">
+    <att name="canonicalName" label="canonicalName" type="string" value="CCT3 (Co-purification) CCT5" />
+    <att name="experimentType" label="experimentType" type="string" value="Co-purification" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF66CC" cy:targetArrow="0" cy:targetArrowColor="#FF66CC" fill="#FF66CC" width="2" />
+  </edge>
+  <edge id="CCT3 (Affinity Capture-MS) CCT5" label="Affinity Capture-MS" source="-YJL014W" target="-YJR064W">
+    <att name="canonicalName" label="canonicalName" type="string" value="CCT3 (Affinity Capture-MS) CCT5" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-MS" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF9933" cy:targetArrow="0" cy:targetArrowColor="#FF9933" fill="#FF9933" width="2" />
+  </edge>
+  <edge id="GPA1 (Affinity Capture-Western) STE2" label="Affinity Capture-Western" source="-YHR005C" target="-YFL026W">
+    <att name="canonicalName" label="canonicalName" type="string" value="GPA1 (Affinity Capture-Western) STE2" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-Western" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#CC3300" cy:targetArrow="0" cy:targetArrowColor="#CC3300" fill="#CC3300" width="2" />
+  </edge>
+  <edge id="GPA1 (Two-hybrid) STE2" label="Two-hybrid" source="-YHR005C" target="-YFL026W">
+    <att name="canonicalName" label="canonicalName" type="string" value="GPA1 (Two-hybrid) STE2" />
+    <att name="experimentType" label="experimentType" type="string" value="Two-hybrid" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#CCCCCC" cy:targetArrow="0" cy:targetArrowColor="#CCCCCC" fill="#CCCCCC" width="2" />
+  </edge>
+  <edge id="STE2 (Affinity Capture-Western) STE2" label="Affinity Capture-Western (2)" source="-YFL026W" target="-YFL026W">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE2 (Affinity Capture-Western) STE2" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-Western" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="2" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#CC3300" cy:targetArrow="0" cy:targetArrowColor="#CC3300" fill="#CC3300" width="4" />
+  </edge>
+  <edge id="STE2 (FRET) STE2" label="FRET" source="-YFL026W" target="-YFL026W">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE2 (FRET) STE2" />
+    <att name="experimentType" label="experimentType" type="string" value="FRET" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#00FF00" cy:targetArrow="0" cy:targetArrowColor="#00FF00" fill="#00FF00" width="2" />
+  </edge>
+  <edge id="STE4 (Two-hybrid) STE2" label="Two-hybrid" source="-YOR212W" target="-YFL026W">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE4 (Two-hybrid) STE2" />
+    <att name="experimentType" label="experimentType" type="string" value="Two-hybrid" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#CCCCCC" cy:targetArrow="0" cy:targetArrowColor="#CCCCCC" fill="#CCCCCC" width="2" />
+  </edge>
+  <edge id="STE4 (Reconstituted Complex) PLP1" label="Reconstituted Complex" source="-YOR212W" target="-YDR183W">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE4 (Reconstituted Complex) PLP1" />
+    <att name="experimentType" label="experimentType" type="string" value="Reconstituted Complex" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF6699" cy:targetArrow="0" cy:targetArrowColor="#FF6699" fill="#FF6699" width="2" />
+  </edge>
+  <edge id="CCT3 (Affinity Capture-MS) PLP1" label="Affinity Capture-MS" source="-YJL014W" target="-YDR183W">
+    <att name="canonicalName" label="canonicalName" type="string" value="CCT3 (Affinity Capture-MS) PLP1" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-MS" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF9933" cy:targetArrow="0" cy:targetArrowColor="#FF9933" fill="#FF9933" width="2" />
+  </edge>
+  <edge id="NAB2 (Affinity Capture-RNA) PLP1" label="Affinity Capture-RNA" source="-YGL122C" target="-YDR183W">
+    <att name="canonicalName" label="canonicalName" type="string" value="NAB2 (Affinity Capture-RNA) PLP1" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-RNA" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#993300" cy:targetArrow="9" cy:targetArrowColor="#993300" fill="#993300" width="2" />
+  </edge>
+  <edge id="STE4 (Affinity Capture-MS) SEC53" label="Affinity Capture-MS" source="-YOR212W" target="-YFL045C">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE4 (Affinity Capture-MS) SEC53" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-MS" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF9933" cy:targetArrow="0" cy:targetArrowColor="#FF9933" fill="#FF9933" width="2" />
+  </edge>
+  <edge id="STE50 (Two-hybrid) STE4" label="Two-hybrid (2)" source="-YCL032W" target="-YOR212W">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE50 (Two-hybrid) STE4" />
+    <att name="experimentType" label="experimentType" type="string" value="Two-hybrid" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="2" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#CCCCCC" cy:targetArrow="0" cy:targetArrowColor="#CCCCCC" fill="#CCCCCC" width="4" />
+  </edge>
+  <edge id="STE2 (Two-hybrid) STE4" label="Two-hybrid" source="-YFL026W" target="-YOR212W">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE2 (Two-hybrid) STE4" />
+    <att name="experimentType" label="experimentType" type="string" value="Two-hybrid" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#CCCCCC" cy:targetArrow="0" cy:targetArrowColor="#CCCCCC" fill="#CCCCCC" width="2" />
+  </edge>
+  <edge id="FAR1 (Two-hybrid) STE4" label="Two-hybrid" source="-YJL157C" target="-YOR212W">
+    <att name="canonicalName" label="canonicalName" type="string" value="FAR1 (Two-hybrid) STE4" />
+    <att name="experimentType" label="experimentType" type="string" value="Two-hybrid" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#CCCCCC" cy:targetArrow="0" cy:targetArrowColor="#CCCCCC" fill="#CCCCCC" width="2" />
+  </edge>
+  <edge id="FAR1 (Reconstituted Complex) STE4" label="Reconstituted Complex" source="-YJL157C" target="-YOR212W">
+    <att name="canonicalName" label="canonicalName" type="string" value="FAR1 (Reconstituted Complex) STE4" />
+    <att name="experimentType" label="experimentType" type="string" value="Reconstituted Complex" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF6699" cy:targetArrow="0" cy:targetArrowColor="#FF6699" fill="#FF6699" width="2" />
+  </edge>
+  <edge id="GPA1 (Two-hybrid) STE4" label="Two-hybrid (5)" source="-YHR005C" target="-YOR212W">
+    <att name="canonicalName" label="canonicalName" type="string" value="GPA1 (Two-hybrid) STE4" />
+    <att name="experimentType" label="experimentType" type="string" value="Two-hybrid" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="5" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#CCCCCC" cy:targetArrow="0" cy:targetArrowColor="#CCCCCC" fill="#CCCCCC" width="10" />
+  </edge>
+  <edge id="GPA1 (Affinity Capture-Western) STE4" label="Affinity Capture-Western (4)" source="-YHR005C" target="-YOR212W">
+    <att name="canonicalName" label="canonicalName" type="string" value="GPA1 (Affinity Capture-Western) STE4" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-Western" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="4" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#CC3300" cy:targetArrow="0" cy:targetArrowColor="#CC3300" fill="#CC3300" width="8" />
+  </edge>
+  <edge id="GPA1 (Reconstituted Complex) STE4" label="Reconstituted Complex" source="-YHR005C" target="-YOR212W">
+    <att name="canonicalName" label="canonicalName" type="string" value="GPA1 (Reconstituted Complex) STE4" />
+    <att name="experimentType" label="experimentType" type="string" value="Reconstituted Complex" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF6699" cy:targetArrow="0" cy:targetArrowColor="#FF6699" fill="#FF6699" width="2" />
+  </edge>
+  <edge id="GPA1 (Co-purification) STE4" label="Co-purification" source="-YHR005C" target="-YOR212W">
+    <att name="canonicalName" label="canonicalName" type="string" value="GPA1 (Co-purification) STE4" />
+    <att name="experimentType" label="experimentType" type="string" value="Co-purification" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF66CC" cy:targetArrow="0" cy:targetArrowColor="#FF66CC" fill="#FF66CC" width="2" />
+  </edge>
+  <edge id="STE18 (Two-hybrid) STE4" label="Two-hybrid (3)" source="-YJR086W" target="-YOR212W">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE18 (Two-hybrid) STE4" />
+    <att name="experimentType" label="experimentType" type="string" value="Two-hybrid" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="3" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#CCCCCC" cy:targetArrow="0" cy:targetArrowColor="#CCCCCC" fill="#CCCCCC" width="6" />
+  </edge>
+  <edge id="STE18 (PCA) STE4" label="PCA" source="-YJR086W" target="-YOR212W">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE18 (PCA) STE4" />
+    <att name="experimentType" label="experimentType" type="string" value="PCA" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#00CC66" cy:targetArrow="0" cy:targetArrowColor="#00CC66" fill="#00CC66" width="2" />
+  </edge>
+  <edge id="STE18 (Affinity Capture-MS) STE4" label="Affinity Capture-MS" source="-YJR086W" target="-YOR212W">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE18 (Affinity Capture-MS) STE4" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-MS" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF9933" cy:targetArrow="0" cy:targetArrowColor="#FF9933" fill="#FF9933" width="2" />
+  </edge>
+  <edge id="SYG1 (Two-hybrid) STE4" label="Two-hybrid" source="-YIL047C" target="-YOR212W">
+    <att name="canonicalName" label="canonicalName" type="string" value="SYG1 (Two-hybrid) STE4" />
+    <att name="experimentType" label="experimentType" type="string" value="Two-hybrid" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#CCCCCC" cy:targetArrow="0" cy:targetArrowColor="#CCCCCC" fill="#CCCCCC" width="2" />
+  </edge>
+  <edge id="STE5 (Affinity Capture-Western) STE4" label="Affinity Capture-Western (3)" source="-YDR103W" target="-YOR212W">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE5 (Affinity Capture-Western) STE4" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-Western" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="3" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#CC3300" cy:targetArrow="0" cy:targetArrowColor="#CC3300" fill="#CC3300" width="6" />
+  </edge>
+  <edge id="STE5 (Two-hybrid) STE4" label="Two-hybrid" source="-YDR103W" target="-YOR212W">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE5 (Two-hybrid) STE4" />
+    <att name="experimentType" label="experimentType" type="string" value="Two-hybrid" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#CCCCCC" cy:targetArrow="0" cy:targetArrowColor="#CCCCCC" fill="#CCCCCC" width="2" />
+  </edge>
+  <edge id="STE5 (Affinity Capture-MS) STE4" label="Affinity Capture-MS" source="-YDR103W" target="-YOR212W">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE5 (Affinity Capture-MS) STE4" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-MS" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF9933" cy:targetArrow="0" cy:targetArrowColor="#FF9933" fill="#FF9933" width="2" />
+  </edge>
+  <edge id="STE20 (Affinity Capture-Western) STE4" label="Affinity Capture-Western" source="-YHL007C" target="-YOR212W">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE20 (Affinity Capture-Western) STE4" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-Western" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#CC3300" cy:targetArrow="0" cy:targetArrowColor="#CC3300" fill="#CC3300" width="2" />
+  </edge>
+  <edge id="AKR1 (Two-hybrid) STE4" label="Two-hybrid (2)" source="-YDR264C" target="-YOR212W">
+    <att name="canonicalName" label="canonicalName" type="string" value="AKR1 (Two-hybrid) STE4" />
+    <att name="experimentType" label="experimentType" type="string" value="Two-hybrid" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="2" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#CCCCCC" cy:targetArrow="0" cy:targetArrowColor="#CCCCCC" fill="#CCCCCC" width="4" />
+  </edge>
+  <edge id="AKR1 (Affinity Capture-MS) STE4" label="Affinity Capture-MS (2)" source="-YDR264C" target="-YOR212W">
+    <att name="canonicalName" label="canonicalName" type="string" value="AKR1 (Affinity Capture-MS) STE4" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-MS" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="2" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF9933" cy:targetArrow="0" cy:targetArrowColor="#FF9933" fill="#FF9933" width="4" />
+  </edge>
+  <edge id="CDC24 (Two-hybrid) STE4" label="Two-hybrid (3)" source="-YAL041W" target="-YOR212W">
+    <att name="canonicalName" label="canonicalName" type="string" value="CDC24 (Two-hybrid) STE4" />
+    <att name="experimentType" label="experimentType" type="string" value="Two-hybrid" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="3" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#CCCCCC" cy:targetArrow="0" cy:targetArrowColor="#CCCCCC" fill="#CCCCCC" width="6" />
+  </edge>
+  <edge id="CDC24 (Reconstituted Complex) STE4" label="Reconstituted Complex (2)" source="-YAL041W" target="-YOR212W">
+    <att name="canonicalName" label="canonicalName" type="string" value="CDC24 (Reconstituted Complex) STE4" />
+    <att name="experimentType" label="experimentType" type="string" value="Reconstituted Complex" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="2" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF6699" cy:targetArrow="0" cy:targetArrowColor="#FF6699" fill="#FF6699" width="4" />
+  </edge>
+  <edge id="NAB2 (Affinity Capture-RNA) STE4" label="Affinity Capture-RNA" source="-YGL122C" target="-YOR212W">
+    <att name="canonicalName" label="canonicalName" type="string" value="NAB2 (Affinity Capture-RNA) STE4" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-RNA" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#993300" cy:targetArrow="9" cy:targetArrowColor="#993300" fill="#993300" width="2" />
+  </edge>
+  <edge id="MTR4 (Affinity Capture-MS) STE4" label="Affinity Capture-MS" source="-YJL050W" target="-YOR212W">
+    <att name="canonicalName" label="canonicalName" type="string" value="MTR4 (Affinity Capture-MS) STE4" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-MS" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF9933" cy:targetArrow="0" cy:targetArrowColor="#FF9933" fill="#FF9933" width="2" />
+  </edge>
+  <edge id="STE18 (Affinity Capture-Western) FAR1" label="Affinity Capture-Western" source="-YJR086W" target="-YJL157C">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE18 (Affinity Capture-Western) FAR1" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-Western" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#CC3300" cy:targetArrow="0" cy:targetArrowColor="#CC3300" fill="#CC3300" width="2" />
+  </edge>
+  <edge id="STE4 (Affinity Capture-Western) FAR1" label="Affinity Capture-Western" source="-YOR212W" target="-YJL157C">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE4 (Affinity Capture-Western) FAR1" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-Western" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#CC3300" cy:targetArrow="0" cy:targetArrowColor="#CC3300" fill="#CC3300" width="2" />
+  </edge>
+  <edge id="CDC24 (Two-hybrid) FAR1" label="Two-hybrid (3)" source="-YAL041W" target="-YJL157C">
+    <att name="canonicalName" label="canonicalName" type="string" value="CDC24 (Two-hybrid) FAR1" />
+    <att name="experimentType" label="experimentType" type="string" value="Two-hybrid" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="3" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#CCCCCC" cy:targetArrow="0" cy:targetArrowColor="#CCCCCC" fill="#CCCCCC" width="6" />
+  </edge>
+  <edge id="CDC24 (Affinity Capture-Western) FAR1" label="Affinity Capture-Western (2)" source="-YAL041W" target="-YJL157C">
+    <att name="canonicalName" label="canonicalName" type="string" value="CDC24 (Affinity Capture-Western) FAR1" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-Western" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="2" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#CC3300" cy:targetArrow="0" cy:targetArrowColor="#CC3300" fill="#CC3300" width="4" />
+  </edge>
+  <edge id="CDC24 (Reconstituted Complex) FAR1" label="Reconstituted Complex" source="-YAL041W" target="-YJL157C">
+    <att name="canonicalName" label="canonicalName" type="string" value="CDC24 (Reconstituted Complex) FAR1" />
+    <att name="experimentType" label="experimentType" type="string" value="Reconstituted Complex" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF6699" cy:targetArrow="0" cy:targetArrowColor="#FF6699" fill="#FF6699" width="2" />
+  </edge>
+  <edge id="CCT6 (Affinity Capture-MS) CCT2" label="Affinity Capture-MS (2)" source="-YDR188W" target="-YIL142W">
+    <att name="canonicalName" label="canonicalName" type="string" value="CCT6 (Affinity Capture-MS) CCT2" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-MS" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="2" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF9933" cy:targetArrow="0" cy:targetArrowColor="#FF9933" fill="#FF9933" width="4" />
+  </edge>
+  <edge id="TCP1 (Reconstituted Complex) CCT2" label="Reconstituted Complex" source="-YDR212W" target="-YIL142W">
+    <att name="canonicalName" label="canonicalName" type="string" value="TCP1 (Reconstituted Complex) CCT2" />
+    <att name="experimentType" label="experimentType" type="string" value="Reconstituted Complex" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF6699" cy:targetArrow="0" cy:targetArrowColor="#FF6699" fill="#FF6699" width="2" />
+  </edge>
+  <edge id="STE4 (Affinity Capture-MS) CCT2" label="Affinity Capture-MS" source="-YOR212W" target="-YIL142W">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE4 (Affinity Capture-MS) CCT2" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-MS" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF9933" cy:targetArrow="0" cy:targetArrowColor="#FF9933" fill="#FF9933" width="2" />
+  </edge>
+  <edge id="PLP2 (Affinity Capture-MS) CCT2" label="Affinity Capture-MS" source="-YOR281C" target="-YIL142W">
+    <att name="canonicalName" label="canonicalName" type="string" value="PLP2 (Affinity Capture-MS) CCT2" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-MS" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF9933" cy:targetArrow="0" cy:targetArrowColor="#FF9933" fill="#FF9933" width="2" />
+  </edge>
+  <edge id="CCT3 (Affinity Capture-Western) CCT2" label="Affinity Capture-Western" source="-YJL014W" target="-YIL142W">
+    <att name="canonicalName" label="canonicalName" type="string" value="CCT3 (Affinity Capture-Western) CCT2" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-Western" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#CC3300" cy:targetArrow="0" cy:targetArrowColor="#CC3300" fill="#CC3300" width="2" />
+  </edge>
+  <edge id="CCT3 (Co-purification) CCT2" label="Co-purification" source="-YJL014W" target="-YIL142W">
+    <att name="canonicalName" label="canonicalName" type="string" value="CCT3 (Co-purification) CCT2" />
+    <att name="experimentType" label="experimentType" type="string" value="Co-purification" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF66CC" cy:targetArrow="0" cy:targetArrowColor="#FF66CC" fill="#FF66CC" width="2" />
+  </edge>
+  <edge id="CCT3 (Affinity Capture-MS) CCT2" label="Affinity Capture-MS" source="-YJL014W" target="-YIL142W">
+    <att name="canonicalName" label="canonicalName" type="string" value="CCT3 (Affinity Capture-MS) CCT2" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-MS" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF9933" cy:targetArrow="0" cy:targetArrowColor="#FF9933" fill="#FF9933" width="2" />
+  </edge>
+  <edge id="CCT6 (Affinity Capture-MS) CCT3" label="Affinity Capture-MS" source="-YDR188W" target="-YJL014W">
+    <att name="canonicalName" label="canonicalName" type="string" value="CCT6 (Affinity Capture-MS) CCT3" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-MS" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF9933" cy:targetArrow="0" cy:targetArrowColor="#FF9933" fill="#FF9933" width="2" />
+  </edge>
+  <edge id="STE4 (Affinity Capture-MS) CCT3" label="Affinity Capture-MS" source="-YOR212W" target="-YJL014W">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE4 (Affinity Capture-MS) CCT3" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-MS" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF9933" cy:targetArrow="0" cy:targetArrowColor="#FF9933" fill="#FF9933" width="2" />
+  </edge>
+  <edge id="CCT3 (Affinity Capture-MS) CCT3" label="Affinity Capture-MS" source="-YJL014W" target="-YJL014W">
+    <att name="canonicalName" label="canonicalName" type="string" value="CCT3 (Affinity Capture-MS) CCT3" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-MS" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF9933" cy:targetArrow="0" cy:targetArrowColor="#FF9933" fill="#FF9933" width="2" />
+  </edge>
+  <edge id="GPA1 (Affinity Capture-Western) STE18" label="Affinity Capture-Western (2)" source="-YHR005C" target="-YJR086W">
+    <att name="canonicalName" label="canonicalName" type="string" value="GPA1 (Affinity Capture-Western) STE18" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-Western" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="2" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#CC3300" cy:targetArrow="0" cy:targetArrowColor="#CC3300" fill="#CC3300" width="4" />
+  </edge>
+  <edge id="GPA1 (FRET) STE18" label="FRET" source="-YHR005C" target="-YJR086W">
+    <att name="canonicalName" label="canonicalName" type="string" value="GPA1 (FRET) STE18" />
+    <att name="experimentType" label="experimentType" type="string" value="FRET" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#00FF00" cy:targetArrow="0" cy:targetArrowColor="#00FF00" fill="#00FF00" width="2" />
+  </edge>
+  <edge id="STE4 (Affinity Capture-Western) STE18" label="Affinity Capture-Western (2)" source="-YOR212W" target="-YJR086W">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE4 (Affinity Capture-Western) STE18" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-Western" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="2" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#CC3300" cy:targetArrow="0" cy:targetArrowColor="#CC3300" fill="#CC3300" width="4" />
+  </edge>
+  <edge id="STE4 (Two-hybrid) STE18" label="Two-hybrid" source="-YOR212W" target="-YJR086W">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE4 (Two-hybrid) STE18" />
+    <att name="experimentType" label="experimentType" type="string" value="Two-hybrid" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#CCCCCC" cy:targetArrow="0" cy:targetArrowColor="#CCCCCC" fill="#CCCCCC" width="2" />
+  </edge>
+  <edge id="NAB2 (Affinity Capture-RNA) STE18" label="Affinity Capture-RNA" source="-YGL122C" target="-YJR086W">
+    <att name="canonicalName" label="canonicalName" type="string" value="NAB2 (Affinity Capture-RNA) STE18" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-RNA" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#993300" cy:targetArrow="9" cy:targetArrowColor="#993300" fill="#993300" width="2" />
+  </edge>
+  <edge id="SYG1 (PCA) SYG1" label="PCA" source="-YIL047C" target="-YIL047C">
+    <att name="canonicalName" label="canonicalName" type="string" value="SYG1 (PCA) SYG1" />
+    <att name="experimentType" label="experimentType" type="string" value="PCA" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#00CC66" cy:targetArrow="0" cy:targetArrowColor="#00CC66" fill="#00CC66" width="2" />
+  </edge>
+  <edge id="STE4 (Affinity Capture-MS) YHR033W" label="Affinity Capture-MS" source="-YOR212W" target="-YHR033W">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE4 (Affinity Capture-MS) YHR033W" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-MS" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF9933" cy:targetArrow="0" cy:targetArrowColor="#FF9933" fill="#FF9933" width="2" />
+  </edge>
+  <edge id="STE4 (Affinity Capture-Western) DSE1" label="Affinity Capture-Western" source="-YOR212W" target="-YER124C">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE4 (Affinity Capture-Western) DSE1" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-Western" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#CC3300" cy:targetArrow="0" cy:targetArrowColor="#CC3300" fill="#CC3300" width="2" />
+  </edge>
+  <edge id="ADE17 (PCA) ADE17" label="PCA" source="-YMR120C" target="-YMR120C">
+    <att name="canonicalName" label="canonicalName" type="string" value="ADE17 (PCA) ADE17" />
+    <att name="experimentType" label="experimentType" type="string" value="PCA" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#00CC66" cy:targetArrow="0" cy:targetArrowColor="#00CC66" fill="#00CC66" width="2" />
+  </edge>
+  <edge id="STE4 (Affinity Capture-MS) ADE17" label="Affinity Capture-MS" source="-YOR212W" target="-YMR120C">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE4 (Affinity Capture-MS) ADE17" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-MS" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF9933" cy:targetArrow="0" cy:targetArrowColor="#FF9933" fill="#FF9933" width="2" />
+  </edge>
+  <edge id="PGM2 (PCA) ADE17" label="PCA" source="-YMR105C" target="-YMR120C">
+    <att name="canonicalName" label="canonicalName" type="string" value="PGM2 (PCA) ADE17" />
+    <att name="experimentType" label="experimentType" type="string" value="PCA" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#00CC66" cy:targetArrow="0" cy:targetArrowColor="#00CC66" fill="#00CC66" width="2" />
+  </edge>
+  <edge id="STE50 (Two-hybrid) STE5" label="Two-hybrid (2)" source="-YCL032W" target="-YDR103W">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE50 (Two-hybrid) STE5" />
+    <att name="experimentType" label="experimentType" type="string" value="Two-hybrid" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="2" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#CCCCCC" cy:targetArrow="0" cy:targetArrowColor="#CCCCCC" fill="#CCCCCC" width="4" />
+  </edge>
+  <edge id="STE5 (Two-hybrid) STE5" label="Two-hybrid (2)" source="-YDR103W" target="-YDR103W">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE5 (Two-hybrid) STE5" />
+    <att name="experimentType" label="experimentType" type="string" value="Two-hybrid" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="2" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#CCCCCC" cy:targetArrow="0" cy:targetArrowColor="#CCCCCC" fill="#CCCCCC" width="4" />
+  </edge>
+  <edge id="STE5 (Affinity Capture-Western) STE5" label="Affinity Capture-Western (4)" source="-YDR103W" target="-YDR103W">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE5 (Affinity Capture-Western) STE5" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-Western" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="4" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#CC3300" cy:targetArrow="0" cy:targetArrowColor="#CC3300" fill="#CC3300" width="8" />
+  </edge>
+  <edge id="STE5 (Reconstituted Complex) STE5" label="Reconstituted Complex" source="-YDR103W" target="-YDR103W">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE5 (Reconstituted Complex) STE5" />
+    <att name="experimentType" label="experimentType" type="string" value="Reconstituted Complex" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF6699" cy:targetArrow="0" cy:targetArrowColor="#FF6699" fill="#FF6699" width="2" />
+  </edge>
+  <edge id="STE5 (Affinity Capture-MS) STE5" label="Affinity Capture-MS" source="-YDR103W" target="-YDR103W">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE5 (Affinity Capture-MS) STE5" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-MS" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF9933" cy:targetArrow="0" cy:targetArrowColor="#FF9933" fill="#FF9933" width="2" />
+  </edge>
+  <edge id="STE4 (Affinity Capture-Western) STE5" label="Affinity Capture-Western (3)" source="-YOR212W" target="-YDR103W">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE4 (Affinity Capture-Western) STE5" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-Western" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="3" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#CC3300" cy:targetArrow="0" cy:targetArrowColor="#CC3300" fill="#CC3300" width="6" />
+  </edge>
+  <edge id="STE4 (Two-hybrid) STE5" label="Two-hybrid (2)" source="-YOR212W" target="-YDR103W">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE4 (Two-hybrid) STE5" />
+    <att name="experimentType" label="experimentType" type="string" value="Two-hybrid" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="2" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#CCCCCC" cy:targetArrow="0" cy:targetArrowColor="#CCCCCC" fill="#CCCCCC" width="4" />
+  </edge>
+  <edge id="CDC24 (Affinity Capture-Western) STE5" label="Affinity Capture-Western" source="-YAL041W" target="-YDR103W">
+    <att name="canonicalName" label="canonicalName" type="string" value="CDC24 (Affinity Capture-Western) STE5" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-Western" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#CC3300" cy:targetArrow="0" cy:targetArrowColor="#CC3300" fill="#CC3300" width="2" />
+  </edge>
+  <edge id="STE18 (Two-hybrid) AKR1" label="Two-hybrid" source="-YJR086W" target="-YDR264C">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE18 (Two-hybrid) AKR1" />
+    <att name="experimentType" label="experimentType" type="string" value="Two-hybrid" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#CCCCCC" cy:targetArrow="0" cy:targetArrowColor="#CCCCCC" fill="#CCCCCC" width="2" />
+  </edge>
+  <edge id="STE4 (Affinity Capture-MS) AKR1" label="Affinity Capture-MS" source="-YOR212W" target="-YDR264C">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE4 (Affinity Capture-MS) AKR1" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-MS" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF9933" cy:targetArrow="0" cy:targetArrowColor="#FF9933" fill="#FF9933" width="2" />
+  </edge>
+  <edge id="AKR1 (PCA) AKR1" label="PCA" source="-YDR264C" target="-YDR264C">
+    <att name="canonicalName" label="canonicalName" type="string" value="AKR1 (PCA) AKR1" />
+    <att name="experimentType" label="experimentType" type="string" value="PCA" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#00CC66" cy:targetArrow="0" cy:targetArrowColor="#00CC66" fill="#00CC66" width="2" />
+  </edge>
+  <edge id="NAB2 (Affinity Capture-RNA) AKR1" label="Affinity Capture-RNA" source="-YGL122C" target="-YDR264C">
+    <att name="canonicalName" label="canonicalName" type="string" value="NAB2 (Affinity Capture-RNA) AKR1" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-RNA" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#993300" cy:targetArrow="9" cy:targetArrowColor="#993300" fill="#993300" width="2" />
+  </edge>
+  <edge id="STE4 (Affinity Capture-MS) GCD11" label="Affinity Capture-MS" source="-YOR212W" target="-YER025W">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE4 (Affinity Capture-MS) GCD11" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-MS" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF9933" cy:targetArrow="0" cy:targetArrowColor="#FF9933" fill="#FF9933" width="2" />
+  </edge>
+  <edge id="GCD11 (Affinity Capture-MS) GCD11" label="Affinity Capture-MS" source="-YER025W" target="-YER025W">
+    <att name="canonicalName" label="canonicalName" type="string" value="GCD11 (Affinity Capture-MS) GCD11" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-MS" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF9933" cy:targetArrow="0" cy:targetArrowColor="#FF9933" fill="#FF9933" width="2" />
+  </edge>
+  <edge id="STE5 (Affinity Capture-Western) CDC24" label="Affinity Capture-Western" source="-YDR103W" target="-YAL041W">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE5 (Affinity Capture-Western) CDC24" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-Western" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#CC3300" cy:targetArrow="0" cy:targetArrowColor="#CC3300" fill="#CC3300" width="2" />
+  </edge>
+  <edge id="STE5 (Reconstituted Complex) CDC24" label="Reconstituted Complex" source="-YDR103W" target="-YAL041W">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE5 (Reconstituted Complex) CDC24" />
+    <att name="experimentType" label="experimentType" type="string" value="Reconstituted Complex" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF6699" cy:targetArrow="0" cy:targetArrowColor="#FF6699" fill="#FF6699" width="2" />
+  </edge>
+  <edge id="STE20 (PCA) CDC24" label="PCA" source="-YHL007C" target="-YAL041W">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE20 (PCA) CDC24" />
+    <att name="experimentType" label="experimentType" type="string" value="PCA" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#00CC66" cy:targetArrow="0" cy:targetArrowColor="#00CC66" fill="#00CC66" width="2" />
+  </edge>
+  <edge id="STE4 (Affinity Capture-Western) CDC24" label="Affinity Capture-Western" source="-YOR212W" target="-YAL041W">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE4 (Affinity Capture-Western) CDC24" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-Western" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#CC3300" cy:targetArrow="0" cy:targetArrowColor="#CC3300" fill="#CC3300" width="2" />
+  </edge>
+  <edge id="STE4 (Two-hybrid) CDC24" label="Two-hybrid" source="-YOR212W" target="-YAL041W">
+    <att name="canonicalName" label="canonicalName" type="string" value="STE4 (Two-hybrid) CDC24" />
+    <att name="experimentType" label="experimentType" type="string" value="Two-hybrid" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#CCCCCC" cy:targetArrow="0" cy:targetArrowColor="#CCCCCC" fill="#CCCCCC" width="2" />
+  </edge>
+  <edge id="FAR1 (Two-hybrid) CDC24" label="Two-hybrid" source="-YJL157C" target="-YAL041W">
+    <att name="canonicalName" label="canonicalName" type="string" value="FAR1 (Two-hybrid) CDC24" />
+    <att name="experimentType" label="experimentType" type="string" value="Two-hybrid" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#CCCCCC" cy:targetArrow="0" cy:targetArrowColor="#CCCCCC" fill="#CCCCCC" width="2" />
+  </edge>
+  <edge id="FAR1 (Affinity Capture-MS) CDC24" label="Affinity Capture-MS" source="-YJL157C" target="-YAL041W">
+    <att name="canonicalName" label="canonicalName" type="string" value="FAR1 (Affinity Capture-MS) CDC24" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-MS" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF9933" cy:targetArrow="0" cy:targetArrowColor="#FF9933" fill="#FF9933" width="2" />
+  </edge>
+  <edge id="CDC24 (Affinity Capture-Western) CDC24" label="Affinity Capture-Western" source="-YAL041W" target="-YAL041W">
+    <att name="canonicalName" label="canonicalName" type="string" value="CDC24 (Affinity Capture-Western) CDC24" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-Western" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#CC3300" cy:targetArrow="0" cy:targetArrowColor="#CC3300" fill="#CC3300" width="2" />
+  </edge>
+  <edge id="MTR4 (Affinity Capture-MS) MTR4" label="Affinity Capture-MS" source="-YJL050W" target="-YJL050W">
+    <att name="canonicalName" label="canonicalName" type="string" value="MTR4 (Affinity Capture-MS) MTR4" />
+    <att name="experimentType" label="experimentType" type="string" value="Affinity Capture-MS" />
+    <att name="interaction" label="interaction" type="string" value="physical interactions" />
+    <att name="weight" label="weight" type="integer" value="1" />
+    <graphics cy:curved="STRAIGHT_LINES" cy:edgeLabelFont="Default-0-6" cy:edgeLineType="SOLID" cy:sourceArrow="0" cy:sourceArrowColor="#FF9933" cy:targetArrow="0" cy:targetArrowColor="#FF9933" fill="#FF9933" width="2" />
+  </edge>
+</graph>
