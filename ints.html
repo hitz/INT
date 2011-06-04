@@ -136,7 +136,7 @@
             <embed id="CytoscapeWeb1" width="100%" height="100%" align="middle" type="application/x-shockwave-flash" flashvars="id=CytoscapeWeb1" wmode="opaque" pluginspage="http://www.adobe.com/go/getflashplayer" allowscriptaccess="always" name="cytoscapeweb" bgcolor="#CCCCFF" quality="high" src="/INT/swf/CytoscapeWeb.swf">
             </div>
     </div>
-    <div id="sidebar" style="width: 30%; height: 800px; padding: 5px;">
+    <div id="sidebar" style="width: 30%; height: 800px;">
     	<h3><a href="#">Gene Info</a></h3>
     	<div>		
     		<div id='search_box' class='ui-widget'>
@@ -469,9 +469,15 @@
 <!-- jquery-jsonp (from another online repository) -->
 <script src="http://jquery-jsonp.googlecode.com/files/jquery.jsonp-2.1.4.min.js" type="text/javascript"></script>
 
-<!-- Similarly imbedding.js is hosted on intermine.org -->
+<!-- jquery-jsonp (from another online repository) -->
+<script src="http://jquery-jsonp.googlecode.com/files/jquery.jsonp-2.1.4.min.js" type="text/javascript"></script>
+
+<!-- Imbedding is a small JS API for Intermine Webservices-->
 <script src="http://www.intermine.org/lib/imbedding/0.1/imbedding.min.js" type="text/javascript"></script>
 <!-- Have local copy in case I need it -->
+
+<!-- Underline is a set of JS utility functions accessed by _() -->
+<script src="/INT/js/min/underscore-min.js" type="text/javascript"></script>
 
 <!-- farbtastic color picker -->
 <script type="text/javascript" src="http://yeastgenome-hitz-dev.stanford.edu/javascript/farbtastic.js"></script>
@@ -490,37 +496,27 @@ Hoping that jquery-json handles this
 <!-- Cytoscape Web JS API (needed to reference org.cytoscapeweb.Visualization) -->
 <script type="text/javascript" src="/INT/js/min/cytoscapeweb.min.js"></script>
 <script type="text/javascript" src="/INT/js/yeastmine.js"></script>
+<script type="text/javascript" src="/INT/js/vis.js"></script>
 <script type="text/javascript">
+/* globals */
 var outerLayout, westLayout;
-
-$(function() {
-
-	getGeneList();
-    // id of Cytoscape Web container div
-    var div_id = "cytoscapeweb";
-
-    // network data could alternatively be grabbed via ajax
-    var xml = $.ajax({ 
-	url: '/INT/tmp/interactions.2305.xgmml',
-	async: false,
-    }).responseText;
-
-    // initialization options
-    var options = {
+// id of Cytoscape Web container div
+var div_id = "cytoscapeweb";
+// initialization options
+var options = {
 	// where you have the Cytoscape Web SWF
 	swfPath: "/INT/swf/CytoscapeWeb",
 	// where you have the Flash installer SWF
 	flashInstallerPath: "/INT/swf/playerProductInstall"
-    };
+};
 
-    // init 
-    var vis = new org.cytoscapeweb.Visualization(div_id, options);
+var vis = new org.cytoscapeweb.Visualization(div_id, options);
 
-    // function to set up filters
-    var filters = new Array();
-    var nodeColors = new Array();
+// function to set up filters
+var filters = new Array();
+var nodeColors = new Array();
 
-    function resetFilters() {
+function resetFilters() {
  	$('.edgeFilter').each(function() {
      	   
 	   filters[$(this).attr('id')] = true;
@@ -537,27 +533,38 @@ $(function() {
 	   $(this).val(nodeColors[$(this).attr('id')]);
 	});
    
-    }
+}
 
-    // init and draw
-    var vis = new org.cytoscapeweb.Visualization(div_id, options);
-
-    function edge_toggle(type) {
+function edge_toggle(type) {
  
 	filters[type] = !filters[type]; // invert state
-        var show = filters[type];
+	var show = filters[type];
 
 	vis.filter("edges", function(n) {
-            var label = n.data.experimentType;
-	    var spaceRegex = / /g;
-	    if (label.replace(spaceRegex,"") == type) {
-		return show;
-            } else {
-	        return n.visible;
-            }
-        });
+		var label = n.data.experimentType;
+		var spaceRegex = / /g;
+		if (label.replace(spaceRegex,"") == type) {
+			return show;
+		} else {
+			return n.visible;
+		}
+	});
 
-    }
+}
+
+$(function() {
+
+	getGeneList();
+
+    // network data could alternatively be grabbed via ajax
+    var xml = $.ajax({ 
+	url: '/INT/tmp/interactions.2305.xgmml',
+	async: false,
+    }).responseText;
+
+
+    // init and draw
+ 
 
     $(".edgeFilter").change(function() {
 
@@ -867,143 +874,139 @@ $(function() {
 
     // Control Panel (jquery-ui)
     //$("#accordion").accordion({ header: "h3" });
- 
-    vis.ready(function () {
+	vis.ready( function () {
 
-    		       vis.addContextMenuItem("Delete node", "nodes", function(evt) {
-            	       		 vis.removeNode(evt.target, true);
-            	       });
-         			 
-		        vis.addListener("click", "nodes", function(event) {
-			    displayGeneProps(event.target.data);
+			vis.addContextMenuItem("Delete node", "nodes", function(evt) {
+				vis.removeNode(evt.target, true);
 			});
+			vis.addListener("click", "nodes", function(event) {
+				displayGeneProps(event.target.data);
+			});
+			vis.addListener("dblclick", "nodes", function (event) {
 
-			vis.addListener("dblclick", "nodes",
-				function (event) {
-
-			        alert("Get new edges (unimplemented)");
+				alert("Get new edges (unimplemented)");
 				return;
-		
-			    var data = event.target.data;
 
-			    var eCount = edgeCounts[data.id];
-			    var nodeDegree = data.NODE_DEGREE;
-			    var hiddenEdges = nodeDegree-eCount;
-			    if ( hiddenEdges > 0)
-			    {
-				fetchGraph(event.target.data.ENTITY_TYPE, event.target.data.ENTITY_ID, data.id);
-			    }
-			    else if (hiddenEdges < 1)
-			    {
-				alert("This node is fully expanded -- all its edges are displayed.")
-			    }
-			    else 
-			    {
-				alert("The number of hidden edges (" + hiddenEdges + ") is too large, this node cannot be expanded with this graph.");
-			    }
+				var data = event.target.data;
+
+				var eCount = edgeCounts[data.id];
+				var nodeDegree = data.NODE_DEGREE;
+				var hiddenEdges = nodeDegree-eCount;
+				if ( hiddenEdges > 0) {
+					fetchGraph(event.target.data.ENTITY_TYPE, event.target.data.ENTITY_ID, data.id);
+				} else if (hiddenEdges < 1) {
+					alert("This node is fully expanded -- all its edges are displayed.")
+				} else {
+					alert("The number of hidden edges (" + hiddenEdges + ") is too large, this node cannot be expanded with this graph.");
+				}
 
 			});
+			vis.addContextMenuItem("Select first neighbors", "nodes", function (evt) {
+				// Get the right-clicked node:
+				var rootNode = evt.target;
 
-   		        vis.addContextMenuItem("Select first neighbors", "nodes", 
-			    function (evt) {
-			    // Get the right-clicked node:
-			    var rootNode = evt.target;
+				// Get the first neighbors of that node:
+				var fNeighbors = vis.firstNeighbors([rootNode]);
+				var neighborNodes = fNeighbors.neighbors;
 
-			    // Get the first neighbors of that node:
-			    var fNeighbors = vis.firstNeighbors([rootNode]);
-			    var neighborNodes = fNeighbors.neighbors;
-
-			    // Select the root node and its neighbors:
-			    vis.select([rootNode]).select(neighborNodes);
-			    }
-     			 );
-			 vis.addContextMenuItem("Radial layout", "none",
-			     function () {
-			     vis.draw({layout: {
-			     		       name: "Radial", 
-					       options: {
-					           angleWidth: 360,
-					           radius: "auto"
+				// Select the root node and its neighbors:
+				vis.select([rootNode]).select(neighborNodes);
+			}
+			);
+			vis.addContextMenuItem("Radial layout", "none", function () {
+				vis.draw({
+					layout: {
+						name: "Radial",
+						options: {
+							angleWidth: 360,
+							radius: "auto"
 						}
 					},
-				       network: xml,
- 	                               edgeTooltipsEnabled: true,
-	                               nodeTooltipsEnabled: true,              
-				       }
-				       );
-		             resetFilters();
-                             }
-			 );
-			 vis.addContextMenuItem("Tree layout", "none",
-			     function () {
-			     vis.draw({layout: {
-			     		       name: "Tree",
-					       options: {
-					           orientation: "leftToRight",
-					       	   depthSpace: 900,
-					       	   breadthSpace: 30,
-					       	   angleWidth: 30,
+					network: xml,
+					edgeTooltipsEnabled: true,
+					nodeTooltipsEnabled: true,
+				}
+				);
+				resetFilters();
+			}
+			);
+			vis.addContextMenuItem("Tree layout", "none", function () {
+				vis.draw({
+					layout: {
+						name: "Tree",
+						options: {
+							orientation: "leftToRight",
+							depthSpace: 900,
+							breadthSpace: 30,
+							angleWidth: 30,
 						}
-						   
-					},
-				       network: xml,
- 	                               edgeTooltipsEnabled: true,
-	                               nodeTooltipsEnabled: true,              
-				       }
-				       );
-			     resetFilters();
-                             }
-			 );
-			 vis.addContextMenuItem("Force-directed layout", "none",
-			     function () {
-			     vis.draw({layout: {
-			     		       name: "ForceDirected",
-                                               options: {
-					 	        mass: 300,
-					      		gravitation: -500,
-					    		tension: 0.1,
-					       		restLength: "auto",
-					       		drag: 0.4,
-					       		iterations: 400 ,
-					       		maxTime: 20000 ,
-					       		minDistance: 1,
-					       		maxDistance: 10000,
-					       		autoStabilize: true
-						       }
 
-    						},
-				       network: xml,
- 	                               edgeTooltipsEnabled: true,
-	                               nodeTooltipsEnabled: true,              
-				       }
-				       );;
-		             resetFilters();
-                             }
-			 );
-			 vis["customTooltip"] = function (data) {
-			        var slimData = "SLIM FUNCTION: " + data.GO_SLIM_FUNCTION.toString();
+					},
+					network: xml,
+					edgeTooltipsEnabled: true,
+					nodeTooltipsEnabled: true,
+				}
+				);
+				resetFilters();
+			}
+			);
+			vis.addContextMenuItem("Force-directed layout", "none", function () {
+				vis.draw({
+					layout: {
+						name: "ForceDirected",
+						options: {
+							mass: 300,
+							gravitation: -500,
+							tension: 0.1,
+							restLength: "auto",
+							drag: 0.4,
+							iterations: 400 ,
+							maxTime: 20000 ,
+							minDistance: 1,
+							maxDistance: 10000,
+							autoStabilize: true
+						}
+
+					},
+					network: xml,
+					edgeTooltipsEnabled: true,
+					nodeTooltipsEnabled: true,
+				}
+				);;
+				resetFilters();
+			}
+			);
+			vis["customTooltip"] = function (data) {
+				var slimData = "SLIM FUNCTION: " + data.GO_SLIM_FUNCTION.toString();
 
 				slimData += "\nSLIM PROCESS: " + data.GO_SLIM_PROCESS.toString();
 
 				slimData += "\nSLIM COMPONENT: " + data.GO_SLIM_COMPONENT.toString();
 
 				return slimData;
-                         };
-  
- // 2. Now create a new visual style (or get the current one) and register
- //    the custom mapper to one or more visual properties:
-       	   	  	var style = vis.visualStyle();
-			style.nodes.tooltipText = { customMapper: { functionName: "customTooltip" } };
-			style.edges.tooltipText = { passthroughMapper: { attrName: "label" } };
- 
+			};
+			// 2. Now create a new visual style (or get the current one) and register
+			//    the custom mapper to one or more visual properties:
+			var style = vis.visualStyle();
+			style.nodes.tooltipText = {
+				customMapper: {
+					functionName: "customTooltip"
+				}
+			};
+			style.edges.tooltipText = {
+				passthroughMapper: {
+					attrName: "label"
+				}
+			};
+
 			vis.visualStyle(style);
 
-    });
-    vis.draw({ network: xml ,
-    	       edgeTooltipsEnabled: true,
-	       nodeTooltipsEnabled: true,
-    });
-
+		});
+		/*    vis.draw({ network: xml ,
+		 edgeTooltipsEnabled: true,
+		 nodeTooltipsEnabled: true,
+		 });
+		 */
     $(window).load(function() { resetFilters(); });
 
 });
