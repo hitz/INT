@@ -2,50 +2,7 @@ var queryURL = "http://yeastmine-test.yeastgenome.org/yeastmine-dev/service/quer
 var templateURL = "http://yeastmine-test.yeastgenome.org/yeastmine-dev/service/template/results";
 
 IMBedding.setBaseUrl("http://yeastmine-test.yeastgenome.org/yeastmine-dev");
-var initialized = false; // set the first time a network is drawn
-	
-function getInts(gene) {
-		/* given some arguments (gene names, network type, edge type) fetch interactions from YeastMine via webservices */
-	IMBedding.loadTemplate(
-		{  	 
-	 	   	name:        "Gene_Interaction_Single",
-	   	 	constraint1: "Gene",
-	    	op1:         "LOOKUP",
-	    	value1:      gene,
-	    	format:      "jsonpobjects"
-	  },
-	  function ( data ) {
-	  	var graph = convertJSON(data);
-	  	var old = {};
-	  	if(initialized) {
-	  		old = vis.networkModel();
-	  		console.log(old);
-	  	}
-		mergeNetworks(old, graph, {});
-	  }
-	);
-}
-
-function mergeNetworks(graph1, graph2, options){
-		/* merge two CSW Network Models 
-		 * options: 'union' or 'intersection', others
-		 */
-		var newGraph = {};
-		if (_.isEmpty(graph1) ) {
-			newGraph = graph2;
-		} else {
-			console.log(graph2);
-			newGraph = {
-				dataSchema: graph1.dataSchema, // assuming schemas are identical
-				data:	 {
-					nodes: _.uniq(graph1.data.nodes.concat(graph2.data.nodes)), 
-					edges: _.uniq(graph1.data.edges.concat(graph2.data.edges))
-				}
-			}
-		}
-		console.log(newGraph);
-		vis.draw({
-			layout: {
+var defLayout = {
 			  name: "ForceDirected",
            	  options: {
 				mass: 300,
@@ -59,37 +16,36 @@ function mergeNetworks(graph1, graph2, options){
 				maxDistance: 10000,
 				autoStabilize: true
 			  }
-    		},
-    		visualStyle: defStyle,
-			network: newGraph,
- 	        edgeTooltipsEnabled: true,
-	        nodeTooltipsEnabled: true,              
-		});
-		
-		initialized = true;
-		resetFilters();
-
+    	};
+ 
+var initialized = false; // set the first time a network is drawn
+var Edges = {};
+var Nodes = {};
+/* use hash to keep track of current network */
+	
+function getInts(gene) {
+		/* given some arguments (gene names, network type, edge type) fetch interactions from YeastMine via webservices */
+	IMBedding.loadTemplate(
+		{  	 
+	 	   	name:        "Gene_Interaction_Single",
+	   	 	constraint1: "Gene",
+	    	op1:         "LOOKUP",
+	    	value1:      gene,
+	    	format:      "jsonpobjects"
+	  },
+	  function ( data ) {
+	  	addNetwork(data);
+		var graph = convertJSON();
+		reDraw(defLayout, defStyle, graph);
+	  }
+	);
 }
 
-function convertJSON(graph) {
-	/* convert YeastMine JSON into CytoscapeWeb NetworkModel */
-		
-	var schema = {
-			nodes: [ { name: "label", type: "string"},
-					 { name: "systematicName", type: "string"},
-					 { name: "geneDescription", type: "string", defValue: ""},
-					],
-			edges: [ { name: "label", type: "string"},
-					 { name: "experimentType", type: "string"},
-					 { name: "directed", type: "boolean", defValue: false},
-					 { name: "weight", type: "number", devValue: 1.0},
-					 { name: "interactionClass", type: "string"}
-				   ]
-	};
-	/* does not include functional annotations */
+function addNetwork(graph) {
+
 	var root = graph.results.pop(); // first item in array.
 	
-	var n = {};
+	if(!(_.hasKey(Nodes, root.secondaryIdentifier) ))
 	n[root.secondaryIdentifier] = {
 			geneDescription:	root.name,
 			systematicName:		root.secondaryIdentifier,
@@ -119,11 +75,43 @@ function convertJSON(graph) {
 		};
 	}
 	
+
+}
+function reDraw(layout, style, graph){
+	/* move to somewhere more generic? */
+		vis.draw({
+			layout: layout,
+    		visualStyle: style,
+			network: graph,
+ 	        edgeTooltipsEnabled: true,
+	        nodeTooltipsEnabled: true,              
+		});
+		
+		resetFilters();
+
+}
+
+function convertJSON(graph) {
+	/* convert YeastMine JSON into CytoscapeWeb NetworkModel */
+		
+	var schema = {
+			nodes: [ { name: "label", type: "string"},
+					 { name: "systematicName", type: "string"},
+					 { name: "geneDescription", type: "string", defValue: ""},
+					],
+			edges: [ { name: "label", type: "string"},
+					 { name: "experimentType", type: "string"},
+					 { name: "directed", type: "boolean", defValue: false},
+					 { name: "weight", type: "number", devValue: 1.0},
+					 { name: "interactionClass", type: "string"}
+				   ]
+	};
+	/* does not include functional annotations */
 	return {
 		dataSchema:	schema,
 		data: {
-			nodes: $.map(n, function(value, key) { return value; }),
-			edges: $.map(e, function(value, key) { return value; })
+			nodes: $.map(Nodes, function(value, key) { return value; }),
+			edges: $.map(Edges, function(value, key) { return value; })
 		}
 	};
 }	
