@@ -2,25 +2,11 @@ var queryURL = "http://yeastmine-test.yeastgenome.org/yeastmine-dev/service/quer
 var templateURL = "http://yeastmine-test.yeastgenome.org/yeastmine-dev/service/template/results";
 
 IMBedding.setBaseUrl("http://yeastmine-test.yeastgenome.org/yeastmine-dev");
-var defLayout = {
-			  name: "ForceDirected",
-           	  options: {
-				mass: 300,
-				gravitation: -500,
-				tension: 0.1,
-				restLength: "auto",
-				drag: 0.4,
-				iterations: 400 ,
-				maxTime: 20000 ,
-				minDistance: 1,
-				maxDistance: 10000,
-				autoStabilize: true
-			  }
-    	};
  
 var initialized = false; // set the first time a network is drawn
 var Edges = {};
 var Nodes = {};
+var CSWnetwork = {};
 /* use hash to keep track of current network */
 	
 function getInts(gene) {
@@ -35,44 +21,49 @@ function getInts(gene) {
 	  },
 	  function ( data ) {
 	  	addNetwork(data);
-		var graph = convertJSON();
-		reDraw(defLayout, defStyle, graph);
+		CSWnetwork = convertJSON();
+		reDraw(defLayout, defStyle, CSWnetwork);
 	  }
 	);
 }
 
 function addNetwork(graph) {
 
+	/* This adds all "new" nodes and new edges by ID into a graph */
+
 	var root = graph.results.pop(); // first item in array.
 	
-	if(!(_.hasKey(Nodes, root.secondaryIdentifier) ))
-	n[root.secondaryIdentifier] = {
+	if(Nodes[root.secondaryIdentifier] == undefined) {
+		Nodes[root.secondaryIdentifier] = {
 			geneDescription:	root.name,
 			systematicName:		root.secondaryIdentifier,
 			label:				root.symbol,
 			id:					root.secondaryIdentifier
-	};
+		};
+	}
 	var e = {};
 	
 	for ( i=0;i<root.interactions.length;i++) {
 		inx = root.interactions[i];
-		if(!(inx.interactingGeneFeatureName in n)) {
+		if (Nodes[inx.interactingGeneFeatureName] == undefined ) {
 			var trueName = ( inx.interactingGeneName == undefined ? inx.interactingGeneFeatureName : inx.interactingGeneName);
-			n[inx.interactingGeneFeatureName] = {
-				id:					inx.interactingGeneFeatureName,	
-				label: 				trueName,
-				systematicName: 	inx.interactingGeneFeatureName,
-				geneDescription: 	inx.description
+			Nodes[inx.interactingGeneFeatureName] = {
+					id:					inx.interactingGeneFeatureName,	
+					label: 				trueName,
+					systematicName: 	inx.interactingGeneFeatureName,
+					geneDescription: 	inx.description
 			};	
 		}
-		e["-"+inx.objectId] = {
-			id:					"-"+inx.objectId,
-			label:				inx.experimentType,
-			experimentType:		inx.experimentType,
-			interactionClass:	inx.interactionType,
-			source:				root.secondaryIdentifier,
-			target: 			inx.interactingGeneFeatureName,
-		};
+		if (Edges["-"+inx.objectId] == undefined) {
+			Edges["-"+inx.objectId] = {
+				id:					"-"+inx.objectId,
+				label:				inx.experimentType,
+				experimentType:		inx.experimentType,
+				interactionClass:	inx.interactionType,
+				source:				root.secondaryIdentifier,
+				target: 			inx.interactingGeneFeatureName,
+			};
+		}
 	}
 	
 
@@ -91,7 +82,7 @@ function reDraw(layout, style, graph){
 
 }
 
-function convertJSON(graph) {
+function convertJSON() {
 	/* convert YeastMine JSON into CytoscapeWeb NetworkModel */
 		
 	var schema = {

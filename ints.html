@@ -837,28 +837,8 @@ $(function() {
  
     $('input:reset').button();
     $('input:reset').click(function() {
-			     vis.draw({layout: {
-			     		       name: "ForceDirected",
-                                               options: {
-					 	        mass: 300,
-					      		gravitation: -500,
-					    		tension: 0.1,
-					       		restLength: "auto",
-					       		drag: 0.4,
-					       		iterations: 400 ,
-					       		maxTime: 20000 ,
-					       		minDistance: 1,
-					       		maxDistance: 10000,
-					       		autoStabilize: true
-						       }
-
-    						},
-				       network: xml,
- 	                               edgeTooltipsEnabled: true,
-	                               nodeTooltipsEnabled: true,              
-				       });
-		             resetFilters();
-			     }); 
+    	reDraw(defLayout, defStyle, convertJSON());
+	}); 
 			     
 	/* Layout stuff
 
@@ -879,26 +859,12 @@ $(function() {
 			vis.addContextMenuItem("Delete node", "nodes", function(evt) {
 				vis.removeNode(evt.target, true);
 			});
-			vis.addListener("click", "nodes", function(event) {
-				displayGeneProps(event.target.data);
+			vis.addListener("click", "nodes", function(evt) {
+				displayGeneProps(evt.target.data);
 			});
-			vis.addListener("dblclick", "nodes", function (event) {
+			vis.addListener("dblclick", "nodes", function (evt) {
 
-				alert("Get new edges (unimplemented)");
-				return;
-
-				var data = event.target.data;
-
-				var eCount = edgeCounts[data.id];
-				var nodeDegree = data.NODE_DEGREE;
-				var hiddenEdges = nodeDegree-eCount;
-				if ( hiddenEdges > 0) {
-					fetchGraph(event.target.data.ENTITY_TYPE, event.target.data.ENTITY_ID, data.id);
-				} else if (hiddenEdges < 1) {
-					alert("This node is fully expanded -- all its edges are displayed.")
-				} else {
-					alert("The number of hidden edges (" + hiddenEdges + ") is too large, this node cannot be expanded with this graph.");
-				}
+				getInts(evt.target.data.id);
 
 			});
 			vis.addContextMenuItem("Select first neighbors", "nodes", function (evt) {
@@ -914,45 +880,33 @@ $(function() {
 			}
 			);
 			vis.addContextMenuItem("Radial layout", "none", function () {
-				vis.draw({
-					layout: {
+				reDraw({
 						name: "Radial",
 						options: {
 							angleWidth: 360,
 							radius: "auto"
-						}
-					},
-					network: xml,
-					edgeTooltipsEnabled: true,
-					nodeTooltipsEnabled: true,
-				}
-				);
-				resetFilters();
-			}
+							}
+						},
+						defStyle,
+						CSWnetwork);
+					}
 			);
 			vis.addContextMenuItem("Tree layout", "none", function () {
-				vis.draw({
-					layout: {
+				reDraw({
 						name: "Tree",
 						options: {
 							orientation: "leftToRight",
 							depthSpace: 900,
 							breadthSpace: 30,
 							angleWidth: 30,
-						}
-
-					},
-					network: xml,
-					edgeTooltipsEnabled: true,
-					nodeTooltipsEnabled: true,
-				}
-				);
-				resetFilters();
-			}
+							}
+						},
+						defStyle,
+						CSWnetwork);
+					}
 			);
 			vis.addContextMenuItem("Force-directed layout", "none", function () {
 				vis.draw({
-					layout: {
 						name: "ForceDirected",
 						options: {
 							mass: 300,
@@ -966,15 +920,10 @@ $(function() {
 							maxDistance: 10000,
 							autoStabilize: true
 						}
-
 					},
-					network: xml,
-					edgeTooltipsEnabled: true,
-					nodeTooltipsEnabled: true,
+					defStyle,
+					CSWnetwork);
 				}
-				);;
-				resetFilters();
-			}
 			);
 			vis["customTooltip"] = function (data) {
 				var slimData = "SLIM FUNCTION: " + data.GO_SLIM_FUNCTION.toString();
