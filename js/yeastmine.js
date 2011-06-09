@@ -1,7 +1,4 @@
-var queryURL = "http://yeastmine-test.yeastgenome.org/yeastmine-dev/service/query/results";
-var templateURL = "http://yeastmine-test.yeastgenome.org/yeastmine-dev/service/template/results";
-
-IMBedding.setBaseUrl("http://yeastmine-test.yeastgenome.org/yeastmine-dev");
+IMBedding.setBaseUrl("http://yeastmine.yeastgenome.org/yeastmine");
  
 var initialized = false; // set the first time a network is drawn
 var Edges = {};
@@ -21,6 +18,9 @@ function getInts(gene) {
 	  },
 	  function ( data ) {
 	  	addNetwork(data);
+	  	/*getGO($.map(Nodes,function(val, key) { 
+	  		return (val.GO_SLIM_FUNCTION == undefined ? "" : val.systematicName )
+	  		})); // map here is unnecessary but keeps getGO function more generic for later*/
 		CSWnetwork = convertJSON();
 		reDraw(defLayout, defStyle, CSWnetwork);
 	  }
@@ -89,6 +89,9 @@ function convertJSON() {
 			nodes: [ { name: "label", type: "string"},
 					 { name: "systematicName", type: "string"},
 					 { name: "geneDescription", type: "string", defValue: ""},
+					 { name: "GO_SLIM_FUNCTION", type: "list", defValue: []},
+					 { name: "GO_SLIM_PROCESS", type: "list", defValue: []},
+					 { name: "GO_SLIM_COMPONENT", type: "list", defValue: []}
 					],
 			edges: [ { name: "label", type: "string"},
 					 { name: "experimentType", type: "string"},
@@ -109,9 +112,65 @@ function convertJSON() {
 	
 function getGO(genes) {
 		/* Get GO data for an array of genes */
+		/* Sadly I cannot get a batch from Intermine without creating a list */
+		for(gene in genes) {
+			IMBedding.loadQuery(
+		{  	 
+	 	   	name:        "Gene_Interaction_Single",
+	   	 	constraint1: "Gene",
+	    	op1:         "LOOKUP",
+	    	value1:      gene,
+	    	format:      "jsonpobjects"
+	  },
+	  function ( data ) {
+	  	addNetwork(data);
+	  	/*getGo($.map(Nodes,function(val, key) { 
+	  		return (val.GO_SLIM_FUNCTION == undefined ? "" : val.systematicName )
+	  		})); // map here is unnecessary  */
+		CSWnetwork = convertJSON();
+		reDraw(defLayout, defStyle, CSWnetwork);
+	  }
+	);
+			
+		}
 }
 
 function getGeneList() {
+	IMBedding.loadQuery(
+		{
+			model: "genomic",
+			view:	["Gene.secondaryIdentifier","Gene.symbol"],
+			sortOrder: "Gene.symbol asc",
+			constraints: [
+					{ path: "Gene.featureType", op: "=", value: "ORF"},
+			]
+		},
+		{ format: "jsonpobjects"},
+		function( data ) {
+			var geneList = $.map(data.results, function( r, item ) {
+				return [ 
+					{
+						label: r.symbol,
+						value: r.symbol
+					},
+					{
+						label: r.secondaryIdentifier,
+						value: r.secondaryIdentifier
+					}
+					];
+			});
+ 			$("#search").autocomplete({
+		    	source: geneList,
+   			 	minLength: 2,
+		    	select: function(event,ui) {
+		    		getInts(ui.item.value)
+
+    			}
+    		})
+  }
+);
+}
+function getGeneListTemplate() {
 	IMBedding.loadTemplate(
 		{	
 			name:			"All_Orf_name",

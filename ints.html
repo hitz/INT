@@ -617,21 +617,21 @@ $(function() {
 
     function displayGeneProps(info) {
 
-    	     var commonHead = "<table class='summary_mini'><tbody>";
-	     var hasGeneName = false;
-             if (info.canonicalName != info.systematicName) {
-	     	     commonHead += "<tr><th>Standard Name</th><td>" + info.canonicalName + "</td></tr>";
-		     hasGeneName = true;
-             } else {
-	     	     commonHead += "<tr><th>Systematic Name</th><td>" + info.systematicName + "</td></tr>";
-             }
-	     basic = commonHead;
-	     if (hasGeneName) {
-	             basic += "<tr><th>Systematic Name</th><td>" + info.systematicName + "</td></tr>";
-             }
-	     basic += "<tr><th>Name Description</th><td>" + info.geneDescription + "</td></tr>";
+    	var commonHead = "<table class='summary_mini'><tbody>";
+	    var hasGeneName = false;
+        if (info.label != info.systematicName) {
+			commonHead += "<tr><th>Standard Name</th><td>" + info.label + "</td></tr>";
+			hasGeneName = true;
+		} else {
+			commonHead += "<tr><th>Systematic Name</th><td>" + info.systematicName + "</td></tr>";
+		}
+		basic = commonHead;
+		if (hasGeneName) {
+			basic += "<tr><th>Systematic Name</th><td>" + info.systematicName + "</td></tr>";
+		}
+		basic += "<tr><th>Name Description</th><td>" + info.geneDescription + "</td></tr>";
 
-	     var pathways = ""
+	     /*var pathways = ""
 	     for (var i=0; i<info.PATHWAY.length; i++) { if(info.PATHWAY[i]) { pathways += "<tr><th></<th><td>" + info.PATHWAY[i] + "</td></tr>";} }
 
 	     if (pathways != "") {
@@ -639,12 +639,13 @@ $(function() {
 		  basic += pathways;
              
              }
+             */
 	     basic += "</tbody></table>";
 	     
 	     $("#info_basic").html(basic);
 
 	     var go =  commonHead;
-             go += "<tr><th>"
+		 go += "<tr><th>"
 	     go += "<tr><th>Molecular Function</th><td></td></tr>" + showGo(info.GO_MOLECULAR_FUNCTION, 'molecular_function');
 	     go += "<tr><th>Biological Process</th><td></td></tr>" + showGo(info.GO_BIOLOGICAL_PROCESS, 'biological_process');
 	     go += "<tr><th>Cellular Component</th><td></td></tr>" + showGo(info.GO_CELLULAR_COMPONENT, 'cellular_component');
