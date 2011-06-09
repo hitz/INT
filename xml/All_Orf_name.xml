@@ -1,0 +1,5 @@
+<template name="All_Orf_name" title="All ORf names with gene names" longDescription="List genes of a selected Feature Type. Available Feature Types include Uncharacterized and Verified ORFs, pseudogenes, transposable element genes, RNAs, and genes Not in Systematic Sequence of S228C." comment="precomposed list of all names for autocomplete">
+  <query name="All_Orf_name" model="genomic" view="Gene.secondaryIdentifier Gene.symbol" longDescription="List genes of a selected Feature Type. Available Feature Types include Uncharacterized and Verified ORFs, pseudogenes, transposable element genes, RNAs, and genes Not in Systematic Sequence of S228C.">
+    <constraint path="Gene.featureType" editable="true" op="=" value="ORF"/>
+  </query>
+</template>

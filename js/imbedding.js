@@ -1,4 +1,8 @@
 IMBedding = (function() {
+    // Add in a console in case there is no global one.
+    if (typeof(console) == undefined) {
+        console = {log: function() {}};
+    }
     var baseUrl = null;
     var tables = {};
     var defaultTableSize = 10;
@@ -6,7 +10,9 @@ IMBedding = (function() {
     var placeholder = '#placeholder';
     var templateResultsPath = "/service/template/results";
     var queryResultsPath = "/service/query/results";
-    var availableTemplatesPath = "/service/templates";
+    var availableTemplatesPath = "/service/templates/json";
+    var possibleValuesPath = "/service/path/values";
+    var modelPath = "/service/model/json";
     var getColumnClass = function(index) {
         return ((index % 2 == 0) ? "imbedded-column-even" : "imbedded-column-odd");
     };
@@ -14,24 +20,70 @@ IMBedding = (function() {
         return ((index % 2 == 0) ? "imbedded-row-even" : "imbedded-row-odd");
     };
 
+    var defaultTemplateCallback = function(data) {
+        window.im_templates = data.templates;
+    };
+    var defaultModelCallback = function(data) {
+        window.im_model = data.model;
+    };
+
+    var addCommas = function(nStr, separator) {
+        nStr += '';
+        x = nStr.split('.');
+        x1 = x[0];
+        x2 = x.length > 1 ? '.' + x[1] : '';
+        var rgx = /(\d+)(\d{3})/;
+        while (rgx.test(x1)) {
+            x1 = x1.replace(rgx, '$1' + separator + '$2');
+        }
+        return x1 + x2;
+    }
+
+    var mungeHeader = function(header) {
+        var parts = header.split(" > ");
+        if (parts.length == 1) {
+            return parts[0];
+        } else {
+            var ret = parts.slice(parts.length - 2, parts.length).join(" ");
+            return ret;
+        }
+    };
+
+    var cellCreater = function(cell, localiser) {
+        var a = document.createElement("a");
+        a.target = "_blank";
+        if (cell.url) {
+            a.href = localiser(cell.url);
+        }
+        a.innerHTML = cell.value;
+        return a;
+    };
+
     var defaultOptions = {
+        formatCount: true,
+        thousandsSeparator: ",",
         additionText: "Load [x] more rows",
         afterBuildTable: function(table) {},
         afterTableUpdate: function(table, resultSet) {},
         allRowsText: "Show remaining rows",
         collapseHelpText: "hide table",
         countText: "[x] rows",
+        createCellContent: cellCreater,
         defaultQueryName: "Query Results",
         emptyCellText: "[NONE]",
+        errorHandler: function(error, statusCode) {console.log("Error:", error, statusCode); alert("Sorry - this table could not be loaded:\n" + error);},
         expandHelpText: "show table",
         exportCSVText: "Export as CSV file",
         exportTSVText: "Export as TSV file",
         mineLinkText: "View in Mine",
         nextText: "Next",
         onTitleClick: "collapse",
+        onTableToggle: function(table) {},
         openOnLoad: false,
         previousText: "Previous",
         queryTitleText: null,
+        replaceRightArrows: true,
+        rightArrowStyle: "\u21E8", // block right arrow (unicode hex representation)
         resultsDescriptionText: null,
         showAdditionsLink: true,
         showAllCeiling: 75,
@@ -40,7 +92,8 @@ IMBedding = (function() {
         showExportLinks: true,
         showMineLink: true,
         throbberSrc: "images/throbber.gif",
-        titleHoverCursor: "pointer"
+        titleHoverCursor: "pointer",
+        headerMunger: mungeHeader
     };
 
     var localiseUrl = function(url, options) {
@@ -55,12 +108,15 @@ IMBedding = (function() {
         }
         if ((! ret.match(/\/$/)) && (! url.match(/^\//))) {
             ret += "/";
+        } else if (url.match(/^\//)) {
+            ret = ret.replace(/\/$/, '');
         }
+
         return ret + url;
     };
 
     var showIMTooltip = function(x, y, content) {
-     $('<div></div>').html(content)
+     jQuery('<div></div>').html(content)
                      .attr("id", "imtooltip")
                      .addClass("imbedded-table-tooltip")
                      .appendTo("body")
@@ -78,6 +134,8 @@ IMBedding = (function() {
         this._constructor = function(data, passedOpts) {
             var outer = this;
             this.options = jQuery.extend({}, defaultOptions, passedOpts);
+
+
             this.uid = new Date().getTime() + "-" + Math.floor(Math.random() * 1001);
             this.uid.replace(/\s+/g, '');
             this.start = data.start;
@@ -94,6 +152,9 @@ IMBedding = (function() {
             this.titlebox = jQuery('<div id="imbedded-table-titlebox-' 
                     + this.uid + '" class="imbedded-table-titlebox"></div>');
             var queryTitle = this.options.queryTitleText || data.title || this.options.defaultQueryName;
+            if (this.options.replaceRightArrows) {
+                queryTitle = queryTitle.replace("-->", this.options.rightArrowStyle);
+            }
             this.title = jQuery('<a id="imbedded-table-title-' 
                     + this.uid + '" class="imbedded-table-title">' + queryTitle + '</a>');
             this.expandHelp = jQuery('<span id="imbedded-table-expand-help-' 
@@ -107,7 +168,7 @@ IMBedding = (function() {
                     + this.options.nextText + '</a>')
                     .mouseover(function() { jQuery(this).css({cursor: "pointer"}) })
                     .click(function() {
-                        $.jsonp({
+                        jQuery.jsonp({
                             url: outer.nextUrl,
                             callbackParameter: "callback",
                             success: function(data) {outer.changePage(data)}
@@ -119,13 +180,14 @@ IMBedding = (function() {
                     + this.options.previousText + '</a>')
                     .mouseover(function() { jQuery(this).css({cursor: "pointer"}) });
             this.prevLink.click(function() {
-                $.jsonp({
+                jQuery.jsonp({
                     url: outer.prevUrl,
                     callbackParameter: "callback",
                     success: function(data) {outer.changePage(data)}
                 });
             });
 
+            this.scrollContainer = jQuery('<div class="imbedded-scroll-container"></div>');
             this.table = jQuery('<table style="display: none;" id="imbedded-table-' 
                     + this.uid + '" class="imbedded-table"></table>');
 
@@ -134,7 +196,8 @@ IMBedding = (function() {
             for (var i = 0; i < data.views.length; i++) {
                 var cell = document.createElement("td");
                 cell.setAttribute("class", "imbedded-cell imbedded-column-header");
-                cell.innerHTML = data.columnHeaders[i];
+                cell.innerHTML = this.options.headerMunger(data.columnHeaders[i], i, this.uid);
+                cell.setAttribute("title", data.columnHeaders[i]);
                 this.colHeaderRow.append(cell);
             }
 
@@ -172,14 +235,25 @@ IMBedding = (function() {
             // all pager links
             this.pagers = jQuery().add(this.prevLink).add(this.morePagers);
 
-            $.jsonp({
+            jQuery.jsonp({
                 url: this.localiseUrl(data.count),
                 success: function(countData) {
                     if (outer.options.showCount) {
-                        var count = outer.options.countText.replace("[x]", countData.count);
+                        var displayCount = (outer.options.formatCount) 
+                            ? addCommas(countData.count, outer.options.thousandsSeparator)
+                            : countData.count;
+                        var count = outer.options.countText.replace("[x]", displayCount);
                         outer.countDisplayer.text("(" + count + ")");
                     }
                     outer.count = countData.count;
+                    if (countData.count == 0) {
+                        outer.title.unbind("click");
+                        outer.expandHelp.remove();
+                        outer.title.css({cursor: "default"});
+                        if (outer.options.openOnLoad) {
+                            outer.resizeTable();
+                        }
+                    }
                     outer.updateVisibilityOfPagers();
                 }, 
                 callbackParameter: "callback"
@@ -204,10 +278,11 @@ IMBedding = (function() {
 
             // Slot it all together
             this.titlebox.append(this.title);
+            this.scrollContainer.append(this.table);
             this.container.append(this.titlebox)
                         .append(this.nextLink)
                         .append(this.prevLink)
-                        .append(this.table);
+                        .append(this.scrollContainer);
 
             if (this.options.showExportLinks) {
                 this.container.append(this.csvLink)
@@ -236,6 +311,7 @@ IMBedding = (function() {
                             jQuery(this).css({cursor: outer.options.titleHoverCursor}) 
                           });
             }
+
 
             var queryDescription = this.options.resultsDescriptionText || data.description;
             this.titlebox.hover(
@@ -276,18 +352,34 @@ IMBedding = (function() {
             var outer = this;
             var action = function() {
                 outer.toggleExpandHelpText();
-                outer.csvLink.toggle();
-                outer.tsvLink.toggle();
-                outer.mineLink.toggle();
-                outer.table.fadeToggle('slow', function() {
+                outer.table.slideToggle(function() {
                     outer.fitContainerToTable();
+                    if (jQuery(outer.table).is(':visible')) {
+                        outer.csvLink.show();
+                        outer.tsvLink.show();
+                        outer.mineLink.show();
+                    } else {
+                        outer.csvLink.hide();
+                        outer.tsvLink.hide();
+                        outer.mineLink.hide();
+                    }
+                    if (outer.csvLink.is(':visible')) {
+                        outer.csvLink.css({display: 'inline'});
+                    }
+                    if (outer.tsvLink.is(':visible')) {
+                        outer.tsvLink.css({display: 'inline'});
+                    }
+                    if (outer.mineLink.is(':visible')) {
+                        outer.mineLink.css({display: 'inline'});
+                    }
                     outer.updateVisibilityOfPagers();
                 });
+                outer.options.onTableToggle(outer);
             };
             var url = this.localiseUrl(this.getPageUrl());
             if (! this.isFilledIn) {
                 this.container.css({cursor: "wait"});
-                $.jsonp({
+                jQuery.jsonp({
                     url: url,
                     success: function(data) {
                         outer.fillInTable(data);
@@ -335,7 +427,7 @@ IMBedding = (function() {
             var noOfRowsToGet = this.additionSize;
             var append = true;
             var url = this.getNextUrl(noOfRowsToGet, showAll);
-            $.jsonp({
+            jQuery.jsonp({
                 url: url,
                 success: function(data) {
                     outer.size += noOfRowsToGet;
@@ -346,33 +438,23 @@ IMBedding = (function() {
         };
 
         this.containerNeedsExpanding = function() {
-            return this.table.attr("offsetWidth") >= this.container.attr("offsetWidth");
+            return this.table.attr("offsetWidth") >= this.scrollContainer.attr("offsetWidth");
         };
 
         this.expandContainer = function() {
             if (! this.defaultContainerwidth) {
-                this.defaultContainerwidth = this.container.attr("offsetWidth") + 'px';
+                this.defaultContainerwidth = this.scrollContainer.attr("offsetWidth") + 'px';
             }
-            this.container.css({width: (this.table.attr("offsetWidth") + 1) + 'px'});
+            this.scrollContainer.css({width: (this.table.attr("offsetWidth") + 1) + 'px'});
         };
 
         this.tableIsHidden = function() {
             return this.table.attr("offsetWidth") == 0;
         };
 
-        this.returnContainerToOriginalSize = function() {
-            if (this.defaultContainerwidth) {
-                this.container.css({width: this.defaultContainerwidth});
-            }
-        };
-
         // Perform the resize
         this.fitContainerToTable = function() {
-            if (this.containerNeedsExpanding()) {
-                this.expandContainer();
-            } else if (this.tableIsHidden()) {
-                this.returnContainerToOriginalSize();
-            }
+            this.scrollContainer.css({width: this.container.attr("clientWidth") + 'px'});
         };
 
         // get a page url using the base url 
@@ -410,6 +492,12 @@ IMBedding = (function() {
             return localiseUrl(url, this.options);
         };
 
+        this.getLocaliser =function(options) {
+            return function(url) {
+                return localiseUrl(url, options);
+            };
+        };
+
         // insert rows of data into the table
         // either appending them, or replacing the 
         // current ones
@@ -421,7 +509,6 @@ IMBedding = (function() {
             }
             // Remove the throbber
             this.table.children('img').detach();
-
 
             var resultCount = resultSet.results.length;
             for (var i = 0; i < resultCount; i++) {
@@ -440,14 +527,9 @@ IMBedding = (function() {
                     var cell = resultSet.results[i][j];
                     var tableCell = document.createElement("td");
                     tableCell.setAttribute("class", "imbedded-cell " + getColumnClass(j));
-                    if (cell.value) {
-                        var a = document.createElement("a");
-                        a.target = "_blank";
-                        if (cell.url) {
-                            a.href = this.localiseUrl(cell.url);
-                        }
-                        a.innerHTML = cell.value;
-                        tableCell.appendChild(a);
+                    if (cell.value != null) {
+                        var elem = this.options.createCellContent(cell, this.getLocaliser(this.options));
+                        tableCell.appendChild(elem);
                     } else {
                         tableCell.innerHTML = this.options.emptyCellText;
                         jQuery(tableCell).addClass("imbedded-null");
@@ -462,7 +544,7 @@ IMBedding = (function() {
             this.lastRow = resultCount + resultSet.start;
             this.isFilledIn = true;
             if (this.options.afterTableUpdate) {
-                this.options.afterTableUpdate(this.table, resultSet);
+                this.options.afterTableUpdate(this, resultSet);
             }
             IMBedding.afterTableUpdate(this.table, resultSet);
         };
@@ -487,34 +569,56 @@ IMBedding = (function() {
         if (target instanceof Function) {
             return target;
         } else {
-            return function(data) {buildTable(data, target, options)};
-        }
-    };
-    var handleError = function(options, textStatus) {
-        if (textStatus == "error") {
-            alert("Something was wrong with your query - please edit it");
-        } else {
-            alert(textStatus);
+            return function(data) {
+                if ("wasSuccessful" in data) {
+                    if (data.wasSuccessful) {
+                        buildTable(data, target, options);
+                    } else {
+                        errorHandler = options.errorHandler || defaultOptions.errorHandler;
+                        errorHandler(data.error, data.statusCode);
+                    }
+                } else {
+                    errorHandler = options.errorHandler || defaultOptions.errorHandler;
+                    errorHandler("Incorrect data format returned from server", 500);
+                }
+            }
         }
     };
     var loadUrl = function(url, target) {
             url += "&format=jsonptable";
             return getResults(url, {}, target);
     };
+
+    var getErrorHandler = function(options) {
+        if (options && "errorHandler" in options) {
+            return options["errorHandler"];
+        } else {
+            return defaultOptions.errorHandler;
+        }
+    };
+
     var getResults = function(url, data, target, options) {
         var callback = getCallback(target, options);
+        var errorHandler = getErrorHandler(options);
         if (! data.format) {
             data.format = "jsonptable";
         }
         if (! data.size && data.format == "jsonptable") {
             data.size = defaultTableSize;
         }
-        $.jsonp({
+        if (!target instanceof Function) {
+            var throbber = document.createElement("img");
+            throbber.src = defaultOptions.throbberSrc;
+            jQuery(target).empty().append(throbber);
+        }
+
+        jQuery.jsonp({
             url: url, 
             data: data, 
             success: callback, 
             callbackParameter: "callback",
-            error: handleError
+            error: errorHandler,
+            traditional: true
         });
     };
 
@@ -537,7 +641,13 @@ IMBedding = (function() {
             return source;
         } else if (source instanceof Object) {
             var query = jQuery.extend({}, defaultQuery, source);
-            var xmlString = '<query model="';
+            var xmlString = '<query '
+
+            if ("title" in query) {
+                xmlString += 'title="' + query.title + '" ';
+            }
+
+            xmlString += 'model="';
             if ("model" in query) {
                 xmlString += query.model;
             } else if ("from" in query) {
@@ -600,6 +710,41 @@ IMBedding = (function() {
         }
     };
 
+    var _loadJSInclude = function(scriptPath, callback) {
+        var scriptNode = document.createElement('SCRIPT');
+        scriptNode.type = 'text/javascript';
+        scriptNode.src = scriptPath;
+
+        var headNode = document.getElementsByTagName('HEAD');
+        if (headNode[0] != null) {
+            headNode[0].appendChild(scriptNode);
+        }
+
+        if (callback != null) {
+            scriptNode.onreadystagechange = callback;            
+            scriptNode.onload = callback;
+        }
+    }
+
+    var _check_for_jsonp = function(callback) {
+        if (typeof(jQuery.jsonp) == 'undefined') {
+            _loadJSInclude('http://jquery-jsonp.googlecode.com/files/jquery.jsonp-2.1.4.min.js', callback);
+        } else {
+            callback();
+        }
+    }
+    var _check_for_jquery = function(callback) {
+        if (typeof(jQuery) == 'undefined') {
+            _loadJSInclude('https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js', function() {_check_for_jsonp(callback)});
+        } else {
+            _check_for_jsonp(callback);
+        }
+    }
+
+    var loadDependencies = function(callback) {
+        _check_for_jquery(callback);
+    }
+
     return {
         getTables: function() {return tables},
         getTable: function(id) {return tables[id]},
@@ -612,7 +757,11 @@ IMBedding = (function() {
             return defaultQuery;
         },
         setDefaultOptions: function(obj) {
-            jQuery.extend(defaultOptions, obj);
+            loadDependencies(function() {
+                jQuery.extend(defaultOptions, obj);
+            });
+        },
+        getDefaultOptions: function() {
             return defaultOptions;
         },
         setBaseUrl: function(url) {
@@ -623,16 +772,64 @@ IMBedding = (function() {
             return baseUrl;
         },
         loadTemplate: function(data, target, options) {
-            if ("baseUrl" in data) {
-                baseUrl = data.baseUrl;
-            }
-            var url = localiseUrl(templateResultsPath, options); 
-            return getResults(url, data, target, options);
+            loadDependencies(function() {
+                if ("baseUrl" in data) {
+                    baseUrl = data.baseUrl;
+                }
+                var url = localiseUrl(templateResultsPath, options); 
+                getResults(url, data, target, options);
+            });
         },
         loadQuery: function(query, data, target, options) {
-            data.query = getXML(query);
-            var url = localiseUrl(queryResultsPath, options);
-            return getResults(url, data, target, options);
+            loadDependencies(function() {
+                data.query = getXML(query);
+                var url = localiseUrl(queryResultsPath, options);
+                getResults(url, data, target, options);
+            });
+        },
+        loadPossibleValues: function(path, subclasses, options) {
+            loadDependencies(function() {
+                var url = localiseUrl(possibleValuesPath, options);
+                var params = {path: path};
+                if (subclasses) {
+                    params.typeConstraints = JSON.stringify(subclasses);
+                }
+                options = options || {};
+                if (options.format) {
+                    params.format = options.format;
+                }
+                jQuery.jsonp({
+                    url: url, 
+                    data: params, 
+                    success: options.callback, 
+                    callbackParameter: "callback"
+                });
+            });
+        },
+        loadModel: function(options) {
+            loadDependencies(function() {
+                var url = localiseUrl(modelPath, options);
+                options = options || {};
+                var callback = options.callback || defaultModelCallback;
+                jQuery.jsonp({
+                    url: url, 
+                    success: callback, 
+                    callbackParameter: "callback"
+                });
+            });
+        },
+        loadTemplates: function(options) {
+            loadDependencies(function() {
+                var url = localiseUrl(availableTemplatesPath, options);
+                options = options || {};
+                var callback = options.callback || defaultTemplateCallback;
+                jQuery.jsonp({
+                    url: url, 
+                    success: callback, 
+                    callbackParameter: "callback"
+                });
+            });
         }
     };
 })();
+

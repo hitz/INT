@@ -1,5 +1,6 @@
-IMBedding.setBaseUrl("http://yeastmine.yeastgenome.org/yeastmine");
- 
+//IMBedding.setBaseUrl("http://yeastmine.yeastgenome.org/yeastmine");
+IMBedding.setBaseUrl("http://yeastmine-test.yeastgenome.org/yeastmine-dev");
+  
 var initialized = false; // set the first time a network is drawn
 var Edges = {};
 var Nodes = {};
@@ -10,7 +11,7 @@ function getInts(gene) {
 		/* given some arguments (gene names, network type, edge type) fetch interactions from YeastMine via webservices */
 	IMBedding.loadTemplate(
 		{  	 
-	 	   	name:        "Gene_Interaction_Single",
+	 	   	name:        "Interactions_network",
 	   	 	constraint1: "Gene",
 	    	op1:         "LOOKUP",
 	    	value1:      gene,
@@ -35,38 +36,40 @@ function addNetwork(graph) {
 	
 	if(Nodes[root.secondaryIdentifier] == undefined) {
 		Nodes[root.secondaryIdentifier] = {
-			geneDescription:	root.name,
+			geneDescription:	root.description,
 			systematicName:		root.secondaryIdentifier,
 			label:				root.symbol,
-			id:					root.secondaryIdentifier
+			id:					root.secondaryIdentifier,
+			headline:			root.headline,
 		};
 	}
 	var e = {};
 	
 	for ( i=0;i<root.interactions.length;i++) {
 		inx = root.interactions[i];
+		var igene = inx.interactingGenes.pop(); // theoretically could be more than one!
 		if (Nodes[inx.interactingGeneFeatureName] == undefined ) {
-			var trueName = ( inx.interactingGeneName == undefined ? inx.interactingGeneFeatureName : inx.interactingGeneName);
-			Nodes[inx.interactingGeneFeatureName] = {
-					id:					inx.interactingGeneFeatureName,	
+			var trueName = ( igene.symbol == undefined ? igene.secondaryIdentifier: igene.symbol);
+			Nodes[igene.secondaryIdentifier] = {
+					id:					igene.secondaryIdentifier,	
 					label: 				trueName,
-					systematicName: 	inx.interactingGeneFeatureName,
-					geneDescription: 	inx.description
+					systematicName: 	igene.secondaryIdentifier,
+					geneDescription: 	igene.description,
+					headline:			igene.headline
 			};	
 		}
 		if (Edges["-"+inx.objectId] == undefined) {
 			Edges["-"+inx.objectId] = {
 				id:					"-"+inx.objectId,
-				label:				inx.experimentType,
-				experimentType:		inx.experimentType,
+				label:				inx.experiment.name+inx.objectId,
+				experimentType:		inx.experiment.name,
 				interactionClass:	inx.interactionType,
 				source:				root.secondaryIdentifier,
-				target: 			inx.interactingGeneFeatureName,
+				target: 			igene.secondaryIdentifier,
 			};
 		}
 	}
-	
-
+	console.log(Edges);
 }
 function reDraw(layout, style, graph){
 	/* move to somewhere more generic? */
@@ -89,6 +92,7 @@ function convertJSON() {
 			nodes: [ { name: "label", type: "string"},
 					 { name: "systematicName", type: "string"},
 					 { name: "geneDescription", type: "string", defValue: ""},
+					 { name: "headline", type: "string", defValue: ""},					 
 					 { name: "GO_SLIM_FUNCTION", type: "list", defValue: []},
 					 { name: "GO_SLIM_PROCESS", type: "list", defValue: []},
 					 { name: "GO_SLIM_COMPONENT", type: "list", defValue: []}
