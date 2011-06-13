@@ -470,9 +470,7 @@
 <script src="http://jquery-jsonp.googlecode.com/files/jquery.jsonp-2.1.4.min.js" type="text/javascript"></script>
 
 <!-- Imbedding is a small JS API for Intermine Webservices-->
-<!-- script src="http://www.intermine.org/lib/imbedding/0.1/imbedding.min.js" type="text/javascript"></script-->
-<script src="/INT/js/imbedding.js" type="text/javascript"></script-->
-<!-- Have local copy in case I need it -->
+<script src="http://www.intermine.org/lib/imbedding/0.2/imbedding.min.js" type="text/javascript"></script-->
 
 <!-- Underline is a set of JS utility functions accessed by _() -->
 <script src="/INT/js/min/underscore-min.js" type="text/javascript"></script>
@@ -553,6 +551,7 @@ function edge_toggle(type) {
 $(function() {
 
 	getGeneList();
+	//createList(); //can't get this to work
 
     // network data could alternatively be grabbed via ajax
     var xml = $.ajax({ 

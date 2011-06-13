@@ -1,12 +1,41 @@
 //IMBedding.setBaseUrl("http://yeastmine.yeastgenome.org/yeastmine");
 IMBedding.setBaseUrl("http://yeastmine-test.yeastgenome.org/yeastmine-dev");
   
+var authStr = 'Y2lzY29oaXR6LmNvbTpoYWlyYmFsbA=='; // for user "ciscohitz@gmail.com"
 var initialized = false; // set the first time a network is drawn
 var Edges = {};
 var Nodes = {};
 var CSWnetwork = {};
 /* use hash to keep track of current network */
-	
+
+function createList() {
+/*		data: {
+			name: "intList",
+			type: "Gene",
+			format: "jsonp",
+			content: ["PIG1","HOG1","ACT1"]
+		},
+		
+	$.ajax( {
+		url: "/INT/list_proxy.pl",
+		data: { type: "Gene", name: "intList", list: "PIG1 HOG1 ACT1 HOG1"},
+		dataType: 'xml',
+		success: function(msg) { console.log(msg) },
+		error:   function(error, statusCode) {console.log("Error:", error, statusCode); alert("Sorry - list creation failed\n" + error);},
+	})
+	*/
+	 
+	$.jsonp( {
+		url: "http://localhost/cgi-bin/list_proxy.pl",
+		data: { type: "Gene", name: "intList", list: "PIG1 HOG1 ACT1 HOG1"},
+		callbackParameter: 'callback',
+		success: function(msg) { console.log(msg) },
+		error:   function(error, statusCode) {console.log("Error:", error, statusCode); alert("Sorry - list creation failed\n" + error);},
+	})
+}
+/*		type: "POST",
+		headers: {"Authorization:": authStr},
+*/	
 function getInts(gene) {
 		/* given some arguments (gene names, network type, edge type) fetch interactions from YeastMine via webservices */
 	IMBedding.loadTemplate(
@@ -58,18 +87,22 @@ function addNetwork(graph) {
 					headline:			igene.headline
 			};	
 		}
-		if (Edges["-"+inx.objectId] == undefined) {
-			Edges["-"+inx.objectId] = {
+		var pair = [igene.secondaryIdentifier, root.secondaryIdentifier].sort();
+		var key = pair[0]+pair[1]+inx.experiment.name+inx.experiment.publication.pubMedId;
+		console.log(key)
+		if (Edges[key] == undefined) {
+			Edges[key] = {
 				id:					"-"+inx.objectId,
-				label:				inx.experiment.name+inx.objectId,
+				label:				inx.experiment.name,
 				experimentType:		inx.experiment.name,
 				interactionClass:	inx.interactionType,
 				source:				root.secondaryIdentifier,
 				target: 			igene.secondaryIdentifier,
+				publication:		inx.experiment.publication.pubMedId
 			};
 		}
 	}
-	console.log(Edges);
+	//console.log(Edges);
 }
 function reDraw(layout, style, graph){
 	/* move to somewhere more generic? */
@@ -101,7 +134,8 @@ function convertJSON() {
 					 { name: "experimentType", type: "string"},
 					 { name: "directed", type: "boolean", defValue: false},
 					 { name: "weight", type: "number", devValue: 1.0},
-					 { name: "interactionClass", type: "string"}
+					 { name: "interactionClass", type: "string"},
+					 { name: "publication", type: "string"}
 				   ]
 	};
 	/* does not include functional annotations */
@@ -119,24 +153,30 @@ function getGO(genes) {
 		/* Sadly I cannot get a batch from Intermine without creating a list */
 		for(gene in genes) {
 			IMBedding.loadQuery(
-		{  	 
-	 	   	name:        "Gene_Interaction_Single",
-	   	 	constraint1: "Gene",
-	    	op1:         "LOOKUP",
-	    	value1:      gene,
-	    	format:      "jsonpobjects"
-	  },
-	  function ( data ) {
-	  	addNetwork(data);
-	  	/*getGo($.map(Nodes,function(val, key) { 
-	  		return (val.GO_SLIM_FUNCTION == undefined ? "" : val.systematicName )
-	  		})); // map here is unnecessary  */
-		CSWnetwork = convertJSON();
-		reDraw(defLayout, defStyle, CSWnetwork);
-	  }
-	);
-			
-		}
+				{
+					model: "genomic",
+					view: [
+						"Gene.secondaryIdentifier",
+						"Gene.symbol",
+						"Gene.goAnnotation.ontologyTerm.identifier",
+						"Gene.goAnnotation.ontologyTerm.name",
+						"Gene.goAnnotation.evidence.code.code",
+						"Gene.goAnnotation.ontologyTerm.namespace",
+						"Gene.goAnnotation.qualifier",
+						"Gene.goAnnotation.evidence.publications.pubMedId",
+						"Gene.goAnnotation.ontologyTerm.parents.identifier",
+						"Gene.goAnnotation.ontologyTerm.parents.name"],
+					constraints: [
+						{ path: "Gene", op: "LOOKUP", value: gene},
+						{ path: "Gene.goAnnotation.ontologyTerm.parents", type: "GOSlimTerm"}
+					]
+				},
+		    	{ format:      "jsonpobjects"},
+			  function ( data ) {
+	  			console.log(data);
+	  		}
+	  );
+	}
 }
 
 function getGeneList() {
