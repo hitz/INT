@@ -13,7 +13,7 @@ my $type = $q->param("type");
 my @list = $q->param("list");
 
 my $server = Webservice::InterMine->get_service($url, $user, $pass);
-my $created = $server->new_list(type=>$type, content=> \@list);
+my $created = $server->new_list(type=>$type, content=> \@list, name=>$type.$$);
 
 my ($name, $rest) = split(/\s+/,"$created");
 my $tmp = join(" ",@list);

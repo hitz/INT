@@ -550,7 +550,8 @@ function edge_toggle(type) {
 
 $(function() {
 
-	getGeneList();
+	getGeneListTemplate();
+	// which is slightly faster
 	//createList(); //can't get this to work
 
     // network data could alternatively be grabbed via ajax
@@ -641,6 +642,8 @@ $(function() {
 	     
 	     $("#info_basic").html(basic);
 
+		 //if (info.GO_MOLECULAR_FUNCTION == undefined || info.GO_MOLECULAR_FUNCTION.length == 0) { getGO(info.systematicName)}
+		 // bug in jsonpobjects prevents this
 	     var go =  commonHead;
 		 go += "<tr><th>"
 	     go += "<tr><th>Molecular Function</th><td></td></tr>" + showGo(info.GO_MOLECULAR_FUNCTION, 'molecular_function');
@@ -924,6 +927,7 @@ $(function() {
 				}
 			);
 			vis["customTooltip"] = function (data) {
+				if(data.GO_SLIM_FUNCTION.toString() == "") { getGO([data.systematicName])}
 				var slimData = "SLIM FUNCTION: " + data.GO_SLIM_FUNCTION.toString();
 
 				slimData += "\nSLIM PROCESS: " + data.GO_SLIM_PROCESS.toString();

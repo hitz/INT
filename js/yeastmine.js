@@ -57,6 +57,23 @@ function getInts(gene) {
 	);
 }
 
+function fillNetwork(geneList1, geneList2) {
+	IMBedding.loadTemplate(
+		{
+			name:		"Fill_network",
+			constraint1: "Gene",
+			op1:		"LOOKUP",
+			value1:		geneList1,
+			constraint2:	"Gene.interactions.interactingGenes",
+			op2:		"LOOKUP",
+			value2:		geneList2,
+			format:		"jsonobjects"
+		},
+		function (data) {
+			
+		}
+	)
+}
 function addNetwork(graph) {
 
 	/* This adds all "new" nodes and new edges by ID into a graph */
@@ -148,10 +165,10 @@ function convertJSON() {
 	};
 }	
 	
-function getGO(genes) {
+function getGO(gene) {
 		/* Get GO data for an array of genes */
 		/* Sadly I cannot get a batch from Intermine without creating a list */
-		for(gene in genes) {
+//		for(gene in genes) {
 			IMBedding.loadQuery(
 				{
 					model: "genomic",
@@ -163,12 +180,10 @@ function getGO(genes) {
 						"Gene.goAnnotation.evidence.code.code",
 						"Gene.goAnnotation.ontologyTerm.namespace",
 						"Gene.goAnnotation.qualifier",
-						"Gene.goAnnotation.evidence.publications.pubMedId",
-						"Gene.goAnnotation.ontologyTerm.parents.identifier",
-						"Gene.goAnnotation.ontologyTerm.parents.name"],
+						"Gene.goAnnotation.evidence.publications.pubMedId"
+						],
 					constraints: [
 						{ path: "Gene", op: "LOOKUP", value: gene},
-						{ path: "Gene.goAnnotation.ontologyTerm.parents", type: "GOSlimTerm"}
 					]
 				},
 		    	{ format:      "jsonpobjects"},
@@ -176,7 +191,7 @@ function getGO(genes) {
 	  			console.log(data);
 	  		}
 	  );
-	}
+//	}
 }
 
 function getGeneList() {
