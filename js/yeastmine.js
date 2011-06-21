@@ -1,5 +1,10 @@
 //IMBedding.setBaseUrl("http://yeastmine.yeastgenome.org/yeastmine");
-IMBedding.setBaseUrl("http://yeastmine-test.yeastgenome.org/yeastmine-dev");
+var devIM = "http://yeastmine-test.yeastgenome.org/yeastmine-dev"
+var templateUrl = devIM+"/service/template/results";
+var queryUrl = devIM+"/service/query/results";
+var jsonMethod = 'jsonobjects'; // for REMOTE server set this to jsonpobjects
+
+IMBedding.setBaseUrl(devIM);
   
 var authStr = 'Y2lzY29oaXR6LmNvbTpoYWlyYmFsbA=='; // for user "ciscohitz@gmail.com"
 var initialized = false; // set the first time a network is drawn
@@ -36,44 +41,107 @@ function createList() {
 /*		type: "POST",
 		headers: {"Authorization:": authStr},
 */	
-function getInts(gene) {
+function getGO(genes) {
+		/* Get GO data for an array of genes */
+                
+                var emptyGenes = _.map(genes,function(v){ if ((Nodes[v]).molecular_function.length() == 0) return v;});                
+				var query = {
+					model: "genomic",
+					view: [
+						"Gene.secondaryIdentifier",
+						"Gene.symbol",
+						"Gene.goAnnotation.ontologyTerm.identifier",
+						"Gene.goAnnotation.ontologyTerm.name",
+						"Gene.goAnnotation.ontologyTerm.namespace",
+						"Gene.goAnnotation.qualifier",
+						],
+					constraints: [
+						{ path: "Gene.secondaryIdentifier", op: "ONE OF", values: genes}
+					]
+				};
+
+                 IMBedding.loadQuery(
+		     query,
+		     {format: jsonMethod},
+		     function( data ) {
+			$.each(data.results, function(i,gene) {
+
+			     var annot = _.reduce(gene.goAnnotation,
+				 function(a,ga) {
+				     a[ga.ontologyTerm.namespace].push(ga.ontologyTerm.name);
+				     return a;
+				 },
+			         {
+				 molecular_function: [],
+				 biological_process: [],
+				 cellular_component: [],
+			         }
+			       );
+//			     $.each(annot,function(val, key) { annot[key] = _.uniq(val)});
+ 			     _.extend(Nodes[gene.secondaryIdentifier],annot);
+//			     vis.updateData("nodes",[gene.secondaryIdentifier],annot);
+		             // No need to actually update the vis object yet
+			 
+		       }
+	              );
+		     }
+		 );
+}
+
+function getInts(gene, nextRequest) {
 		/* given some arguments (gene names, network type, edge type) fetch interactions from YeastMine via webservices */
 	IMBedding.loadTemplate(
-		{  	 
-	 	   	name:        "Interactions_network",
-	   	 	constraint1: "Gene",
+	    {  	 
+	 	name:        "Interactions_network",
+	   	constraint1: "Gene",
 	    	op1:         "LOOKUP",
 	    	value1:      gene,
-	    	format:      "jsonpobjects"
+	    	format:      jsonMethod
 	  },
 	  function ( data ) {
-	  	addNetwork(data);
-	  	/*getGO($.map(Nodes,function(val, key) { 
-	  		return (val.GO_SLIM_FUNCTION == undefined ? "" : val.systematicName )
-	  		})); // map here is unnecessary but keeps getGO function more generic for later*/
-		CSWnetwork = convertJSON();
-		reDraw(defLayout, defStyle, CSWnetwork);
+	  	var rootId = addNetwork(data);
+	        var neighbors = _.select(_.keys(Nodes), function(k) { return k != rootId});
+	        nextRequest(_.keys(Nodes));
+//	        fillNetwork(neighbors, neighbors);
+//		    addNetwork(data);
+		    CSWnetwork = convertJSON();
+		    reDraw(defLayout, defStyle, CSWnetwork);
 	  }
 	);
 }
 
 function fillNetwork(geneList1, geneList2) {
-	IMBedding.loadTemplate(
+	IMBedding.loadQuery(
 		{
-			name:		"Fill_network",
-			constraint1: "Gene",
-			op1:		"LOOKUP",
-			value1:		geneList1,
-			constraint2:	"Gene.interactions.interactingGenes",
-			op2:		"LOOKUP",
-			value2:		geneList2,
-			format:		"jsonobjects"
+		    model: genomic,
+		    view: [
+			   "Gene.secondaryIdentifier",
+			   "Gene.symbol",
+			   "Gene.interactions.role",
+			   "Gene.interactions.interactingGenes.secondaryIdentifier",
+			   "Gene.interactions.interactingGenes.symbol",
+			   "Gene.interactions.type.name",
+			   "Gene.interactions.interactionType",
+			   "Gene.interactions.annotationType",
+			   "Gene.interactions.phenotype",
+			   "Gene.interactions.experiment.publication.pubMedId",
+			   "Gene.interactions.experiment.name",
+			   "Gene.interactions.id"],
+		    constraints: [
+		           { path: "Gene.secondaryIdentifier", op: "ONE OF", values: geneList1 },
+			   { path: "Gene.interactions.interactingGenes.secondaryIdentifier", op: "ONE OF", values: geneList2 }
+		    ]
 		},
+		{format: jsonMethod},
 		function (data) {
-			
+		    addNetwork(data);
+		    CSWnetwork = convertJSON();
+		    reDraw(defLayout, defStyle, CSWnetwork);
 		}
-	)
+	);
+	
 }
+
 function addNetwork(graph) {
 
 	/* This adds all "new" nodes and new edges by ID into a graph */
@@ -94,7 +162,7 @@ function addNetwork(graph) {
 	for ( i=0;i<root.interactions.length;i++) {
 		inx = root.interactions[i];
 		var igene = inx.interactingGenes.pop(); // theoretically could be more than one!
-		if (Nodes[inx.interactingGeneFeatureName] == undefined ) {
+		if (Nodes[igene.secondaryIdentifier] == undefined ) {
 			var trueName = ( igene.symbol == undefined ? igene.secondaryIdentifier: igene.symbol);
 			Nodes[igene.secondaryIdentifier] = {
 					id:					igene.secondaryIdentifier,	
@@ -106,7 +174,6 @@ function addNetwork(graph) {
 		}
 		var pair = [igene.secondaryIdentifier, root.secondaryIdentifier].sort();
 		var key = pair[0]+pair[1]+inx.experiment.name+inx.experiment.publication.pubMedId;
-		console.log(key)
 		if (Edges[key] == undefined) {
 			Edges[key] = {
 				id:					"-"+inx.objectId,
@@ -119,6 +186,7 @@ function addNetwork(graph) {
 			};
 		}
 	}
+        return root.secondaryIdentifier;
 	//console.log(Edges);
 }
 function reDraw(layout, style, graph){
@@ -143,9 +211,12 @@ function convertJSON() {
 					 { name: "systematicName", type: "string"},
 					 { name: "geneDescription", type: "string", defValue: ""},
 					 { name: "headline", type: "string", defValue: ""},					 
-					 { name: "GO_SLIM_FUNCTION", type: "list", defValue: []},
-					 { name: "GO_SLIM_PROCESS", type: "list", defValue: []},
-					 { name: "GO_SLIM_COMPONENT", type: "list", defValue: []}
+					 { name: "GO_SLIM_molecular_function", type: "list", defValue: []},
+					 { name: "GO_SLIM_biological_process", type: "list", defValue: []},
+					 { name: "GO_SLIM_cellular_component", type: "list", defValue: []},
+					 { name: "molecular_function", type: "list", defValue: []},
+					 { name: "biological_process", type: "list", defValue: []},
+					 { name: "cellular_component", type: "list", defValue: []}
 					],
 			edges: [ { name: "label", type: "string"},
 					 { name: "experimentType", type: "string"},
@@ -165,34 +236,6 @@ function convertJSON() {
 	};
 }	
 	
-function getGO(gene) {
-		/* Get GO data for an array of genes */
-		/* Sadly I cannot get a batch from Intermine without creating a list */
-//		for(gene in genes) {
-			IMBedding.loadQuery(
-				{
-					model: "genomic",
-					view: [
-						"Gene.secondaryIdentifier",
-						"Gene.symbol",
-						"Gene.goAnnotation.ontologyTerm.identifier",
-						"Gene.goAnnotation.ontologyTerm.name",
-						"Gene.goAnnotation.evidence.code.code",
-						"Gene.goAnnotation.ontologyTerm.namespace",
-						"Gene.goAnnotation.qualifier",
-						"Gene.goAnnotation.evidence.publications.pubMedId"
-						],
-					constraints: [
-						{ path: "Gene", op: "LOOKUP", value: gene},
-					]
-				},
-		    	{ format:      "jsonpobjects"},
-			  function ( data ) {
-	  			console.log(data);
-	  		}
-	  );
-//	}
-}
 
 function getGeneList() {
 	IMBedding.loadQuery(
@@ -204,7 +247,7 @@ function getGeneList() {
 					{ path: "Gene.featureType", op: "=", value: "ORF"},
 			]
 		},
-		{ format: "jsonpobjects"},
+		{ format: jsonMethod},
 		function( data ) {
 			var geneList = $.map(data.results, function( r, item ) {
 				return [ 
@@ -222,21 +265,113 @@ function getGeneList() {
 		    	source: geneList,
    			 	minLength: 2,
 		    	select: function(event,ui) {
-		    		getInts(ui.item.value)
+		    		getInts(ui.item.value, function( genes ) { doit(genes) })
 
     			}
-    		})
-  }
-);
+    	        })
+		}
+	);
 }
+
+function doit (genes) {
+/*    var xml = $.ajax({
+	url: '/INT/README',
+	error: function(status){alert(status)},
+	success: function() {alert("chain successful")}
+    }).responseText;
+*/
+
+
+    // NOTE: 'ONE OF' / values: query must be LAST in the constraints: array!!
+    var query ={
+	model: "genomic",
+	view: [
+	    "Gene.secondaryIdentifier",
+	    "Gene.goAnnotation.qualifier",
+	    "Gene.goAnnotation.ontologyTerm.parents.identifier",
+	    "Gene.goAnnotation.ontologyTerm.parents.name",
+	    "Gene.goAnnotation.ontologyTerm.parents.namespace",
+	    "Gene.goAnnotation.qualifier",
+	],
+	constraintLogic:"C and (A or B)",
+	constraints: [
+	    { path: "Gene.goAnnotation.qualifier", op: "IS NULL", code: "A"},
+	    { path: "Gene.goAnnotation.qualifier", op: "!=", value: "NOT", code: "B"},
+	    { path: "Gene.goAnnotation.ontologyTerm.parents", type:"GOSlimTerm"},
+	    { path: "Gene.secondaryIdentifier", op: "ONE OF", values: genes, code: "C"}
+	]
+    };
+    var qXml = IMBedding.makeQueryXML(query);
+    $.ajax({
+	       type: "POST",
+	       url: queryUrl,
+ 	       dataType: "json" ,
+	       data:   {
+		      query:  qXml,
+		      format: jsonMethod,
+		  },
+ 	       failure: function(jqXHR, status) {
+		   alert("getGO: "+status);
+	       },
+	       complete: function(jqXHR, status) {
+		   
+		   alert("getGO: something happened: "
+			 + status);
+	       },
+	       success:  function( data ) {
+		   //console.log(data.results);
+		   alert("got go: ");
+		   $.each(data.results, function(i,gene) {
+			      var annot = {};
+			      var slim = {
+				  GO_SLIM_molecular_function: {},
+				  GO_SLIM_biological_process: {},
+				  GO_SLIM_cellular_component: {},
+			      };
+			      
+			      $.each(gene.goAnnotation, function(i,ga){
+					 //console.log(ga);
+					 
+					 var par = _.reduce(ga.ontologyTerm.parents,
+							     function(a,p) {
+								 //console.log(p.namespace+" "+p.name);
+								 if(p.namespace != p.name) { a["GO_SLIM_"+p.namespace][p.name] = true}
+								 return a;
+							     },
+							     {
+								 GO_SLIM_molecular_function: {},
+								 GO_SLIM_biological_process: {},
+								 GO_SLIM_cellular_component: {},
+							     }
+							    );
+					 //console.log(par);
+					 _.each(par, function(terms,aspect) {
+						    //if(!_.isEmpty(terms)) { _.extend(slim[aspect],terms) }
+						    _.extend(slim[aspect],terms);
+						});
+					 
+ 				     });
+			     // console.log(slim);
+			      _.each(slim, function(val, key) {
+					 annot[key] = _.keys(val);
+				     });
+			      console.log(gene.secondaryIdentifier);
+			      console.log(annot);
+			      _.extend(Nodes[gene.secondaryIdentifier],annot); 
+			  }); 
+              }
+	   });
+}
+
 function getGeneListTemplate() {
-	IMBedding.loadTemplate(
+	$.getJSON(
+	    templateUrl,
 		{	
 			name:			"All_Orf_name",
 			constraint1:	"Gene.featureType",
 			op1:			"eq",
 			value1: 		"ORF",
-			format:			"jsonpobjects"
+			format:			jsonMethod
 		},
 		function( data ) {
 			var geneList = $.map(data.results, function( r, item ) {
