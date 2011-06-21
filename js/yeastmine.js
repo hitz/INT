@@ -13,34 +13,6 @@ var Nodes = {};
 var CSWnetwork = {};
 /* use hash to keep track of current network */
 
-function createList() {
-/*		data: {
-			name: "intList",
-			type: "Gene",
-			format: "jsonp",
-			content: ["PIG1","HOG1","ACT1"]
-		},
-		
-	$.ajax( {
-		url: "/INT/list_proxy.pl",
-		data: { type: "Gene", name: "intList", list: "PIG1 HOG1 ACT1 HOG1"},
-		dataType: 'xml',
-		success: function(msg) { console.log(msg) },
-		error:   function(error, statusCode) {console.log("Error:", error, statusCode); alert("Sorry - list creation failed\n" + error);},
-	})
-	*/
-	 
-	$.jsonp( {
-		url: "http://localhost/cgi-bin/list_proxy.pl",
-		data: { type: "Gene", name: "intList", list: "PIG1 HOG1 ACT1 HOG1"},
-		callbackParameter: 'callback',
-		success: function(msg) { console.log(msg) },
-		error:   function(error, statusCode) {console.log("Error:", error, statusCode); alert("Sorry - list creation failed\n" + error);},
-	})
-}
-/*		type: "POST",
-		headers: {"Authorization:": authStr},
-*/	
 function getGO(genes) {
 		/* Get GO data for an array of genes */
                 
@@ -265,7 +237,7 @@ function getGeneList() {
 		    	source: geneList,
    			 	minLength: 2,
 		    	select: function(event,ui) {
-		    		getInts(ui.item.value, function( genes ) { doit(genes) })
+		    		getInts(ui.item.value, function( genes ) { getGOSlim(genes) })
 
     			}
     	        })
@@ -273,14 +245,7 @@ function getGeneList() {
 	);
 }
 
-function doit (genes) {
-/*    var xml = $.ajax({
-	url: '/INT/README',
-	error: function(status){alert(status)},
-	success: function() {alert("chain successful")}
-    }).responseText;
-*/
-
+function getGOSlim (genes) {
 
     // NOTE: 'ONE OF' / values: query must be LAST in the constraints: array!!
     var query ={
@@ -363,37 +328,3 @@ function doit (genes) {
 	   });
 }
 
-function getGeneListTemplate() {
-	$.getJSON(
-	    templateUrl,
-		{	
-			name:			"All_Orf_name",
-			constraint1:	"Gene.featureType",
-			op1:			"eq",
-			value1: 		"ORF",
-			format:			jsonMethod
-		},
-		function( data ) {
-			var geneList = $.map(data.results, function( r, item ) {
-				return [ 
-					{
-						label: r.symbol,
-						value: r.symbol
-					},
-					{
-						label: r.secondaryIdentifier,
-						value: r.secondaryIdentifier
-					}
-					];
-			});
- 			$("#search").autocomplete({
-		    	source: geneList,
-   			 	minLength: 2,
-		    	select: function(event,ui) {
-		    		getInts(ui.item.value)
-
-    			}
-    		})
-   		}
-);
-}
