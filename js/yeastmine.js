@@ -10,6 +10,7 @@ var authStr = 'Y2lzY29oaXR6LmNvbTpoYWlyYmFsbA=='; // for user "ciscohitz@gmail.c
 var initialized = false; // set the first time a network is drawn
 var Edges = {};
 var Nodes = {};
+var rootId;
 var CSWnetwork = {};
 /* use hash to keep track of current network */
 
@@ -49,9 +50,7 @@ function getGO(genes) {
 				 cellular_component: [],
 			         }
 			       );
-//			     $.each(annot,function(val, key) { annot[key] = _.uniq(val)});
  			     _.extend(Nodes[gene.secondaryIdentifier],annot);
-//			     vis.updateData("nodes",[gene.secondaryIdentifier],annot);
 		             // No need to actually update the vis object yet
 			 
 		       }
@@ -60,24 +59,38 @@ function getGO(genes) {
 		 );
 }
 
-function getInts(gene, nextRequest) {
+function getInts(gene, filter, nextRequest) {
 		/* given some arguments (gene names, network type, edge type) fetch interactions from YeastMine via webservices */
-	IMBedding.loadTemplate(
-	    {  	 
+        var query = 	    {  	 
 	 	name:        "Interactions_network",
 	   	constraint1: "Gene",
 	    	op1:         "LOOKUP",
 	    	value1:      gene,
 	    	format:      jsonMethod
-	  },
+	  };
+        if (filter != undefined) {
+	    var f = {
+		constraint2: "Gene.interactions.interactionType",
+		op2: "=",
+		value2: filter
+	    };
+	    _.extend(query,f);
+	}
+
+        if (nextRequest instanceof Function == false) {
+	    nextRequest = function() {};	    
+	}
+	IMBedding.loadTemplate(
+	   query,
 	  function ( data ) {
-	  	var rootId = addNetwork(data);
+	  	rootId = addNetwork(data);
 	        var neighbors = _.select(_.keys(Nodes), function(k) { return k != rootId});
+	        //alert("got ints, getting go")
 	        nextRequest(_.keys(Nodes));
 //	        fillNetwork(neighbors, neighbors);
 //		    addNetwork(data);
-		    CSWnetwork = convertJSON();
-		    reDraw(defLayout, defStyle, CSWnetwork);
+//		    CSWnetwork = convertJSON();
+//		    reDraw(defLayout, defStyle, CSWnetwork);
 	  }
 	);
 }
@@ -162,12 +175,15 @@ function addNetwork(graph) {
 	//console.log(Edges);
 }
 function reDraw(layout, style, graph){
+                //alert("drawing");
 	/* move to somewhere more generic? */
+                vis.ready( function () { cytoscapeReady() });
+                //vis.visualStyle(style);
 		vis.draw({
-			layout: layout,
-    		visualStyle: style,
-			network: graph,
- 	        edgeTooltipsEnabled: true,
+			     layout: layout,
+			     network: graph,
+			     visualStyle:  style,
+ 			     edgeTooltipsEnabled: true,
 	        nodeTooltipsEnabled: true,              
 		});
 		
@@ -177,6 +193,8 @@ function reDraw(layout, style, graph){
 
 function convertJSON() {
 	/* convert YeastMine JSON into CytoscapeWeb NetworkModel */
+
+        //alert("converting network to CSW JSON");
 		
 	var schema = {
 			nodes: [ { name: "label", type: "string"},
@@ -198,7 +216,7 @@ function convertJSON() {
 					 { name: "publication", type: "string"}
 				   ]
 	};
-	/* does not include functional annotations */
+	
 	return {
 		dataSchema:	schema,
 		data: {
@@ -237,17 +255,35 @@ function getGeneList() {
 		    	source: geneList,
    			 	minLength: 2,
 		    	select: function(event,ui) {
-		    		getInts(ui.item.value, function( genes ) { getGOSlim(genes) })
-
-    			}
-    	        })
+			        $.when( createNetwork(ui.item.value,"physical interactions") )
+			          .done(function() {
+	        		/*	    $.when(getGOSlim(_.select(_.keys(Nodes), function(k) { return k != rootId})))
+					    .done(function(){
+						  }
+						 )
+					    .fail(function(){
+						  alert("Go fetch failed")
+						  });*/
+					})
+		    		  .fail(function() {
+					alert("Network creation failed")
+					});
+			}
+						      
+    	        
+		});
 		}
-	);
+);
+}
+
+function createNetwork(hub, type) {
+    return getInts(hub, type, function(genes) {getGOSlim(genes)});
 }
 
 function getGOSlim (genes) {
 
     // NOTE: 'ONE OF' / values: query must be LAST in the constraints: array!!
+    //console.log(genes);
     var query ={
 	model: "genomic",
 	view: [
@@ -278,14 +314,8 @@ function getGOSlim (genes) {
  	       failure: function(jqXHR, status) {
 		   alert("getGO: "+status);
 	       },
-	       complete: function(jqXHR, status) {
-		   
-		   alert("getGO: something happened: "
-			 + status);
-	       },
 	       success:  function( data ) {
-		   //console.log(data.results);
-		   alert("got go: ");
+
 		   $.each(data.results, function(i,gene) {
 			      var annot = {};
 			      var slim = {
@@ -299,7 +329,7 @@ function getGOSlim (genes) {
 					 
 					 var par = _.reduce(ga.ontologyTerm.parents,
 							     function(a,p) {
-								 //console.log(p.namespace+" "+p.name);
+
 								 if(p.namespace != p.name) { a["GO_SLIM_"+p.namespace][p.name] = true}
 								 return a;
 							     },
@@ -311,19 +341,22 @@ function getGOSlim (genes) {
 							    );
 					 //console.log(par);
 					 _.each(par, function(terms,aspect) {
-						    //if(!_.isEmpty(terms)) { _.extend(slim[aspect],terms) }
 						    _.extend(slim[aspect],terms);
 						});
 					 
  				     });
-			     // console.log(slim);
 			      _.each(slim, function(val, key) {
 					 annot[key] = _.keys(val);
 				     });
-			      console.log(gene.secondaryIdentifier);
-			      console.log(annot);
+
 			      _.extend(Nodes[gene.secondaryIdentifier],annot); 
+			      //vis.updateData("nodes",[gene.secondaryIdentifier],annot);
 			  }); 
+		   //alert("Got Go data");
+		   //console.log(Nodes);
+		   CSWnetwork = convertJSON();
+		   reDraw(defLayout, defStyle, CSWnetwork);
+
               }
 	   });
 }

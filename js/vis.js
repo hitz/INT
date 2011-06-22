@@ -6,12 +6,24 @@ var defStyle = {
 		backgroundColor:  	"#FFFFCC"
 	},
 	nodes: {
-		color:		 		"#555555",
+		color: {
+		    customMapper: {
+			functionName: "nodeColorGoMapper"	}
+	        },
 		size:				50,
-		shape:			 	"PARALLELOGRAM",
 		borderWidth:	 	3,	
 		borderColor:		"#AAAABB",
-		labelFontWeight: 	"bold"
+	        labelFontWeight: 	"bold",
+                shape:                  {
+		    customMapper: {
+			functionName: "nodeShapeGoMapper"
+		    }
+		},
+	        tooltipText: {
+		    customMapper: {
+			functionName: "customTooltip"
+	            }
+		}
 	},
 	edges: {
 		width: 3,
@@ -22,9 +34,13 @@ var defStyle = {
 								  { attrValue: "genetic interactions",  value: geneticIntsColor  }]
 			}
 						
+		},
+	        tooltipText: {
+		    passthroughMapper: {
+			attrName: "label"
+		    }
 		}
-		
-	}
+	    }
 };
 
 var defLayout = {
@@ -44,3 +60,11 @@ var defLayout = {
 				autoStabilize: true
 				*/
 };
+
+/*
+ * 	        shape: {
+		    customMapper: {
+			functionName: "nodeShapeGoMapper"	}
+		},
+
+ */

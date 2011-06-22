@@ -494,10 +494,9 @@ Hoping that jquery-json handles this
 <script type="text/javascript" src="/INT/js/min/cytoscapeweb.min.js"></script>
 <script type="text/javascript" src="/INT/js/yeastmine.js"></script>
 <script type="text/javascript" src="/INT/js/vis.js"></script>
+<script type="text/javascript" src="/INT/js/ui.js"></script>
 <script type="text/javascript">
 /* globals */
-var outerLayout, westLayout;
-// id of Cytoscape Web container div
 var div_id = "cytoscapeweb";
 // initialization options
 var options = {
@@ -509,62 +508,15 @@ var options = {
 
 var vis = new org.cytoscapeweb.Visualization(div_id, options);
 
-// function to set up filters
-var filters = new Array();
-var nodeColors = new Array();
 
-function resetFilters() {
- 	$('.edgeFilter').each(function() {
-     	   
-	   filters[$(this).attr('id')] = true;
-      	   $(this).attr('checked', true);
-        });
-
- 	$('.typeFilter').each(function() {
-     	   
-	   filters[$(this).attr('id')] = true;
-      	   $(this).attr('checked', true);
-        });    
-
-	$('.property input').each(function() {
-	   $(this).val(nodeColors[$(this).attr('id')]);
-	});
-   
-}
-
-function edge_toggle(type) {
- 
-	filters[type] = !filters[type]; // invert state
-	var show = filters[type];
-
-	vis.filter("edges", function(n) {
-		var label = n.data.experimentType;
-		var spaceRegex = / /g;
-		if (label.replace(spaceRegex,"") == type) {
-			return show;
-		} else {
-			return n.visible;
-		}
-	});
-
-}
-
+// ON LOAD
 $(function() {
 
-	getGeneList();
-	// template might be is slightly faster
-	//createList(); //can't get this to work
+     getGeneList(); 
+     // template might be is slightly faster
+     // sets up gene list autocomplete
 
-    // network data could alternatively be grabbed via ajax
-    var xml = $.ajax({ 
-	url: '/INT/tmp/interactions.2305.xgmml',
-	async: false,
-    }).responseText;
-
-
-    // init and draw
- 
-
+    // set up edge coloring checkboxes (unimplemented!!)
     $(".edgeFilter").change(function() {
 
     	edge_toggle($(this).attr('id'));
@@ -585,7 +537,7 @@ $(function() {
 
     $("#physicalinteractions").change(function(){
 
-      var type;
+       var type;
        var state = $(this).attr('checked');
        $('.physical').each(function(n) {
             if($(this).attr('checked') != state) {
@@ -593,159 +545,18 @@ $(function() {
 		 $(this).attr('checked', state);
 	   }
        });
-    });
+     });
  
+     $(document).find(".property input").each(function(){
+       var input = $(this);
+       var property = "colour";
 
-    function showGo(goInfo, aspect) {
-
-    	     var goRows = "";
-
-	     for (var i=0; i < goInfo.length; i++) {
-                 var term = goInfo[i];
-	     	 if (term != aspect) {  // skip unknowns
-		    goRows += "<tr><th></th><td>" + term + "</td></tr>";
-		 }
-             }
-
-	     if (goRows == "") {
-	     	goRows += '<tr><th></th><td><span class="i">Unknown</span></td></tr>';
-    	     }
-
-	     return goRows;
-    }
-
-    function displayGeneProps(info) {
-
-    	var commonHead = "<table class='summary_mini'><tbody>";
-	    var hasGeneName = false;
-        if (info.label != info.systematicName) {
-			commonHead += "<tr><th>Standard Name</th><td>" + info.label + "</td></tr>";
-			hasGeneName = true;
-		} else {
-			commonHead += "<tr><th>Systematic Name</th><td>" + info.systematicName + "</td></tr>";
-		}
-		basic = commonHead;
-		if (hasGeneName) {
-			basic += "<tr><th>Systematic Name</th><td>" + info.systematicName + "</td></tr>";
-		}
-		basic += "<tr><th>Name Description</th><td>" + info.geneDescription + "</td></tr>";
-
-	     /*var pathways = ""
-	     for (var i=0; i<info.PATHWAY.length; i++) { if(info.PATHWAY[i]) { pathways += "<tr><th></<th><td>" + info.PATHWAY[i] + "</td></tr>";} }
-
-	     if (pathways != "") {
-	          basic += "<tr><th class='b'>Pathways</th><td></td></tr>";
-		  basic += pathways;
-             
-             }
-             */
-	     basic += "</tbody></table>";
-	     
-	     $("#info_basic").html(basic);
-
-	     getGO([info.systematicName]);
-
-	     var go =  commonHead;
-		 go += "<tr><th>"
-	     go += "<tr><th>Molecular Function</th><td></td></tr>" + showGo(Nodes[info.systematicName].molecular_function, 'molecular_function');
-	     go += "<tr><th>Biological Process</th><td></td></tr>" + showGo(Nodes[info.systematicName].biological_process, 'biological_process');
-	     go += "<tr><th>Cellular Component</th><td></td></tr>" + showGo(Nodes[info.systematicName].cellular_component, 'cellular_component');
-	     go += "</tbody></table>";
-
-
-	     $("#info_go").html(go);
-
-	     var pheno =  commonHead;
-           
-	     pheno += "<tr><th class='b'>Phenotypes</th><td></td></tr>"
-	     for (var i=0; i<info.PHENOTYPE.length; i++) { pheno += "<tr><th></th><td>" + info.PHENOTYPE[i] +"</td></tr>";}
-	     	 
-	     pheno += "</tbody></table>";
-
-	     $("#info_pheno").html(pheno);
- 
-    }
-
-   	     
-        // utility for pickers
-        function position_at_input(picker, input){
-            $(picker).css({
-                position: "absolute",
-                left: $(input).offset().left,
-                top: $(input).offset().top + $(input).outerHeight()
-            });
-            
-            if( $(picker).offset().top + $(picker).outerHeight() > $(window).height() ){
-                $(picker).css({
-                    top: $(input).offset().top - $(picker).outerHeight()
-                });
-            }       
+       function set_colour(){
+           $(input).css({
+              backgroundColor: $(input).val()
+                 });
+		
         }
-
-        function hide_with_input(picker, input, fn){
-        	if ($(picker).find(".header").is(":visible")) {
-        		// IE set focus to picker, forcing a blur on input, so blur cannot be used here.
-        		// Let's just create a close button instead:
-        		$("#colour_picker .ui-icon-close").bind("click", function(evt){
-        			fn();
-        			evt.preventDefault();
-        		});
-        	} else {
-        		// Regular GOOD browsers!
-	        	$(input).bind("blur", function(){
-	            	fn();
-	            });
-        	}
-            
-            $(parent).parent().bind("scroll", function(){
-                fn();
-            });
-            
-            $(window).bind("resize", function(){
-                fn();
-            });
-
-	}
-
-        // add colour pickers
-        var picker; // parent div to farbtastic
-        var picker_internals; // farbtastic instance
-        
-        function remove_picker(){
-            if( picker != undefined ){
-                $(picker).remove();
-                picker = undefined;
-                picker_internals = undefined;
-            }
-        }
-
-       function valid_value(value, type){
-            switch( type ) {
-                case "colour":
-                    return value.match(/^(\#)([0-9]|[a-f]|[A-F]){6}/);
-                case "number":
-                    return value.match(/^(-){0,1}([0-9])+((\.)([0-9])+){0,1}/);
-                case "per cent number":
-                    return value.match(/^((1)|(0)((\.)([0-9])+){0,1})/);
-                case "integer":
-                    return value.match(/^([0-9])+/);
-                case "string":
-                    return true;
-                case "non-empty string":
-                    return value != null && value != "";
-                case "node shape":
-                    return value.match(/^(ellipse)|(diamond)|(rectangle)|(triangle)|(hexagon)|(roundrect)|(parallelogram)|(octagon)|(vee)|(v)/i);
-                case "edge shape":
-                    return value.match(/^(circle)|(diamond)|(delta)|(arrow)|(T)|(none)/i);
-            }
-            
-            return false;
-        }
-        
-        $(document).find(".property input").each(function(){
-            var input = $(this);
-            var property = "colour";
-
 	    nodeColors[$(input).attr('id')] = $(input).val(); // save old value
 
             $(input).addClass("colour_sample_bg");
@@ -759,37 +570,6 @@ $(function() {
                 }
             });
             
-	    function set_property(viz_objects, filter, value, property) {
-
-	             // note: viz_objects = "nodes" and property = "color" ignored for now
-		     var style = vis.visualStyle();		     
-
-	    	     vis["customNodeColor"] = function(data) {
-
-		        if (filter == "ALL_nodes") {
-			   // could also be a visualBypass
-			   return value;
-			}
-			for (var i=0;i<data.GO_SLIM_PROCESS.length; i++) {
-			        if (data.GO_SLIM_PROCESS[i] == filter) {
-				   return value;
-				}
-		        }
-			// else
-                        return vis.node(data.id).color;  
-                        //return "#CCCCCC";   // neutral I guess
-			
-                     }
-		     style.nodes.color = { customMapper: { functionName: "customNodeColor" } };
-		     vis.visualStyle(style);
-            }
-
-            function set_colour(){
-                $(input).css({
-                    backgroundColor: $(input).val()
-                });
-		
-            }
             set_colour();
             
             // update colour on picker after typing
@@ -842,129 +622,21 @@ $(function() {
     	reDraw(defLayout, defStyle, convertJSON());
 	}); 
 			     
-	/* Layout stuff
+    $( "#sidebar" ).accordion(
+         {
+	    collapsible: true,
+	    fillSpace:   true,
+     });
 
-	 */
-	$( "#sidebar" ).accordion(
-		{
-			collapsible: true,
-			fillSpace:   true,
-			}
-	);
     $( "#gene_info_tabs" ).tabs();
   
-
-    // Control Panel (jquery-ui)
-    //$("#accordion").accordion({ header: "h3" });
-	vis.ready( function () {
+    //vis.ready( function () { cytoscapeReady() });
 
 
-			vis.addContextMenuItem("Delete node", "nodes", function(evt) {
-				vis.removeNode(evt.target, true);
-			});
-			vis.addListener("click", "nodes", function(evt) {
-				displayGeneProps(evt.target.data);
-			        // needs to change to wait for getGo
-				// to finish before.  Move div update
-				// into ajax callback.
-			});
-			vis.addListener("dblclick", "nodes", function (evt) {
-
-				getInts(evt.target.data.id,function(genes) { getGO(genes) });
-
-			});
-			vis.addContextMenuItem("Select first neighbors", "nodes", function (evt) {
-				// Get the right-clicked node:
-				var rootNode = evt.target;
-
-				// Get the first neighbors of that node:
-				var fNeighbors = vis.firstNeighbors([rootNode]);
-				var neighborNodes = fNeighbors.neighbors;
-
-				// Select the root node and its neighbors:
-				vis.select([rootNode]).select(neighborNodes);
-			}
-			);
-			vis.addContextMenuItem("Radial layout", "none", function () {
-				reDraw({
-						name: "Radial",
-						options: {
-							angleWidth: 360,
-							radius: "auto"
-							}
-						},
-						defStyle,
-						CSWnetwork);
-					}
-			);
-			vis.addContextMenuItem("Tree layout", "none", function () {
-				reDraw({
-						name: "Tree",
-						options: {
-							orientation: "leftToRight",
-							depthSpace: 900,
-							breadthSpace: 30,
-							angleWidth: 30,
-							}
-						},
-						defStyle,
-						CSWnetwork);
-					}
-			);
-			vis.addContextMenuItem("Force-directed layout", "none", function () {
-				vis.draw({
-						name: "ForceDirected",
-						options: {
-							mass: 300,
-							gravitation: -500,
-							tension: 0.1,
-							restLength: "auto",
-							drag: 0.4,
-							iterations: 400 ,
-							maxTime: 20000 ,
-							minDistance: 1,
-							maxDistance: 10000,
-							autoStabilize: true
-						}
-					},
-					defStyle,
-					CSWnetwork);
-				}
-			);
-			vis["customTooltip"] = function (data) {
-				var slimData = "SLIM FUNCTION: " + data.GO_SLIM_molecular_function.toString();
-
-				slimData += "\nSLIM PROCESS: " + data.GO_SLIM_biological_process.toString();
-
-				slimData += "\nSLIM COMPONENT: " + data.GO_SLIM_cellular_component.toString();
-
-				return slimData;
-			};
-			// 2. Now create a new visual style (or get the current one) and register
-			//    the custom mapper to one or more visual properties:
-			var style = vis.visualStyle();
-			style.nodes.tooltipText = {
-				customMapper: {
-					functionName: "customTooltip"
-				}
-			};
-			style.edges.tooltipText = {
-				passthroughMapper: {
-					attrName: "label"
-				}
-			};
-
-			vis.visualStyle(style);
-
-		});
-		/*    vis.draw({ network: xml ,
-		 edgeTooltipsEnabled: true,
-		 nodeTooltipsEnabled: true,
-		 });
-		 */
     $(window).load(function() { resetFilters(); });
 
 });
+
 </script>
  <!-- put page specific javascript files here -->
 
