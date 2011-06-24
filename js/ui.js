@@ -202,7 +202,7 @@ function displayGeneProps(info) {
 
      var pheno =  commonHead;
 
-     pheno += "<tr><th class='b'>Phenotypes</th><td></td></tr>"
+     pheno += "<tr><th class='b'>Phenotypes</th><td></td></tr>";
      for (var i=0; i<info.PHENOTYPE.length; i++) { pheno += "<tr><th></th><td>" + info.PHENOTYPE[i] +"</td></tr>";}
 
      pheno += "</tbody></table>";
@@ -246,8 +246,9 @@ function cytoscapeReady() {
 		    });
 
     vis.addListener("dblclick", "nodes", function (evt) {
-			getInts(evt.target.data.id, "physical interactions", function( genes ) { getGOSlim(genes) })		  
-
+			//getInts(evt.target.data.id, "physical interactions", false, function( genes ) { getGOSlim(genes) })	
+			var type = "physical interactions";
+			getInts(evt.target.data.id, type, false, function(genes,genes, type, goFunc){ fillNetwork(genes,genes,type,goFunc)});
 		    });
 
     vis.addContextMenuItem("Select first neighbors", "nodes", function (evt) {
@@ -272,7 +273,7 @@ function cytoscapeReady() {
 					  }
 				      },
 				      defStyle,
-				      CSWnetwork);
+				      convertJSON());
 			   }
 			  );
 
@@ -287,27 +288,27 @@ function cytoscapeReady() {
 					  }
 				      },
 				      defStyle,
-				      CSWnetwork);
+				      convertJSON());
 			   }
 			  );
     vis.addContextMenuItem("Force-directed layout", "none", function () {
-			       vis.draw({
-					    name: "ForceDirected" /*,
+			       reDraw({
+					    name: "ForceDirected",
 					    options: {
 						mass: 300,
 						gravitation: -500,
 						tension: 0.1,
 						restLength: "auto",
 						drag: 0.4,
-						iterations: 400 ,
-						maxTime: 20000 ,
-						minDistance: 1,
-						maxDistance: 10000,
+						//iterations: 400 ,
+						//maxTime: 20000 ,
+						//minDistance: 1,
+						//maxDistance: 10000,
 						autoStabilize: true
-					    }*/
+					    }
 					},
 					defStyle,
-					CSWnetwork);
+					convertJSON());
 			   }
 			  );
 
@@ -372,8 +373,10 @@ function cytoscapeReady() {
     };
 			         
    vis["customTooltip"] = function (data) {
-	if (!(_.isArray(data.GO_SLIM_molecular_function)) || data.GO_SLIM_molecular_function.length == 0) {
-            return "No slim data";
+	if ( (!(_.isArray(data.GO_SLIM_molecular_function)) || data.GO_SLIM_molecular_function.length == 0) &&
+	     (!(_.isArray(data.GO_SLIM_biological_process)) || data.GO_SLIM_biological_process.length == 0) &&
+	     (!(_.isArray(data.GO_SLIM_cellular_component)) || data.GO_SLIM_cellular_component.length == 0) )
+            { return "No slim data";
 	}
 
 	var slimData = "SLIM FUNCTION: " + data.GO_SLIM_molecular_function.toString();	

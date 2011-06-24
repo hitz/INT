@@ -1,8 +1,8 @@
 IMBedding = (function() {
     // Add in a console in case there is no global one.
-    if (typeof(console) == undefined) {
-        console = {log: function() {}};
-    }
+    //if (typeof(console) === undefined) {
+    //    console = {log: function() {}};
+    //}
     var baseUrl = null;
     var tables = {};
     var defaultTableSize = 10;
@@ -62,21 +62,30 @@ IMBedding = (function() {
 
     var mungeHeader = function(header) {
         var parts = header.split(" > ");
-        if (parts.length == 1) {
-            return decamelise(parts[0]);
-        } else {
-            var retParts;
-            if (uglyAttributes.test(parts[parts.length - 1])) {
-                retParts = parts.slice(parts.length - 2, parts.length - 1);
+        var partsLen = parts.length;
+        var retParts = [];
+        if (partsLen == 1) {
+            return retParts = parts;
+        } else if (partsLen == 2) {
+            var lastPart = parts.pop();
+            if (uglyAttributes.test(lastPart)) {
+                retParts.push(parts[0]);
             } else {
-                retParts = parts.slice(parts.length - 2, parts.length);
+                retParts.push(lastPart);
             }
-            for (var i in retParts) {
-                retParts[i] = decamelise(retParts[i]);
+        } else {
+            if (uglyAttributes.test(parts[partsLen - 1])) {
+                retParts = parts.slice(partsLen - 2, partsLen - 1);
+            } else {
+                retParts = parts.slice(partsLen - 2, partsLen);
             }
-            var ret = retParts.join(" ");
-            return ret;
         }
+
+        for (var i in retParts) {
+            retParts[i] = decamelise(retParts[i]);
+        }
+        var ret = retParts.join(" ");
+        return ret;
     };
 
     var cellCreater = function(cell, localiser) {
@@ -101,7 +110,9 @@ IMBedding = (function() {
         createCellContent: cellCreater,
         defaultQueryName: "Query Results",
         emptyCellText: "[NONE]",
-        errorHandler: function(error, statusCode) {console.log("Error:", error, statusCode); alert("Sorry - this table could not be loaded:\n" + error);},
+        errorHandler: function(error, statusCode) {
+	    //console.log("Error:", error, statusCode); 
+	    alert("Sorry - this table could not be loaded:\n" + error);},
         expandHelpText: "show table",
         exportCSVText: "Export as CSV file",
         exportTSVText: "Export as TSV file",
@@ -608,8 +619,9 @@ IMBedding = (function() {
                         errorHandler(data.error, data.statusCode);
                     }
                 } else {
-                    errorHandler = options.errorHandler || defaultOptions.errorHandler;
-                    errorHandler("Incorrect data format returned from server", 500);
+                  buildTable(data, target, options);
+                  //  errorHandler = options.errorHandler || defaultOptions.errorHandler;
+                  //  errorHandler("Incorrect data format returned from server", 500);
                 }
             }
         }
@@ -636,6 +648,10 @@ IMBedding = (function() {
             data.size = defaultTableSize;
         }
         if (!target instanceof Function) {
+            if (!jQuery(target).length) {
+                //console.log("Aborting query - target '" + target + "'not found in DOM");
+                return;
+            }
             var throbber = document.createElement("img");
             throbber.src = defaultOptions.throbberSrc;
             jQuery(target).empty().append(throbber);
@@ -658,27 +674,35 @@ IMBedding = (function() {
         }
     };
 
-    var getConstraints = function(constraints) {
-        var constraintsString = "";
-        for (var i = 0; i < constraints.length; i++) {
-            var whereClause = constraints[i];
-            var whereString = "<constraint ";
-            for (attr in whereClause) {
-                if (attr != "values") {
-                    whereString += attr + '="' + escapeOperator(whereClause[attr]) + '" ';
-                }
-            }
-            if (whereClause.values) {
-                whereString += ">";
-                var values = whereClause.values;
-                for (var i in values) {
-                    whereString += "<value>" + values[i] + "</value>";
-                }
-                whereString += "</constraint>";
+    var makeConstraint = function(whereClause) {
+        var i = 0, len = 0, whereString = "<constraint ", attr = null, values = null;
+        //console.log(whereClause);
+        for (attr in whereClause) {
+            if (attr === "values") {
+                values = whereClause[attr];
             } else {
-                whereString += "/>";
+                whereString += attr + '="' + escapeOperator(whereClause[attr]) + '" ';
             }
-            constraintsString += whereString;
+        }
+        if (values) {
+            whereString += ">";
+            len = values.length;
+            for (i = 0;i < len;i++) {
+                whereString += "<value>" + values[i] + "</value>";
+            }
+            whereString += "</constraint>";
+        } else {
+            whereString += "/>";
+        }
+        return whereString;
+    }
+
+
+    var getConstraints = function(constraints) {
+        var constraintsString = "", cl = constraints.length, i = 0;
+        //console.log(constraints);
+        for (i = 0; i < cl; i++) {
+            constraintsString += makeConstraint(constraints[i]);
         }
         return constraintsString;
     };

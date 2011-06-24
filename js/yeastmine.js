@@ -59,7 +59,7 @@ function getGO(genes) {
 		 );
 }
 
-function getInts(gene, filter, nextRequest) {
+function getInts(gene, filter, create, nextRequest) {
 		/* given some arguments (gene names, network type, edge type) fetch interactions from YeastMine via webservices */
         var query = 	    {  	 
 	 	name:        "Interactions_network",
@@ -83,22 +83,21 @@ function getInts(gene, filter, nextRequest) {
 	IMBedding.loadTemplate(
 	   query,
 	  function ( data ) {
-	  	rootId = addNetwork(data);
+	  	rootId = addNetwork(create, data.results.pop());
 	        var neighbors = _.select(_.keys(Nodes), function(k) { return k != rootId});
 	        //alert("got ints, getting go")
-	        nextRequest(_.keys(Nodes));
-//	        fillNetwork(neighbors, neighbors);
-//		    addNetwork(data);
-//		    CSWnetwork = convertJSON();
-//		    reDraw(defLayout, defStyle, CSWnetwork);
+	        //console.log(neighbors);
+	        nextRequest(neighbors, neighbors,filter, function(genes) { getGOSlim(genes) });
+
 	  }
 	);
 }
 
-function fillNetwork(geneList1, geneList2) {
-	IMBedding.loadQuery(
-		{
-		    model: genomic,
+function fillNetwork(geneList1, geneList2, filter, nextRequest) {
+
+        //alert("Creating Query");
+        var query = {
+		    model: "genomic",
 		    view: [
 			   "Gene.secondaryIdentifier",
 			   "Gene.symbol",
@@ -109,29 +108,62 @@ function fillNetwork(geneList1, geneList2) {
 			   "Gene.interactions.interactionType",
 			   "Gene.interactions.annotationType",
 			   "Gene.interactions.phenotype",
-			   "Gene.interactions.experiment.publication.pubMedId",
 			   "Gene.interactions.experiment.name",
+			   "Gene.interactions.experiment.publication.pubMedId",
 			   "Gene.interactions.id"],
 		    constraints: [
 		           { path: "Gene.secondaryIdentifier", op: "ONE OF", values: geneList1 },
 			   { path: "Gene.interactions.interactingGenes.secondaryIdentifier", op: "ONE OF", values: geneList2 }
 		    ]
-		},
-		{format: jsonMethod},
-		function (data) {
-		    addNetwork(data);
-		    CSWnetwork = convertJSON();
-		    reDraw(defLayout, defStyle, CSWnetwork);
+		};
+
+         if (filter) {
+	     query.constraints.push(
+		           { path: "Gene.interactions.interactionType", op: "=", value: filter }
+	     );
+	 }
+
+         //alert("Filling Network");
+         var qXml = IMBedding.makeQueryXML(query);
+         //alert(qXml);
+
+         $.ajax({
+	       type: "POST",
+	       url: queryUrl,
+ 	       dataType: "json" ,
+	       data:   {
+		      query:  qXml,
+		      format: jsonMethod,
+		  },
+ 	       failure: function(jqXHR, status) {
+		   alert("fill Network: "+status);
+	       },
+	       success:  function( data ) {
+		   //alert("fill Network: Success!");
+		   
+		   _.each(data.results, function(root) {
+		       
+		       var rootID = addNetwork(false, root);
+
+			      });
+
+		   nextRequest(_.keys(Nodes));
 		}
-	);
+	});
 	
 }
 
-function addNetwork(graph) {
+function addNetwork(create, root) {
 
 	/* This adds all "new" nodes and new edges by ID into a graph */
 
-	var root = graph.results.pop(); // first item in array.
+	//var root = graph.results.pop(); // first item in array.
+
+        if(create == true) {
+	    // new network
+	    Nodes = {};
+	    Edges = {};
+	}
 	
 	if(Nodes[root.secondaryIdentifier] == undefined) {
 		Nodes[root.secondaryIdentifier] = {
@@ -139,10 +171,9 @@ function addNetwork(graph) {
 			systematicName:		root.secondaryIdentifier,
 			label:				root.symbol,
 			id:					root.secondaryIdentifier,
-			headline:			root.headline,
+			headline:			root.headline
 		};
 	}
-	var e = {};
 	
 	for ( i=0;i<root.interactions.length;i++) {
 		inx = root.interactions[i];
@@ -278,7 +309,7 @@ function getGeneList() {
 }
 
 function createNetwork(hub, type) {
-    return getInts(hub, type, function(genes) {getGOSlim(genes)});
+    return getInts(hub, type, true, function(genes,genes, type,goFunc){ fillNetwork(genes,genes,type,goFunc)});
 }
 
 function getGOSlim (genes) {
