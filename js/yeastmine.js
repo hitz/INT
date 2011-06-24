@@ -175,19 +175,17 @@ function addNetwork(graph) {
 	//console.log(Edges);
 }
 function reDraw(layout, style, graph){
-                //alert("drawing");
-	/* move to somewhere more generic? */
+
                 vis.ready( function () { cytoscapeReady() });
-                //vis.visualStyle(style);
 		vis.draw({
 			     layout: layout,
 			     network: graph,
 			     visualStyle:  style,
  			     edgeTooltipsEnabled: true,
-	        nodeTooltipsEnabled: true,              
+			     nodeTooltipsEnabled: true,              
 		});
 		
-		resetFilters();
+		//resetFilters();
 
 }
 
@@ -257,6 +255,9 @@ function getGeneList() {
 		    	select: function(event,ui) {
 			        $.when( createNetwork(ui.item.value,"physical interactions") )
 			          .done(function() {
+					    //CSWnetwork = convertJSON();
+					    //reDraw(defLayout, defStyle, CSWnetwork);
+
 	        		/*	    $.when(getGOSlim(_.select(_.keys(Nodes), function(k) { return k != rootId})))
 					    .done(function(){
 						  }
@@ -355,9 +356,16 @@ function getGOSlim (genes) {
 		   //alert("Got Go data");
 		   //console.log(Nodes);
 		   CSWnetwork = convertJSON();
+		   // draw process colors as set
+		   $(document).find(".property input").each(function(){
+			var input = $(this);
+			set_property( "nodes", $(input).attr("name"), ""+$(input).val(),"fillColor");
+			}					
+		   );
 		   reDraw(defLayout, defStyle, CSWnetwork);
 
               }
+		  
 	   });
 }
 

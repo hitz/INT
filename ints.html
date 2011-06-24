@@ -630,8 +630,10 @@ $(function() {
 
     $( "#gene_info_tabs" ).tabs();
   
-    //vis.ready( function () { cytoscapeReady() });
-
+    // note: You have to call this once on load even with no data or it acts funny.
+    // Could add some kind of "fakenetwork" help button thing.
+    vis.ready( function () { cytoscapeReady() });
+    vis.draw();
 
     $(window).load(function() { resetFilters(); });
 

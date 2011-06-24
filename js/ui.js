@@ -2,6 +2,7 @@
 var filters = new Array();
 var nodeColors = new Array();
 
+
 function resetFilters() {
  	$('.edgeFilter').each(function() {
      	   
@@ -38,78 +39,8 @@ function edge_toggle(type) {
 
 }
 
-function showGo(goInfo, aspect) {
 
-     var goRows = "";
-
-     for (var i=0; i < goInfo.length; i++) {
-	 var term = goInfo[i];
-	 if (term != aspect) {  // skip unknowns
-	    goRows += "<tr><th></th><td>" + term + "</td></tr>";
-	 }
-     }
-
-     if (goRows == "") {
-	goRows += '<tr><th></th><td><span class="i">Unknown</span></td></tr>';
-     }
-
-     return goRows;
-}
-
-function displayGeneProps(info) {
-
-    var commonHead = "<table class='summary_mini'><tbody>";
-    var hasGeneName = false;
-    if (info.label != info.systematicName) {
-	commonHead += "<tr><th>Standard Name</th><td>" + info.label + "</td></tr>";
-	hasGeneName = true;
-    } else {
-	commonHead += "<tr><th>Systematic Name</th><td>" + info.systematicName + "</td></tr>";
-    }
-    var basic = commonHead;
-    if (hasGeneName) {
-	basic += "<tr><th>Systematic Name</th><td>" + info.systematicName + "</td></tr>";
-    }
-    basic += "<tr><th>Name Description</th><td>" + info.geneDescription + "</td></tr>";
-
-    /*var pathways = ""
-     for (var i=0; i<info.PATHWAY.length; i++) { if(info.PATHWAY[i]) { pathways += "<tr><th></<th><td>" + info.PATHWAY[i] + "</td></tr>";} }
-
-     if (pathways != "") {
-	  basic += "<tr><th class='b'>Pathways</th><td></td></tr>";
-	  basic += pathways;
-
-     }
-     */
-     basic += "</tbody></table>";
-
-     $("#info_basic").html(basic);
-
-     getGO([info.systematicName]); // NON FUNCTIONAL BECAUSE QUERY IS ASYNCHRONOUS!!!
-
-     var go =  commonHead;
-	 go += "<tr><th>"
-     go += "<tr><th>Molecular Function</th><td></td></tr>" + showGo(Nodes[info.systematicName].molecular_function, 'molecular_function');
-     go += "<tr><th>Biological Process</th><td></td></tr>" + showGo(Nodes[info.systematicName].biological_process, 'biological_process');
-     go += "<tr><th>Cellular Component</th><td></td></tr>" + showGo(Nodes[info.systematicName].cellular_component, 'cellular_component');
-     go += "</tbody></table>";
-
-
-     $("#info_go").html(go);
-
-     var pheno =  commonHead;
-
-     pheno += "<tr><th class='b'>Phenotypes</th><td></td></tr>"
-     for (var i=0; i<info.PHENOTYPE.length; i++) { pheno += "<tr><th></th><td>" + info.PHENOTYPE[i] +"</td></tr>";}
-
-     pheno += "</tbody></table>";
-
-     $("#info_pheno").html(pheno);
-
-}
-
-
-// utility for pickers
+// utilities for farbtastic and color pickers
 function position_at_input(picker, input){
     $(picker).css({
 	position: "absolute",
@@ -186,10 +117,10 @@ function valid_value(value, type){
 
 function set_property(viz_objects, filter, value, property) {
 
-    return;
     // note: viz_objects = "nodes" and property = "color" ignored for now
+    // filter is BP slim term selected, value is color
     var style = vis.visualStyle();		         
-    vis["nodeColorMapper"] = function(data) {
+    vis["nodeColorGoMapper"] = function(data) {
 
 	if (filter == "ALL_nodes") {
 	    // could also be a visualBypass
@@ -204,9 +135,80 @@ function set_property(viz_objects, filter, value, property) {
         return vis.node(data.id).color;  
         //return "#CCCCCC";   // neutral I guess
 	
-    }
+    };
     style.nodes.color = { customMapper: { functionName: "nodeColorMapper" } };
     vis.visualStyle(style);
+}
+
+// Info DIV
+function showGo(goInfo, aspect) {
+
+     var goRows = "";
+
+     for (var i=0; i < goInfo.length; i++) {
+	 var term = goInfo[i];
+	 if (term != aspect) {  // skip unknowns
+	    goRows += "<tr><th></th><td>" + term + "</td></tr>";
+	 }
+     }
+
+     if (goRows == "") {
+	goRows += '<tr><th></th><td><span class="i">Unknown</span></td></tr>';
+     }
+
+     return goRows;
+}
+
+function displayGeneProps(info) {
+
+    var commonHead = "<table class='summary_mini'><tbody>";
+    var hasGeneName = false;
+    if (info.label != info.systematicName) {
+	commonHead += "<tr><th>Standard Name</th><td>" + info.label + "</td></tr>";
+	hasGeneName = true;
+    } else {
+	commonHead += "<tr><th>Systematic Name</th><td>" + info.systematicName + "</td></tr>";
+    }
+    var basic = commonHead;
+    if (hasGeneName) {
+	basic += "<tr><th>Systematic Name</th><td>" + info.systematicName + "</td></tr>";
+    }
+    basic += "<tr><th>Name Description</th><td>" + info.geneDescription + "</td></tr>";
+
+    /*var pathways = ""
+     for (var i=0; i<info.PATHWAY.length; i++) { if(info.PATHWAY[i]) { pathways += "<tr><th></<th><td>" + info.PATHWAY[i] + "</td></tr>";} }
+
+     if (pathways != "") {
+	  basic += "<tr><th class='b'>Pathways</th><td></td></tr>";
+	  basic += pathways;
+
+     }
+     */
+     basic += "</tbody></table>";
+
+     $("#info_basic").html(basic);
+
+     getGO([info.systematicName]); // NON FUNCTIONAL BECAUSE QUERY IS ASYNCHRONOUS!!!
+
+     var go =  commonHead;
+	 go += "<tr><th>"
+     go += "<tr><th>Molecular Function</th><td></td></tr>" + showGo(Nodes[info.systematicName].molecular_function, 'molecular_function');
+     go += "<tr><th>Biological Process</th><td></td></tr>" + showGo(Nodes[info.systematicName].biological_process, 'biological_process');
+     go += "<tr><th>Cellular Component</th><td></td></tr>" + showGo(Nodes[info.systematicName].cellular_component, 'cellular_component');
+     go += "</tbody></table>";
+
+
+     $("#info_go").html(go);
+
+     var pheno =  commonHead;
+
+     pheno += "<tr><th class='b'>Phenotypes</th><td></td></tr>"
+     for (var i=0; i<info.PHENOTYPE.length; i++) { pheno += "<tr><th></th><td>" + info.PHENOTYPE[i] +"</td></tr>";}
+
+     pheno += "</tbody></table>";
+
+     $("#info_pheno").html(pheno);
+
 }
 
 
@@ -271,7 +273,7 @@ function cytoscapeReady() {
 			  );
     vis.addContextMenuItem("Force-directed layout", "none", function () {
 			       vis.draw({
-					    name: "ForceDirected",
+					    name: "ForceDirected" /*,
 					    options: {
 						mass: 300,
 						gravitation: -500,
@@ -283,65 +285,71 @@ function cytoscapeReady() {
 						minDistance: 1,
 						maxDistance: 10000,
 						autoStabilize: true
-					    }
+					    }*/
 					},
 					defStyle,
 					CSWnetwork);
 			   }
 			  );
 
-    vis["nodeColorGoMapper"] = function(data) {
+/*    vis["nodeColorGoMapper"] = function(data) {
 	return "#CCCCCC";
     };
-			
+*/			
+    vis["nodeColorGoMapper"] = function(data) {
+
+	if (filter == "ALL_nodes") {
+	    // could also be a visualBypass
+	    return value;
+	}
+	for (var i=0;i<data.GO_SLIM_biological_process.length; i++) {
+	    if (data.GO_SLIM_biological_process == filter) {
+		return value;
+	    }
+	}
+	// else
+        return vis.node(data.id).color;  
+        //return "#CCCCCC";   // neutral I guess
+	
+    };
+
     vis["nodeShapeGoMapper"] = function(data) {
 
-	if (!(_.isArray(data.GO_SLIM_molecular_function)) || data.GO_SLIM_molecular_function.length() == 0) {
+	if (!(_.isArray(data.GO_SLIM_molecular_function)) || data.GO_SLIM_molecular_function.length == 0) {
             return "VEE";
 	}
 
-
-	if (data.GO_SLIM_biological_process.length() > 3) {
-	    return "HEXAGON";
-	}
-	if (data.GO_SLIM_biological_process.length() > 2) {
-	    return "PARALLELOGRAM";
-	}
-	if (data.GO_SLIM_biological_process.length() > 1) {
-	    return "ROUNDRECT";
-	}
-	
 	var parallelogram = [ "translation regulator activity", "transcription regulator activity" ];
 	var ellipse = [ "carrier activity", "electron carrier activity", "transporter activity", "ion transporter activity", "channel or pore class transporter activity", "permease activity", "protein transporter activity", "integrase activity", "structural molecule activity", "receptor activity", "antioxidant activity" ];
 	var triangle = [ "signal transducer activity" ];
 	var hexagon = [ "phosphoprotein phosphatase activity" ];
 	var octagon = [ "protein kinase activity", "kinase activity" ];
-	var rectangle = [ "enzyme regulator activity", "chaperone regulator activity", "motor activity"];
+	var rectangle = [ "enzyme regula`tor activity", "chaperone regulator activity", "motor activity"];
 	var roundrect = [ "RNA binding", "DNA binding", "nucleic acid binding",, "binding", "protein binding"];
 	var diamond = [ "hydrolase activity", "isomerase activity", "lyase activity", "aromatase activity", "helicase activity", "transferase activity", "catalytic activity", "ligase activity", "peptidase activity", "oxidoreductase activity", "nucleotidyltransferase activity" ];
 
-	if ( _.intersect(octagon, data.GO_SLIM_molecular_function).length() > 0 ) {
+	if ( _.intersect(octagon, data.GO_SLIM_molecular_function).length > 0 ) {
 		 return "OCTAGON";
 	}
-	if ( _.intersect(hexagon, data.GO_SLIM_molecular_function) ) {
+	if ( _.intersect(hexagon, data.GO_SLIM_molecular_function).length > 0 ) {
 		 return "HEXAGON";
 	}
-	if ( _.intersect(parallelogram, data.GO_SLIM_molecular_function) ) {
+	if ( _.intersect(parallelogram, data.GO_SLIM_molecular_function).length > 0 ) {
 		 return "PARALLELOGRAM";
 	}
-	if ( _.intersect(triangle, data.GO_SLIM_molecular_function) ) {
+	if ( _.intersect(triangle, data.GO_SLIM_molecular_function).length > 0 ) {
 		 return "TRIANGLE";
 	}
-	if ( _.intersect(diamond, data.GO_SLIM_molecular_function) ) {
+	if ( _.intersect(diamond, data.GO_SLIM_molecular_function).length > 0 ) {
 		 return "DIAMOND";
 	}
-	if ( _.intersect(rectangle, data.GO_SLIM_molecular_function) ) {
+	if ( _.intersect(rectangle, data.GO_SLIM_molecular_function).length > 0 ) {
 		 return "RECTANGLE";
 	}
-	if ( _.intersect(roundrect, data.GO_SLIM_molecular_function) ) {
-		 return "ELLIPSE";
+	if ( _.intersect(roundrect, data.GO_SLIM_molecular_function).length > 0 ) {
+		 return "ROUNDRECT";
 	}
-	return "ROUNDRECT";
+	return "ELLIPSE";
 	
 			       
     };
@@ -358,24 +366,5 @@ function cytoscapeReady() {
 	return slimData;
     };
 
-/*    var style = vis.visualStyle();
-    style.nodes.tooltipText = {
-	customMapper: {
-	    functionName: "customTooltip"
-	}
-    };
-    style.edges.tooltipText = {
-	passthroughMapper: {
-	    attrName: "label"
-	}
-    };
-   
-    style.nodes.shape = {
-	customMapper: {
-	    functionName: "nodeShapeGoMapper"
-	}
-    };
 
-    vis.visualStyle(style);
- */       
 }
