@@ -577,8 +577,7 @@ $(function() {
                 if( picker_internals != undefined ){
                     picker_internals.setColor( $(input).val() );
                 }
-                set_property( "nodes", $(input).attr("name"), ""+$(input).val(), "fillColor");
-                
+                //set_property( "nodes", $(input).attr("name"), ""+$(input).val(), "fillColor");
                 set_colour();
             });		
             
@@ -635,7 +634,7 @@ $(function() {
     vis.ready( function () { cytoscapeReady() });
     vis.draw();
 
-    $(window).load(function() { resetFilters(); });
+    $(window).load(function() { resetFilters();});
 
 });
 

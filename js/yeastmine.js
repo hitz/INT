@@ -176,7 +176,7 @@ function addNetwork(graph) {
 }
 function reDraw(layout, style, graph){
 
-                vis.ready( function () { cytoscapeReady() });
+                //vis.ready( function () { cytoscapeReady() });
 		vis.draw({
 			     layout: layout,
 			     network: graph,
@@ -357,11 +357,11 @@ function getGOSlim (genes) {
 		   //console.log(Nodes);
 		   CSWnetwork = convertJSON();
 		   // draw process colors as set
-		   $(document).find(".property input").each(function(){
+		   /*$(document).find(".property input").each(function(){
 			var input = $(this);
 			set_property( "nodes", $(input).attr("name"), ""+$(input).val(),"fillColor");
 			}					
-		   );
+		   );*/
 		   reDraw(defLayout, defStyle, CSWnetwork);
 
               }

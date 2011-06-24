@@ -120,23 +120,23 @@ function set_property(viz_objects, filter, value, property) {
     // note: viz_objects = "nodes" and property = "color" ignored for now
     // filter is BP slim term selected, value is color
     var style = vis.visualStyle();		         
-    vis["nodeColorGoMapper"] = function(data) {
+    vis["nodeColorGoMapperSelect"] = function(data) {
+	if (!(_.isArray(data.GO_SLIM_biological_process)) || data.GO_SLIM_biological_process.length == 0) {
+            return "#CCCCCC";
+	}
+	var current = vis.node(data.id).color;  
+	var match = _.intersect(_.map(data.GO_SLIM_biological_process, function(bp){ return bp.replace(/ /g,"_");}), _.keys(nodeColors));
+	if (match.length == 0) {
+	    return current;
+	}
+	var colors = _.map(match,
+			    function(bp_id) { 
+				return nodeColors[bp_id];
+			      });
 
-	if (filter == "ALL_nodes") {
-	    // could also be a visualBypass
-	    return value;
-	}
-	for (var i=0;i<data.GO_SLIM_biological_process.length; i++) {
-	    if (data.GO_SLIM_biological_process == filter) {
-		return value;
-	    }
-	}
-	// else
-        return vis.node(data.id).color;  
-        //return "#CCCCCC";   // neutral I guess
-	
+        return colors[0];
     };
-    style.nodes.color = { customMapper: { functionName: "nodeColorMapper" } };
+    style.nodes.color = { customMapper: { functionName: "nodeColorMapperSelect" } };
     vis.visualStyle(style);
 }
 
@@ -211,6 +211,25 @@ function displayGeneProps(info) {
 
 }
 
+function nodeColor(data) {
+    
+
+	if (!(_.isArray(data.GO_SLIM_biological_process)) || data.GO_SLIM_biological_process.length == 0) {
+            return "#CCCCCC";
+	}
+	var current = vis.node(data.id).color;  
+	var match = _.intersect(_.map(data.GO_SLIM_biological_process, function(bp){ return bp.replace(/ /g,"_");}), _.keys(nodeColors));
+	if (match.length == 0) {
+	    return current;
+	}
+	var colors = _.map(match,
+			    function(bp_id) { 
+				return nodeColors[bp_id];
+			      });
+
+        return colors[0];
+	
+}
 
 function cytoscapeReady() {
 
@@ -292,24 +311,22 @@ function cytoscapeReady() {
 			   }
 			  );
 
-/*    vis["nodeColorGoMapper"] = function(data) {
-	return "#CCCCCC";
-    };
-*/			
-    vis["nodeColorGoMapper"] = function(data) {
 
-	if (filter == "ALL_nodes") {
-	    // could also be a visualBypass
-	    return value;
+    vis["nodeColorGoMapper"] = function(data) {
+	if (!(_.isArray(data.GO_SLIM_biological_process)) || data.GO_SLIM_biological_process.length == 0) {
+            return "#CCCCCC";
 	}
-	for (var i=0;i<data.GO_SLIM_biological_process.length; i++) {
-	    if (data.GO_SLIM_biological_process == filter) {
-		return value;
-	    }
+	var current = vis.node(data.id).color;  
+	var match = _.intersect(_.map(data.GO_SLIM_biological_process, function(bp){ return bp.replace(/ /g,"_");}), _.keys(nodeColors));
+	if (match.length == 0) {
+	    return current;
 	}
-	// else
-        return vis.node(data.id).color;  
-        //return "#CCCCCC";   // neutral I guess
+	var colors = _.map(match,
+			    function(bp_id) { 
+				return nodeColors[bp_id];
+			      });
+
+        return colors[0];
 	
     };
 
