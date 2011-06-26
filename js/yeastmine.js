@@ -10,6 +10,12 @@ var authStr = 'Y2lzY29oaXR6LmNvbTpoYWlyYmFsbA=='; // for user "ciscohitz@gmail.c
 var initialized = false; // set the first time a network is drawn
 var Edges = {};
 var Nodes = {};
+var currentSlimTerms = {
+	// tracks slim terms and counts for each node added to network
+	molecular_function: {},
+	biological_process: {},
+	cellular_component: {}
+}
 var rootId;
 var CSWnetwork = {};
 /* use hash to keep track of current network */

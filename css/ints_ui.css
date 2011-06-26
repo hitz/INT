@@ -1,0 +1,73 @@
+/*  styling info for INTS widgets */
+    .property input.colour_sample_bg {
+       background-image:url("/INT/images/input_for_colour_picker/bg.png");
+       background-position:right center;
+       background-repeat:repeat-y;
+    }
+    input, button, textarea, select {
+       -moz-border-radius:4px 4px 4px 4px;
+       border:1px solid #C1C1C1;
+       font-family:Helvetica,Arial,Verdana,sans-serif;
+       font-size:100%;
+       padding:0.25em;
+    } 
+    .floating_widget {
+        -moz-border-radius:4px 4px 4px 4px;
+	-moz-box-shadow:0 0 50px #BBBBBB;
+  	background:none repeat scroll 0 0 rgba(54, 54, 54, 0.8);
+        z-index:9999;
+    }
+    #colour_picker {
+        clear:both;
+    	height:200px;
+    	width:200px;
+    }
+    #colour_picker .header {
+        left:0;
+    	position:absolute;
+    	top:0;
+    	z-index:1;
+    }
+    .farbtastic .wheel {
+        background:url("/INT/images/farbtastic/wheel.png") no-repeat scroll 0 0 transparent;
+    	height:195px;
+    	width:195px;
+    }
+    .farbtastic .overlay {
+    	background:url("/INT/images/farbtastic/mask.png") no-repeat scroll 0 0 transparent;
+    }
+    .farbtastic .marker {
+    	background:url("/INT/images/farbtastic/marker.png") no-repeat scroll 0 0 transparent;
+    	height:17px;
+    	margin:-8px 0 0 -8px;
+    	overflow:hidden;
+    	width:17px;
+    }
+    #nodes input {
+		display: inline;
+		float: left;
+    }
+    #nodes label.style {
+        font-size: 12px;
+    	clear:both;	   
+		display:block;
+    }
+    #nodes label.style_head {
+        font-size: 12px;
+		font-weight: bold;
+    	clear:both;	   
+		display:block;
+    }
+    #color_all_nodes { 
+        border:2px solid #C1C1C1;
+    }
+    .ui-validation-error {
+        background:none repeat scroll 0 0 #FFECEC !important;
+	border-color:#FF0000 !important;
+}
+    .ui-validation-error:focus {
+        -moz-box-shadow:0 0 5px #FF0000 !important;
+}
+    .ui-validation-error-message {
+    	color:#FF0000;
+}
