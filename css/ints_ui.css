@@ -10,6 +10,7 @@
        font-family:Helvetica,Arial,Verdana,sans-serif;
        font-size:100%;
        padding:0.25em;
+       width: 5.25m;
     } 
     .floating_widget {
         -moz-border-radius:4px 4px 4px 4px;

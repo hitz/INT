@@ -1,7 +1,7 @@
 // function to set up filters
 var filters = new Array();
-var nodeColors = new Array();
-
+var nodeColors = {};
+var waitingNetwork;
 
 function resetFilters() {
  	$('.edgeFilter').each(function() {
@@ -16,10 +16,10 @@ function resetFilters() {
       	   $(this).attr('checked', true);
         });    
 
-	$('.property input').each(function() {
+/*	$('.property input').each(function() {
 	   $(this).val(nodeColors[$(this).attr('id')]);
 	});
-   
+*/   
 }
 
 function edge_toggle(type) {
@@ -231,7 +231,10 @@ function nodeColor(data) {
 	
 }
 
+
+
 function cytoscapeReady() {
+
 
     vis.addContextMenuItem("Delete node", "nodes", function(evt) {
 			       vis.removeNode(evt.target, true);
@@ -246,9 +249,13 @@ function cytoscapeReady() {
 		    });
 
     vis.addListener("dblclick", "nodes", function (evt) {
-			//getInts(evt.target.data.id, "physical interactions", false, function( genes ) { getGOSlim(genes) })	
 			var type = "physical interactions";
-			getInts(evt.target.data.id, type, false, function(genes,genes, type, goFunc){ fillNetwork(genes,genes,type,goFunc)});
+			if (!waitingNetwork) {
+			    waitingNetwork = true;
+			    getInts(evt.target.data.id, type, false, function(genes,genes, type, goFunc){ fillNetwork(genes,genes,type,goFunc)});
+			    
+			}
+			// note: last functioni in chain must add the listener back!
 		    });
 
     vis.addContextMenuItem("Select first neighbors", "nodes", function (evt) {
@@ -315,10 +322,10 @@ function cytoscapeReady() {
 
     vis["nodeColorGoMapper"] = function(data) {
 	if (!(_.isArray(data.GO_SLIM_biological_process)) || data.GO_SLIM_biological_process.length == 0) {
-            return "#CCCCCC";
+            return "#CC00CC";
 	}
 	var current = vis.node(data.id).color;  
-	var match = _.intersect(_.map(data.GO_SLIM_biological_process, function(bp){ return bp.replace(/ /g,"_");}), _.keys(nodeColors));
+	var match = _.intersect(data.GO_SLIM_biological_process, _.keys(nodeColors));
 	if (match.length == 0) {
 	    return current;
 	}

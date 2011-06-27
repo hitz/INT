@@ -352,6 +352,9 @@ function getGOSlim (genes) {
  	       failure: function(jqXHR, status) {
 		   alert("getGO: "+status);
 	       },
+	       complete: function (data) {
+		   waitingNetwork = false;
+	       },
 	       success:  function( data ) {
 
 		   $.each(data.results, function(i,gene) {
@@ -368,6 +371,11 @@ function getGOSlim (genes) {
 					 var par = _.reduce(ga.ontologyTerm.parents,
 							     function(a,p) {
 
+								 if(currentSlimTerms[p.namespace][p.name] == undefined) {
+								     currentSlimTerms[p.namespace][p.name] = 1;
+								 } else {
+								     currentSlimTerms[p.namespace][p.name] = currentSlimTerms[p.namespace][p.name]++;
+								 }
 								 if(p.namespace != p.name) { a["GO_SLIM_"+p.namespace][p.name] = true}
 								 return a;
 							     },
@@ -394,12 +402,17 @@ function getGOSlim (genes) {
 		   //console.log(Nodes);
 		   CSWnetwork = convertJSON();
 		   // draw process colors as set
-		   /*$(document).find(".property input").each(function(){
-			var input = $(this);
-			set_property( "nodes", $(input).attr("name"), ""+$(input).val(),"fillColor");
-			}					
-		   );*/
-		   reDraw(defLayout, defStyle, CSWnetwork);
+		   $(document).find('.property input').each(function(){
+					var n = ( currentSlimTerms.biological_process[$(this).attr('name')] != undefined ? currentSlimTerms.biological_process[$(this).attr('name')] : 0) ;
+				        //alert($(this).attr('name')+" "+n);
+					if(n > 0 ) {
+					    $(this).parent('div.property').css('display','block');
+					    $(this).parent('div.property').find('label span.i').each(function(){$(this).html('['+ n + '] ')});
+					} else if ($(this).attr('name') != 'ALL_nodes') {
+					    $(this).parent('div.property').css('display','none');
+					}
+							    });
+		   window.setTimeout(reDraw(defLayout, defStyle, CSWnetwork), 1000);
 
               }
 		  

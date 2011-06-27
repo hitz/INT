@@ -62,34 +62,38 @@
             </div>
     </div>
     <div id="sidebar" style="width: 30%; height: 800px;">
-    	<h3><a href="#">Gene Info</a></h3>
-    	<div>		
- 		   <div id="reset">
+    	<h3><a href="#">Network Info</a></h3>
+    	<div>	
+	  <div id="network_info" class="inline">
       		<input id="networkReset" type="reset" name="networkResetButton" value="Reset Network" >
-   		   </div>
-   		    <div id='search_box' class='ui-widget'>
-				<label for="search">Enter Gene: </label>
-				<input id="search" size=6>
-			</div>
-	 		<div id="gene_info_tabs">
-			    <ul>
-				<li><a href="#info_basic">Basic Info</a></li>
-				<li><a href="#info_go">GO</a></li>
-				<li><a href="#info_pheno">Phenotype</a></li>
-			    </ul>
-			    <div id="info_basic"><p>Click on a Gene node to display</p></div>
-		    	<div id="info_go"><p>Click on a Gene node to display</p></div>
-		    	<div id="info_pheno"><p>Click on a Gene node to display</p></div>
-			</div>
-	    </div>
+   		 <div id='search_box' class="ui-widget">
+		   <label for="search">Enter Gene: </label>
+		   <input id="search" size=6>
+		 </div>
+	  </div>
+	</div>
+   	<h3><a href="#">Gene Info</a></h3>
+    	<div>	
+	  <div id="gene_info_tabs">
+	    <ul>
+	      <li><a href="#info_basic">Basic Info</a></li>
+	      <li><a href="#info_go">GO</a></li>
+	      <li><a href="#info_pheno">Phenotype</a></li>
+	    </ul>
+	    <div id="info_basic"><p>Click on a Gene node to display</p></div>
+	    <div id="info_go"><p>Click on a Gene node to display</p></div>
+	    <div id="info_pheno"><p>Click on a Gene node to display</p></div>
+	  </div>
+	</div>
      	<h3><a href="#">Node Color</a></h3>
     	<div>
-	      <div class="property" type="colour" property="ALL">
-	         <label class="style_head" for="color_all_nodes">Color all nodes</label>
-    	     <input id="color_all_nodes" type="text" name="ALL_nodes" value="#CCCCCC"> 
-   		  </div>
-		  <div id="node_color">
-		</div>
+	  <div class="property" type="colour" property="ALL">
+	    <label class="style_head" for="color_all_nodes">Color all nodes</label>
+    	    <input id="color_all_nodes" type="text" name="ALL_nodes" value="#CCCCCC"> 
+   	  </div>
+	  <div id="node_color">
+	  </div>
+	</div>
     	<h3><a href="#">Node Shape</a></h3>
     	<div id="node_shape"></div>
     	<h3><a href="#">Edges</a></h3>
@@ -135,7 +139,7 @@
 <script type="text/javascript" src="/INT/js/min/jquery-ui-1.8.13.custom.min.js"></script> 
 
 <!-- jquery layout -->
-<script type="text/javascript" src="http://www.yeastgenome.org/javascript/jquery.layout-latest.js"></script> 
+<script type="text/javascript" src="http://yeastgenome-hitz-dev.stanford.edu/javascript/jquery.layout-latest.js"></script> 
 
 <!-- jquery-jsonp (from another online repository) -->
 <script src="http://jquery-jsonp.googlecode.com/files/jquery.jsonp-2.1.4.min.js" type="text/javascript"></script>
@@ -167,155 +171,7 @@ Hoping that jquery-json handles this
 <script type="text/javascript" src="/INT/js/yeastmine.js"></script>
 <script type="text/javascript" src="/INT/js/vis.js"></script>
 <script type="text/javascript" src="/INT/js/ui.js"></script>
-<script type="text/javascript">
-/* globals */
-/*if (console == null || typeof(console) == undefined) {
-        console = {log: function() {}};
-}*/
-
-var div_id = "cytoscapeweb";
-// initialization options
-var options = {
-	// where you have the Cytoscape Web SWF
-	swfPath: "/INT/swf/CytoscapeWeb",
-	// where you have the Flash installer SWF
-	flashInstallerPath: "/INT/swf/playerProductInstall"
-};
-
-var vis = new org.cytoscapeweb.Visualization(div_id, options);
-
-
-// ON LOAD
-$(function() {
-
-     getGeneList(); 
-     // template might be is slightly faster
-     // sets up gene list autocomplete
-
-    // set up edge coloring checkboxes (unimplemented!!)
-    $(".edgeFilter").change(function() {
-
-    	edge_toggle($(this).attr('id'));
-
-    });
-  
-    $("#geneticinteractions").change(function(){
-
-       var type;
-       var state = $(this).attr('checked');
-       $('.genetic').each(function(n) {
-            if($(this).attr('checked') != state) {
-	         edge_toggle($(this).attr('id'));
-		 $(this).attr('checked', state);
-	   }
-       });
-    });
-
-    $("#physicalinteractions").change(function(){
-
-       var type;
-       var state = $(this).attr('checked');
-       $('.physical').each(function(n) {
-            if($(this).attr('checked') != state) {
-	         edge_toggle($(this).attr('id'));
-		 $(this).attr('checked', state);
-	   }
-       });
-     });
- 
-     $(document).find(".property input").each(function(){
-       var input = $(this);
-       var property = "colour";
-
-       function set_colour(){
-           $(input).css({
-              backgroundColor: $(input).val()
-                 });
-		
-        }
-	    nodeColors[$(input).attr('id')] = $(input).val(); // save old value
-
-            $(input).addClass("colour_sample_bg");
-
-            $(input).validate({
-                errorMessage: function(str){
-                    return "must be a valid " + property;
-                },
-                valid: function(str){
-                    return valid_value( str, property);
-                }
-            });
-            
-            set_colour();
-            
-            // update colour on picker after typing
-            $(input).bind("valid", function(){
-                if( picker_internals != undefined ){
-                    picker_internals.setColor( $(input).val() );
-                }
-                //set_property( "nodes", $(input).attr("name"), ""+$(input).val(), "fillColor");
-                set_colour();
-            });		
-            
-	    $(input).bind("invalid", function(){
-                $(input).css("background-color", "transparent");
-            });
-            
-            // on empty put # so user doesn't have to
-            $(input).bind("keyup", function(){
-                if( $(this).val() == "" ){
-                    $(this).val("#");
-                }
-            });
-            
-            // add clicker near input when clicked
-            $(input).bind("click", function(){
-                remove_picker();
-            
-                picker = $('<div id="colour_picker" class="floating_widget">' +
-                		   '<div class="header ui-state-default"><div class="ui-icon ui-icon-close"/></div><div class="content"/></div>');
-                $("body").append(picker);
-                
-                if (!$.browser.msie) { $("#colour_picker .header").hide(); }
-                
-                picker_internals = $.farbtastic($("#colour_picker .content"), function(colour){
-                    $(input).val(colour).trigger("validate");
-                });
-
-                position_at_input($(picker), $(input));
-                
-                $(input).trigger("validate");
-                
-                hide_with_input($(picker), $(input), function(){
-                    remove_picker();
-                });
-            });
-        });
- 
-    $('input:reset').button();
-    $('input:reset').click(function() {
-    	reDraw(defLayout, defStyle, convertJSON());
-	}); 
-			     
-    $( "#sidebar" ).accordion(
-         {
-	    collapsible: true,
-	    fillSpace:   true,
-     });
-
-    $( "#gene_info_tabs" ).tabs();
-  
-    // note: You have to call this once on load even with no data or it acts funny.
-    // Could add some kind of "fakenetwork" help button thing.
-    vis.ready( function () { cytoscapeReady() });
-    vis.draw();
-
-    $(window).load(function() { resetFilters();});
-
-});
-
-</script>
- <!-- put page specific javascript files here -->
+<script type="text/javascript" src="/INT/js/app.js"></script>
 
 </body>
 
