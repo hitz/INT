@@ -15,6 +15,7 @@ var options = {
 
 var vis = new org.cytoscapeweb.Visualization(div_id, options);
 
+var selectedTerm = '';
 
 // ON LOAD
 $(function() {
@@ -76,7 +77,7 @@ $(function() {
                  });
 		
         }
-	    nodeColors[$(input).attr('id')] = nodeColors[$(input).attr('id')]; //store current color
+	    //nodeColors[$(input).attr('id')] = nodeColors[$(input).attr('id')]; //store current color
 
             $(input).addClass("colour_sample_bg");
 
@@ -97,6 +98,7 @@ $(function() {
                     picker_internals.setColor( $(input).val() );
                 }
                 //set_property( "nodes", $(input).attr("name"), ""+$(input).val(), "fillColor");
+                set_node_color($(input).attr("name"),$(input).val());
                 set_colour();
             });		
             
@@ -137,17 +139,16 @@ $(function() {
  
     $('input:reset').button();
     $('input:reset').click(function() {
-    	reDraw(defLayout, defStyle, convertJSON());
+			       resetFilters();
+    			       reDraw(defLayout, defStyle, convertJSON());
 	}); 
 			     
     $( "#gene_info_tabs" ).tabs();
   
     $( "#sidebar" ).accordion(
          {
-	    collapsible: true,
-	    clearStyle:  true,
-	    active:      0
-     });
+	 autoHeight: false
+	 });
 
     // note: You have to call this once on load even with no data or it acts funny.
     // Could add some kind of "fakenetwork" help button thing.

@@ -1,6 +1,10 @@
 var physicalIntsColor = "#6262FC";
 var geneticIntsColor  = "#2FB56D";
 
+var banList = ['NAB2','UBI4','GIS2','RPN11','HEK2','SMT3','SSB1','RPN10','YGL122C','YLL039C','YNL255C','YFR004W','YBL032W','YDR510W','YDL229W','YHR200W','RPN1',
+'HSP82','YPL240C','YHR027C','UBP3','YER151C'];
+							      
+
 var defStyle = {
 	global: {
 		backgroundColor:  	"#FFFFCC"
@@ -26,7 +30,10 @@ var defStyle = {
 		}
 	},
 	edges: {
-		width: 3,
+	        width: {
+		        continuousMapper: {attrName: "weight",minValue: 2, maxValue: 8}
+			                
+		},
 		color:	{	
 			discreteMapper:  {	
 					attrName: 	"interactionClass",
@@ -34,6 +41,11 @@ var defStyle = {
 								  { attrValue: "genetic interactions",  value: geneticIntsColor  }]
 			}
 						
+		},
+		mergeColor:	{	
+		    customMapper:  {
+			functionName: "mergedEdgeMapper"
+		    }						
 		},
 	        tooltipText: {
 		    passthroughMapper: {
@@ -61,13 +73,6 @@ var defLayout = {
 				*/
 };
 
-/*
- * 	        shape: {
-		    customMapper: {
-			functionName: "nodeShapeGoMapper"	}
-		},
-
- */
 
 var defBpColors = {
 

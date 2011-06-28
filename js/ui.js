@@ -1,9 +1,21 @@
 // function to set up filters
 var filters = new Array();
 var nodeColors = {};
+var currentColors = {};
+
 var waitingNetwork;
 
 function resetFilters() {
+
+    selectedTerm=''; // resets colors to originals
+     
+   // resent Slim term counts
+   currentTerms = { 
+	GO_SLIM_molecular_function: {},
+	GO_SLIM_biological_process: {},
+	GO_SLIM_cellular_component: {}
+    };
+    
  	$('.edgeFilter').each(function() {
      	   
 	   filters[$(this).attr('id')] = true;
@@ -16,10 +28,7 @@ function resetFilters() {
       	   $(this).attr('checked', true);
         });    
 
-/*	$('.property input').each(function() {
-	   $(this).val(nodeColors[$(this).attr('id')]);
-	});
-*/   
+
 }
 
 function edge_toggle(type) {
@@ -115,48 +124,49 @@ function valid_value(value, type){
     return false;
 }
 
-function set_property(viz_objects, filter, value, property) {
 
-    // note: viz_objects = "nodes" and property = "color" ignored for now
-    // filter is BP slim term selected, value is color
+function set_node_color(term, color) {
+    
+    selectedTerm = term;
+    nodeColors[term] = color;
+    
     var style = vis.visualStyle();		         
-    vis["nodeColorGoMapperSelect"] = function(data) {
-	if (!(_.isArray(data.GO_SLIM_biological_process)) || data.GO_SLIM_biological_process.length == 0) {
-            return "#CCCCCC";
-	}
-	var current = vis.node(data.id).color;  
-	var match = _.intersect(_.map(data.GO_SLIM_biological_process, function(bp){ return bp.replace(/ /g,"_");}), _.keys(nodeColors));
-	if (match.length == 0) {
-	    return current;
-	}
-	var colors = _.map(match,
-			    function(bp_id) { 
-				return nodeColors[bp_id];
-			      });
-
-        return colors[0];
-    };
-    style.nodes.color = { customMapper: { functionName: "nodeColorMapperSelect" } };
+    style.nodes.color = { customMapper: { functionName: "nodeColorGoMapper" } };
     vis.visualStyle(style);
+
 }
 
 // Info DIV
-function showGo(goInfo, aspect) {
+function showGo(id) {
 
-     var goRows = "";
 
-     for (var i=0; i < goInfo.length; i++) {
-	 var term = goInfo[i];
-	 if (term != aspect) {  // skip unknowns
-	    goRows += "<tr><th></th><td>" + term + "</td></tr>";
-	 }
-     }
+    function goRows(id, aspect) {
 
-     if (goRows == "") {
-	goRows += '<tr><th></th><td><span class="i">Unknown</span></td></tr>';
-     }
+	var rows = "";
+	var data = Nodes[id][aspect];
 
-     return goRows;
+	_.each(data, function(term) {
+		   if (term != aspect) {  // skip unknowns
+		       rows += "<tr><th></th><td>" + term + "</td></tr>";
+		   }
+	       });
+	if (rows == "") {
+	    rows += '<tr><th></th><td><span class="i">Unknown</span></td></tr>';
+	}
+
+	return rows;
+    }	   
+
+    var go =  "<table class='summary_mini'><tbody>";
+    go += "<tr><th>";
+    go += "<tr><th>Molecular Function</th><td></td></tr>" + goRows(id, 'molecular_function');
+    go += "<tr><th>Biological Process</th><td></td></tr>" + goRows(id, 'biological_process');
+    go += "<tr><th>Cellular Component</th><td></td></tr>" + goRows(id, 'cellular_component');
+    go += "</tbody></table>";
+
+
+    $("#info_go").html(go);
+
 }
 
 function displayGeneProps(info) {
@@ -188,18 +198,12 @@ function displayGeneProps(info) {
 
      $("#info_basic").html(basic);
 
-     getGO([info.systematicName]); // NON FUNCTIONAL BECAUSE QUERY IS ASYNCHRONOUS!!!
-
-     var go =  commonHead;
-	 go += "<tr><th>"
-     go += "<tr><th>Molecular Function</th><td></td></tr>" + showGo(Nodes[info.systematicName].molecular_function, 'molecular_function');
-     go += "<tr><th>Biological Process</th><td></td></tr>" + showGo(Nodes[info.systematicName].biological_process, 'biological_process');
-     go += "<tr><th>Cellular Component</th><td></td></tr>" + showGo(Nodes[info.systematicName].cellular_component, 'cellular_component');
-     go += "</tbody></table>";
-
-
-     $("#info_go").html(go);
-
+     if (Nodes && Nodes[info.systematicName] && Nodes[info.systematicName].go) {
+	 showGo(info.systematicName);	     
+     } else { 
+	 getGO([info.systematicName]); // NON FUNCTIONAL BECAUSE QUERY IS ASYNCHRONOUS!!!
+     }
+ 
      var pheno =  commonHead;
 
      pheno += "<tr><th class='b'>Phenotypes</th><td></td></tr>";
@@ -210,28 +214,6 @@ function displayGeneProps(info) {
      $("#info_pheno").html(pheno);
 
 }
-
-function nodeColor(data) {
-    
-
-	if (!(_.isArray(data.GO_SLIM_biological_process)) || data.GO_SLIM_biological_process.length == 0) {
-            return "#CCCCCC";
-	}
-	var current = vis.node(data.id).color;  
-	var match = _.intersect(_.map(data.GO_SLIM_biological_process, function(bp){ return bp.replace(/ /g,"_");}), _.keys(nodeColors));
-	if (match.length == 0) {
-	    return current;
-	}
-	var colors = _.map(match,
-			    function(bp_id) { 
-				return nodeColors[bp_id];
-			      });
-
-        return colors[0];
-	
-}
-
-
 
 function cytoscapeReady() {
 
@@ -321,20 +303,37 @@ function cytoscapeReady() {
 
 
     vis["nodeColorGoMapper"] = function(data) {
-	if (!(_.isArray(data.GO_SLIM_biological_process)) || data.GO_SLIM_biological_process.length == 0) {
-            return "#CC00CC";
+	    if (!(_.isArray(data.GO_SLIM_biological_process)) || data.GO_SLIM_biological_process.length == 0 || data.id == undefined) {
+		//console.log("BP empty");
+		return "#CCCCCC";
+	    }
+	try{
+	    var current = vis.node(data.id).color;  
+	} catch (x) {
+	    var current = currentColors[data.id];		
 	}
-	var current = vis.node(data.id).color;  
-	var match = _.intersect(data.GO_SLIM_biological_process, _.keys(nodeColors));
-	if (match.length == 0) {
-	    return current;
-	}
-	var colors = _.map(match,
-			    function(bp_id) { 
-				return nodeColors[bp_id];
-			      });
 
-        return colors[0];
+	if (selectedTerm == '') {
+	   
+	    var match = _.intersect(data.GO_SLIM_biological_process, _.keys(nodeColors));
+	    if (match.length == 0) {
+		//console.log("BP mismatch");
+		//console.log(data.GO_SLIM_biological_process);
+		return current;
+	    }
+	    var colors = _.map(match,
+				function(bp_id) { 
+				    return nodeColors[bp_id];
+				  });
+
+	    currentColors[data.id] = colors[0];
+
+	} else if (selectedTerm == 'ALL_nodes' || _.include(data.GO_SLIM_biological_process, selectedTerm )) {
+
+	    currentColors[data.id] = nodeColors[selectedTerm];
+
+	}	    
+	return currentColors[data.id];
 	
     };
 
@@ -344,13 +343,13 @@ function cytoscapeReady() {
             return "VEE";
 	}
 
-	var parallelogram = [ "translation regulator activity", "transcription regulator activity" ];
+	var parallelogram = [ "DNA binding", "translation regulator activity", "transcription regulator activity" ];
 	var ellipse = [ "carrier activity", "electron carrier activity", "transporter activity", "ion transporter activity", "channel or pore class transporter activity", "permease activity", "protein transporter activity", "integrase activity", "structural molecule activity", "receptor activity", "antioxidant activity" ];
 	var triangle = [ "signal transducer activity" ];
 	var hexagon = [ "phosphoprotein phosphatase activity" ];
 	var octagon = [ "protein kinase activity", "kinase activity" ];
 	var rectangle = [ "enzyme regula`tor activity", "chaperone regulator activity", "motor activity"];
-	var roundrect = [ "RNA binding", "DNA binding", "nucleic acid binding",, "binding", "protein binding"];
+	var roundrect = [ "RNA binding", "nucleic acid binding",, "binding", "protein binding"];
 	var diamond = [ "hydrolase activity", "isomerase activity", "lyase activity", "aromatase activity", "helicase activity", "transferase activity", "catalytic activity", "ligase activity", "peptidase activity", "oxidoreductase activity", "nucleotidyltransferase activity" ];
 
 	if ( _.intersect(octagon, data.GO_SLIM_molecular_function).length > 0 ) {

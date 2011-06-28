@@ -44,20 +44,13 @@
     	overflow:hidden;
     	width:17px;
     }
-    #nodes input {
-		display: inline;
-		float: left;
-    }
-    #nodes label.style {
+    #node_color label.style {
         font-size: 12px;
-    	clear:both;	   
-		display:block;
+	display: block
     }
-    #nodes label.style_head {
+    #nodes_color label.style_head {
         font-size: 12px;
-		font-weight: bold;
-    	clear:both;	   
-		display:block;
+	font-weight: bold;
     }
     #color_all_nodes { 
         border:2px solid #C1C1C1;

@@ -10,11 +10,11 @@ var authStr = 'Y2lzY29oaXR6LmNvbTpoYWlyYmFsbA=='; // for user "ciscohitz@gmail.c
 var initialized = false; // set the first time a network is drawn
 var Edges = {};
 var Nodes = {};
-var currentSlimTerms = {
+var currentTerms = {
 	// tracks slim terms and counts for each node added to network
-	molecular_function: {},
-	biological_process: {},
-	cellular_component: {}
+	GO_SLIM_molecular_function: {},
+	GO_SLIM_biological_process: {},
+	GO_SLIM_cellular_component: {}
 }
 var rootId;
 var CSWnetwork = {};
@@ -23,8 +23,7 @@ var CSWnetwork = {};
 function getGO(genes) {
 		/* Get GO data for an array of genes */
                 
-                var emptyGenes = _.map(genes,function(v){ if ((Nodes[v]).molecular_function.length() == 0) return v;});                
-				var query = {
+                var query = {
 					model: "genomic",
 					view: [
 						"Gene.secondaryIdentifier",
@@ -45,20 +44,28 @@ function getGO(genes) {
 		     function( data ) {
 			$.each(data.results, function(i,gene) {
 
-			     var annot = _.reduce(gene.goAnnotation,
-				 function(a,ga) {
-				     a[ga.ontologyTerm.namespace].push(ga.ontologyTerm.name);
-				     return a;
-				 },
-			         {
-				 molecular_function: [],
-				 biological_process: [],
-				 cellular_component: [],
-			         }
-			       );
- 			     _.extend(Nodes[gene.secondaryIdentifier],annot);
-		             // No need to actually update the vis object yet
-			 
+				   try {
+				       var annot = _.reduce(gene.goAnnotation,
+							    function(a,ga) {
+								if (ga.ontologyTerm.namespace != undefined) { // bad yeastmine loading of null aspects!
+								    a[ga.ontologyTerm.namespace].push(ga.ontologyTerm.name);								    
+								}
+								return a;
+							    },
+							    {
+								go: true,
+								molecular_function: [],
+								biological_process: [],
+								cellular_component: [],
+							    }
+							   );
+ 				       _.extend(Nodes[gene.secondaryIdentifier],annot);
+
+				   } catch (x) {
+				       alert("getGO error: "+x+" "+gene.secondaryIdentifier+" "+ga.onotologyTerm.name);
+				   }
+		             showGo(gene.secondaryIdentifier);
+		             // as of now, the "real" nodes don't have the full GO terms but we could add them here with vis.updateData
 		       }
 	              );
 		     }
@@ -195,17 +202,20 @@ function addNetwork(create, root) {
 			};	
 		}
 		var pair = [igene.secondaryIdentifier, root.secondaryIdentifier].sort();
-		var key = pair[0]+pair[1]+inx.experiment.name+inx.experiment.publication.pubMedId;
+	        // note: pubmedid is not stored but used for counting purposes
+	        var key = pair[0]+pair[1]+inx.experiment.name;
 		if (Edges[key] == undefined) {
 			Edges[key] = {
-				id:					"-"+inx.objectId,
-				label:				inx.experiment.name,
-				experimentType:		inx.experiment.name,
-				interactionClass:	inx.interactionType,
-				source:				root.secondaryIdentifier,
-				target: 			igene.secondaryIdentifier,
-				publication:		inx.experiment.publication.pubMedId
+			    id:					"-"+inx.objectId,
+			    label:				inx.experiment.name,
+			    experimentType:	        	inx.experiment.name,
+			    interactionClass:	                inx.interactionType,
+			    source:				root.secondaryIdentifier,
+			    target: 		         	igene.secondaryIdentifier,
+			    weight:                             2
 			};
+		} else {
+		    Edges[key].weight += 2;
 		}
 	}
         return root.secondaryIdentifier;
@@ -213,11 +223,13 @@ function addNetwork(create, root) {
 }
 function reDraw(layout, style, graph){
 
+                //alert("Drawing..");
                 //vis.ready( function () { cytoscapeReady() });
 		vis.draw({
 			     layout: layout,
 			     network: graph,
 			     visualStyle:  style,
+			     //edgesMerged:  true,
  			     edgeTooltipsEnabled: true,
 			     nodeTooltipsEnabled: true,              
 		});
@@ -241,7 +253,8 @@ function convertJSON() {
 					 { name: "GO_SLIM_cellular_component", type: "list", defValue: []},
 					 { name: "molecular_function", type: "list", defValue: []},
 					 { name: "biological_process", type: "list", defValue: []},
-					 { name: "cellular_component", type: "list", defValue: []}
+					 { name: "cellular_component", type: "list", defValue: []},
+					 { name: "go", type: "boolean", defValue: false}
 					],
 			edges: [ { name: "label", type: "string"},
 					 { name: "experimentType", type: "string"},
@@ -315,6 +328,7 @@ function getGeneList() {
 }
 
 function createNetwork(hub, type) {
+    resetFilters();
     return getInts(hub, type, true, function(genes,genes, type,goFunc){ fillNetwork(genes,genes,type,goFunc)});
 }
 
@@ -370,12 +384,6 @@ function getGOSlim (genes) {
 					 
 					 var par = _.reduce(ga.ontologyTerm.parents,
 							     function(a,p) {
-
-								 if(currentSlimTerms[p.namespace][p.name] == undefined) {
-								     currentSlimTerms[p.namespace][p.name] = 1;
-								 } else {
-								     currentSlimTerms[p.namespace][p.name] = currentSlimTerms[p.namespace][p.name]++;
-								 }
 								 if(p.namespace != p.name) { a["GO_SLIM_"+p.namespace][p.name] = true}
 								 return a;
 							     },
@@ -389,22 +397,30 @@ function getGOSlim (genes) {
 					 _.each(par, function(terms,aspect) {
 						    _.extend(slim[aspect],terms);
 						});
+
 					 
  				     });
 			      _.each(slim, function(val, key) {
+					 
+					 _.each(val,function(n,term) {
+						    if(currentTerms[key][term] == undefined) {
+							currentTerms[key][term] = 1;
+						    } else {
+							currentTerms[key][term]++;
+						    }
+						});
+
 					 annot[key] = _.keys(val);
 				     });
 
 			      _.extend(Nodes[gene.secondaryIdentifier],annot); 
-			      //vis.updateData("nodes",[gene.secondaryIdentifier],annot);
-			  }); 
-		   //alert("Got Go data");
-		   //console.log(Nodes);
+			  });
+		   var tot = _.reduce(_.values(currentTerms.GO_SLIM_biological_process),function(num,memo){ return num+memo;},0);
 		   CSWnetwork = convertJSON();
 		   // draw process colors as set
 		   $(document).find('.property input').each(function(){
-					var n = ( currentSlimTerms.biological_process[$(this).attr('name')] != undefined ? currentSlimTerms.biological_process[$(this).attr('name')] : 0) ;
-				        //alert($(this).attr('name')+" "+n);
+					var n = ( currentTerms.GO_SLIM_biological_process[$(this).attr('name')] != undefined ? 
+						  currentTerms.GO_SLIM_biological_process[$(this).attr('name')] : 0) ;
 					if(n > 0 ) {
 					    $(this).parent('div.property').css('display','block');
 					    $(this).parent('div.property').find('label span.i').each(function(){$(this).html('['+ n + '] ')});
@@ -412,7 +428,7 @@ function getGOSlim (genes) {
 					    $(this).parent('div.property').css('display','none');
 					}
 							    });
-		   window.setTimeout(reDraw(defLayout, defStyle, CSWnetwork), 1000);
+		   reDraw(defLayout, defStyle, CSWnetwork);
 
               }
 		  
