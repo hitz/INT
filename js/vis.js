@@ -16,7 +16,11 @@ var defStyle = {
 	        },
 		size:				50,
 		borderWidth:	 	3,	
-		borderColor:		"#AAAABB",
+		borderColor: {
+		    customMapper: {
+			functionName: "customNodeBorder"
+		    }
+		},
 	        labelFontWeight: 	"bold",
                 shape:                  {
 		    customMapper: {
@@ -31,21 +35,19 @@ var defStyle = {
 	},
 	edges: {
 	        width: {
-		        continuousMapper: {attrName: "weight",minValue: 2, maxValue: 8}
+		        continuousMapper: {attrName: "weight",minValue: 3, maxValue: 12}
 			                
 		},
-		color:	{	
-			discreteMapper:  {	
+		color:	{
+		    customMapper: {
+			functionName: "customEdgeColorMapper"
+		    }
+/*			discreteMapper:  {	
 					attrName: 	"interactionClass",
 					entries:	[ { attrValue: "physical interactions", value: physicalIntsColor },
 								  { attrValue: "genetic interactions",  value: geneticIntsColor  }]
-			}
+			}*/
 						
-		},
-		mergeColor:	{	
-		    customMapper:  {
-			functionName: "mergedEdgeMapper"
-		    }						
 		},
 	        tooltipText: {
 		    passthroughMapper: {

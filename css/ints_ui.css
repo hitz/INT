@@ -55,13 +55,20 @@
     #color_all_nodes { 
         border:2px solid #C1C1C1;
     }
+    #net_stats {
+        display: block;
+	padding: 6px;
+    }
+    #net_stats span {
+        padding: 0px 8px;
+    }
     .ui-validation-error {
         background:none repeat scroll 0 0 #FFECEC !important;
 	border-color:#FF0000 !important;
-}
+    }
     .ui-validation-error:focus {
         -moz-box-shadow:0 0 5px #FF0000 !important;
-}
+    }
     .ui-validation-error-message {
     	color:#FF0000;
-}
+    }

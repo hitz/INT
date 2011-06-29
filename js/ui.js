@@ -212,7 +212,7 @@ function displayGeneProps(info) {
      pheno += "</tbody></table>";
 
      $("#info_pheno").html(pheno);
-
+     // would like to click something to open the accordiion but not sure how!
 }
 
 function cytoscapeReady() {
@@ -289,10 +289,12 @@ function cytoscapeReady() {
 						tension: 0.1,
 						restLength: "auto",
 						drag: 0.4,
-						//iterations: 400 ,
-						//maxTime: 20000 ,
-						//minDistance: 1,
-						//maxDistance: 10000,
+						weightAttr: "weight",
+						weightNorm: "log",
+						maxTime: 3000 ,
+						iterations: 4000 ,
+						minDistance: 1,
+						maxDistance: 10000,
 						autoStabilize: true
 					    }
 					},
@@ -392,5 +394,25 @@ function cytoscapeReady() {
 	return slimData;
     };
 
+    vis["customNodeBorder"] = function (data) {
+	// black listed genes have black border
+	return ( _.detect(banList, function(test) { if (test == data.secondaryIdentifier) { return true }})  ? "#000000" : "#AAAABB" );
+    };
 
+    vis["customEdgeColorMapper"] = function (data) {
+	if (data.experimentType == 'Biochemical Activity') {
+	    return "#000000";
+	} else if (data.experimentType.search('RNA') >= 0) {
+	    return "#773300";
+	} else if (data.experimentType == 'Two-hybrid') {
+	    return "#CCCCCC";
+	} 
+
+	if (data.interactionClass == 'physical interactions') {
+	    return physicalIntsColor;
+	} else {
+	    return geneticIntsColor;
+	}
+    };
+    
 }

@@ -109,6 +109,10 @@ function getInts(gene, filter, create, nextRequest) {
 function fillNetwork(geneList1, geneList2, filter, nextRequest) {
 
         //alert("Creating Query");
+        _.each(banList, function(banned) {
+		   geneList1 = _.without(geneList1,banned);
+		   geneList2 = _.without(geneList2,banned);
+		   });
         var query = {
 		    model: "genomic",
 		    view: [
@@ -218,6 +222,8 @@ function addNetwork(create, root) {
 		    Edges[key].weight += 2;
 		}
 	}
+        $("#nnodes").html(_.keys(Nodes).length );
+        $("#nedges").html(_.keys(Edges).length );
         return root.secondaryIdentifier;
 	//console.log(Edges);
 }

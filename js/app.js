@@ -147,8 +147,13 @@ $(function() {
   
     $( "#sidebar" ).accordion(
          {
-	 autoHeight: false
+	 collapsable: true,
+	 active:      0,
+	 autoHeight:  false
 	 });
+
+    //$( "#sidebar_container").resizeable(); a clever idea but failed first copule of tries.
+    //$( "#sidebar_container").draggable();
 
     // note: You have to call this once on load even with no data or it acts funny.
     // Could add some kind of "fakenetwork" help button thing.
