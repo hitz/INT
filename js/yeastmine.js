@@ -74,6 +74,13 @@ function getGO(genes) {
 
 function getInts(gene, filter, create, nextRequest) {
 		/* given some arguments (gene names, network type, edge type) fetch interactions from YeastMine via webservices */
+
+    if( _.detect(banList, function(banned){ return banned == gene; })) {
+	alert("The gene you selected: "+gene+" has been banned for being too promiscuous.  Promiscious genes have a black border.");
+	waitingNetwork = false;
+	return;
+    }
+
         var query = 	    {  	 
 	 	name:        "Interactions_network",
 	   	constraint1: "Gene",
@@ -309,22 +316,24 @@ function getGeneList() {
 		    	source: geneList,
    			 	minLength: 2,
 		    	select: function(event,ui) {
-			        $.when( createNetwork(ui.item.value,"physical interactions") )
+			        createNetwork(ui.item.value,"physical interactions");
+			       /* $.when( createNetwork(ui.item.value,"physical interactions") )
 			          .done(function() {
 					    //CSWnetwork = convertJSON();
 					    //reDraw(defLayout, defStyle, CSWnetwork);
 
-	        		/*	    $.when(getGOSlim(_.select(_.keys(Nodes), function(k) { return k != rootId})))
+	        			    $.when(getGOSlim(_.select(_.keys(Nodes), function(k) { return k != rootId})))
 					    .done(function(){
 						  }
 						 )
 					    .fail(function(){
 						  alert("Go fetch failed")
-						  });*/
+						  });
 					})
 		    		  .fail(function() {
 					alert("Network creation failed")
 					});
+		    */
 			}
 						      
     	        
@@ -335,7 +344,7 @@ function getGeneList() {
 
 function createNetwork(hub, type) {
     resetFilters();
-    return getInts(hub, type, true, function(genes,genes, type,goFunc){ fillNetwork(genes,genes,type,goFunc)});
+    getInts(hub, type, true, function(genes,genes, type,goFunc){ fillNetwork(genes,genes,type,goFunc)});
 }
 
 function getGOSlim (genes) {

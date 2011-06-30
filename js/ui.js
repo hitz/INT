@@ -290,9 +290,9 @@ function cytoscapeReady() {
 						restLength: "auto",
 						drag: 0.4,
 						weightAttr: "weight",
-						weightNorm: "log",
-						maxTime: 3000 ,
-						iterations: 4000 ,
+						weightNorm: "linear",
+						maxTime: 6000 ,
+						iterations: 400 ,
 						minDistance: 1,
 						maxDistance: 10000,
 						autoStabilize: true
@@ -396,7 +396,11 @@ function cytoscapeReady() {
 
     vis["customNodeBorder"] = function (data) {
 	// black listed genes have black border
-	return ( _.detect(banList, function(test) { if (test == data.secondaryIdentifier) { return true }})  ? "#000000" : "#AAAABB" );
+	if(_.detect(banList, function(banned) {  return banned == data.id; })){
+		return "#000000";
+	} else { 
+	    return "#AAAABB";
+        }
     };
 
     vis["customEdgeColorMapper"] = function (data) {

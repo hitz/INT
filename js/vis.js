@@ -53,6 +53,24 @@ var defStyle = {
 		    passthroughMapper: {
 			attrName: "label"
 		    }
+		},
+	        sourceArrowShape: {
+		    discreteMapper: {
+			attrName:  "experimentType",
+			entries: [
+			     { attrValue: "Affinity Capture-RNA", value: "DIAMOND"  },				 
+			     { attrValue: "Protein-RNA", value: "DIAMOND"  }
+			]
+		    }
+		},
+	        targetArrowShape: {
+		    discreteMapper: {
+			attrName:  "experimentType",
+			entries: [
+			     { attrValue: "Biochemical Activity", value: "DELTA"  }
+
+			]
+		    }
 		}
 	    }
 };
