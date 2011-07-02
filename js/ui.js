@@ -267,6 +267,7 @@ function cytoscapeReady() {
 
     vis.addListener("mouseover","nodes", function(evt) {
 			neighborHilite(evt.target);
+			setTimeout(function(){vis.deselect("nodes"),300});
 		    }
 		   );
 
