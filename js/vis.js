@@ -2,7 +2,7 @@ var physicalIntsColor = "#6262FC";
 var geneticIntsColor  = "#2FB56D";
 
 var banList = ['NAB2','UBI4','GIS2','RPN11','HEK2','SMT3','SSB1','RPN10','YGL122C','YLL039C','YNL255C','YFR004W','YBL032W','YDR510W','YDL229W','YHR200W','RPN1',
-'HSP82','YPL240C','YHR027C','UBP3','YER151C'];
+'HSP82','YPL240C','YHR027C','UBP3','YER151C','RSP5','YER125W'];
 							      
 
 var defStyle = {
@@ -31,11 +31,13 @@ var defStyle = {
 		    customMapper: {
 			functionName: "customTooltip"
 	            }
-		}
+		},
+	        selectionGlowStrength: 40,
+	        selectionGlowColor: "#FF8000"
 	},
 	edges: {
 	        width: {
-		        continuousMapper: {attrName: "weight",minValue: 3, maxValue: 12}
+		        continuousMapper: {attrName: "weight",minValue: 1, maxValue: 12, maxAttrValue: 6}
 			                
 		},
 		color:	{
@@ -58,8 +60,6 @@ var defStyle = {
 		    discreteMapper: {
 			attrName:  "experimentType",
 			entries: [
-			     { attrValue: "Affinity Capture-RNA", value: "DIAMOND"  },				 
-			     { attrValue: "Protein-RNA", value: "DIAMOND"  }
 			]
 		    }
 		},
@@ -67,8 +67,9 @@ var defStyle = {
 		    discreteMapper: {
 			attrName:  "experimentType",
 			entries: [
-			     { attrValue: "Biochemical Activity", value: "DELTA"  }
-
+			     { attrValue: "Biochemical Activity", value: "DELTA"  },
+			     { attrValue: "Affinity Capture-RNA", value: "DIAMOND"  },				 
+			     { attrValue: "Protein-RNA", value: "DIAMOND"  }
 			]
 		    }
 		}
@@ -77,7 +78,6 @@ var defStyle = {
 
 var defLayout = {
 			  name: "ForceDirected",
-			  
 /*
            	  options: {
 				mass: 300,
@@ -136,6 +136,11 @@ var defBpColors = {
     "response to stress": "#FF6633",
     "meiosis": "#CC66FF",
     "signal transduction": "#FF9933",
+    "protein folding": "#669973",
+    "protein catabolic process": "FFCCFA",
+    "protein modification process": "009999",
+    "heterocycle metabolic process": "#00FFFA",
+    "aromatic compound metabolic process": "#00CCAA",
     "vitamin metabolic process": "#0000CC",
     "membrane organization and biogenesis": "#336600"
 }; 

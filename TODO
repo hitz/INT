@@ -1,0 +1,32 @@
+== Hairball detangler TODO ==
+=== Features ===
+* Fix node coloring visual style.   DONE
+** Set up some default colors in JS ob  DONE
+** autogenerate color input pickers based on GOSlim results DONE
+** Actually make it change colors DONE
+* Set up network fill part (move callback between getInts and getGOSlim DONE
+* Change AddNetwork to accomodate DONE
+* make "delete" node permanent (i.e, delete from Node{} -> ban list DONE
+* Add prune option for singally connected nodes?  Track node "order"
+* Allow edge color changes
+** track edge types in add Network, default colors autogenerate checkboxes 
+* Allow node shape changes
+** autogenerate shape switchers  (note: inverted from colors)
+* Create Kinase autocomplete, TF autocomplete, others?
+* Re-allow genetic interactions, etc 
+* put in interaction counts, edge limits. DONE
+* add node weights  DONE
+* add "waiting" or spinning wheel
+* use "ban" list for promiscuous proteins DONE
+* re-write node color storage to have mapping of terms -> nodes (faster, I hope)
+* selection based queries: given selection of nodes, find all connections between them.
+* edge merging - maybe have Biochem. active edges supersede regular physical interactions.
+* creation of color picker elements neglects possibility that a gene has an unidentified BP slim term, loop could be inverted.
+* brighten node selection halo, hide/mist out  non-selected edges
+* wait for jquery-ui-layout compatible with jq 1.6 to get released or otherwise fix layout issues so that windows can move around
+* Add phenotypes, phenotype based node coloring / selection
+* Add selection based on MF/shape, BP/color, CC?, phenotype, pathway?
+=== Code Org ===
+* Save a bunch of JSON files to allow for no-net debugging
+* Convert json->jsonp calls
+* refactor global "hashes" into objects

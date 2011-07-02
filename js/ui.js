@@ -215,10 +215,25 @@ function displayGeneProps(info) {
      // would like to click something to open the accordiion but not sure how!
 }
 
+function statNetwork() {
+    $("#nnodes").html(_.keys(Nodes).length );
+    $("#nedges").html(_.keys(Edges).length );
+
+}
+
 function cytoscapeReady() {
 
 
-    vis.addContextMenuItem("Delete node", "nodes", function(evt) {
+    vis.addContextMenuItem("Delete node (and add to ban list)", "nodes", function(evt) {
+			       if(!delete Nodes[evt.target.data.id]) {
+				    alert ("Could not delete "+evt.target.data.id);
+			       }
+			       _.each(Edges, function(edge,key) {
+				      if (edge.source == evt.target.data.id || edge.target == evt.target.data.id) delete Edges[key];
+				      }
+				     );
+			       statNetwork();
+			       banList.push(evt.target.data.id);
 			       vis.removeNode(evt.target, true);
 			   });
 
@@ -240,34 +255,47 @@ function cytoscapeReady() {
 			// note: last functioni in chain must add the listener back!
 		    });
 
+    function neighborHilite(node) {
+	// Get the first neighbors of that node:
+	var fNeighbors = vis.firstNeighbors([node]);
+	var neighborNodes = fNeighbors.neighbors;
+	
+	// Select the root node and its neighbors:
+	vis.select([node]).select(neighborNodes);
+	
+    }
+
+    vis.addListener("mouseover","nodes", function(evt) {
+			neighborHilite(evt.target);
+		    }
+		   );
+
+    vis.addListener("mouseout","nodes", function(evt) {
+			vis.deselect("nodes");
+		    }
+		   );
+
     vis.addContextMenuItem("Select first neighbors", "nodes", function (evt) {
 			       // Get the right-clicked node:
-			       var rootNode = evt.target;
-			       
-			       // Get the first neighbors of that node:
-			       var fNeighbors = vis.firstNeighbors([rootNode]);
-			       var neighborNodes = fNeighbors.neighbors;
-			       
-			       // Select the root node and its neighbors:
-			       vis.select([rootNode]).select(neighborNodes);
+			       neighborHilite(evt.target);
+
 			   }
 			  );
 
     vis.addContextMenuItem("Radial layout", "none", function () {
-			       reDraw({
+
+			       vis.layout({
 					  name: "Radial",
 					  options: {
 					      angleWidth: 360,
 					      radius: "auto"
 					  }
-				      },
-				      defStyle,
-				      convertJSON());
-			   }
-			  );
+					  });
+			       });
 
     vis.addContextMenuItem("Tree layout", "none", function () {
-			       reDraw({
+
+			       vis.layout({
 					  name: "Tree",
 					  options: {
 					      orientation: "leftToRight",
@@ -275,17 +303,16 @@ function cytoscapeReady() {
 					      breadthSpace: 30,
 					      angleWidth: 30,
 					  }
-				      },
-				      defStyle,
-				      convertJSON());
+				      });
 			   }
 			  );
+
     vis.addContextMenuItem("Force-directed layout", "none", function () {
-			       reDraw({
+			       vis.layout({
 					    name: "ForceDirected",
 					    options: {
-						mass: 300,
-						gravitation: -500,
+						mass: 30,
+						gravitation: -5,
 						tension: 0.1,
 						restLength: "auto",
 						drag: 0.4,
@@ -293,13 +320,11 @@ function cytoscapeReady() {
 						weightNorm: "linear",
 						maxTime: 6000 ,
 						iterations: 400 ,
-						minDistance: 1,
-						maxDistance: 10000,
+						minDistance: 25,
+						maxDistance: 1000,
 						autoStabilize: true
 					    }
-					},
-					defStyle,
-					convertJSON());
+					});
 			   }
 			  );
 
@@ -312,7 +337,7 @@ function cytoscapeReady() {
 	try{
 	    var current = vis.node(data.id).color;  
 	} catch (x) {
-	    var current = currentColors[data.id];		
+	    var current = currentColors[data.id] || "#222222"; // try to catch undefined BP slims		
 	}
 
 	if (selectedTerm == '') {
@@ -341,7 +366,7 @@ function cytoscapeReady() {
 
     vis["nodeShapeGoMapper"] = function(data) {
 
-	if (!(_.isArray(data.GO_SLIM_molecular_function)) || data.GO_SLIM_molecular_function.length == 0) {
+	if (!(_.isArray(data.GO_SLIM_molecular_function)) || data.GO_SLIM_molecular_function.length == 0 || data.GO_SLIM_molecular_function === ['None']) {
             return "VEE";
 	}
 

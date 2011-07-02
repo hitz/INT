@@ -103,10 +103,10 @@ function getInts(gene, filter, create, nextRequest) {
 	IMBedding.loadTemplate(
 	   query,
 	  function ( data ) {
-	  	rootId = addNetwork(create, data.results.pop());
-	        var neighbors = _.select(_.keys(Nodes), function(k) { return k != rootId});
-	        //alert("got ints, getting go")
-	        //console.log(neighbors);
+	  	rootId = addNetwork(create, data.results.pop(), false); // do not count these.
+	        var neighbors = _.keys(Nodes);//_.select(_.keys(Nodes), function(k) { return k != rootId});
+	        //NOTE:  We purposefully double count root node here because we are dividing by 2 in fillNetwork
+                // due to bait/hit ambiguity.
 	        nextRequest(neighbors, neighbors,filter, function(genes) { getGOSlim(genes) });
 
 	  }
@@ -167,7 +167,7 @@ function fillNetwork(geneList1, geneList2, filter, nextRequest) {
 		   
 		   _.each(data.results, function(root) {
 		       
-		       var rootID = addNetwork(false, root);
+		       var rootID = addNetwork(false, root, true);
 
 			      });
 
@@ -177,7 +177,7 @@ function fillNetwork(geneList1, geneList2, filter, nextRequest) {
 	
 }
 
-function addNetwork(create, root) {
+function addNetwork(create, root, count) {
 
 	/* This adds all "new" nodes and new edges by ID into a graph */
 
@@ -214,23 +214,33 @@ function addNetwork(create, root) {
 		}
 		var pair = [igene.secondaryIdentifier, root.secondaryIdentifier].sort();
 	        // note: pubmedid is not stored but used for counting purposes
+
+	        var src = root.secondaryIdentifier;
+	        var targ = igene.secondaryIdentifier;
+	        if (inx.role == 'Bait') {
+		    // reverse source and target for directed edges
+		    var tmp = src;
+		    src = targ;
+		    targ = tmp;
+		}
 	        var key = pair[0]+pair[1]+inx.experiment.name;
 		if (Edges[key] == undefined) {
+		        (count == true ? (inx.role == 'Self' ? w = 1.0 : w = 0.5) : w = 0);
 			Edges[key] = {
-			    id:					"-"+inx.objectId,
+			    id:					key,
 			    label:				inx.experiment.name,
 			    experimentType:	        	inx.experiment.name,
 			    interactionClass:	                inx.interactionType,
-			    source:				root.secondaryIdentifier,
-			    target: 		         	igene.secondaryIdentifier,
-			    weight:                             2
+			    source:				src,
+			    target: 		         	targ,
+			    weight:                             w
 			};
-		} else {
-		    Edges[key].weight += 2;
+		} else if (count == true) {
+		    (inx.role == 'Self' ? Edges[key].weight += 1.0 : Edges[key].weight += 0.5);  // non-self-interactions are double-counted by fillNetwork
+		    Edges[key].label = inx.experiment.name + " ("+Edges[key].weight+")";
 		}
 	}
-        $("#nnodes").html(_.keys(Nodes).length );
-        $("#nedges").html(_.keys(Edges).length );
+        statNetwork(); // reports counts, etc.
         return root.secondaryIdentifier;
 	//console.log(Edges);
 }
@@ -317,23 +327,6 @@ function getGeneList() {
    			 	minLength: 2,
 		    	select: function(event,ui) {
 			        createNetwork(ui.item.value,"physical interactions");
-			       /* $.when( createNetwork(ui.item.value,"physical interactions") )
-			          .done(function() {
-					    //CSWnetwork = convertJSON();
-					    //reDraw(defLayout, defStyle, CSWnetwork);
-
-	        			    $.when(getGOSlim(_.select(_.keys(Nodes), function(k) { return k != rootId})))
-					    .done(function(){
-						  }
-						 )
-					    .fail(function(){
-						  alert("Go fetch failed")
-						  });
-					})
-		    		  .fail(function() {
-					alert("Network creation failed")
-					});
-		    */
 			}
 						      
     	        
@@ -424,8 +417,8 @@ function getGOSlim (genes) {
 							currentTerms[key][term]++;
 						    }
 						});
-
-					 annot[key] = _.keys(val);
+					 
+					 annot[key] = (_.keys(val).length == 0 ? ['None'] : _.keys(val));
 				     });
 
 			      _.extend(Nodes[gene.secondaryIdentifier],annot); 
