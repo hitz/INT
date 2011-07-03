@@ -249,7 +249,7 @@ function cytoscapeReady() {
 			var type = "physical interactions";
 			if (!waitingNetwork) {
 			    waitingNetwork = true;
-			    getInts(evt.target.data.id, type, false, function(genes,genes, type, goFunc){ fillNetwork(genes,genes,type,goFunc)});
+			    getInts(evt.target.data.id, type, false, function(genes,genes2, type, goFunc){ fillNetwork(genes,genes2, type,goFunc)});
 			    
 			}
 			// note: last functioni in chain must add the listener back!
@@ -265,7 +265,7 @@ function cytoscapeReady() {
 	
     }
 
-    vis.addListener("mouseover","nodes", function(evt) {
+/*    vis.addListener("mouseover","nodes", function(evt) {
 			neighborHilite(evt.target);
 			setTimeout(function(){vis.deselect("nodes"),300});
 		    }
@@ -275,7 +275,7 @@ function cytoscapeReady() {
 			vis.deselect("nodes");
 		    }
 		   );
-
+*/
     vis.addContextMenuItem("Select first neighbors", "nodes", function (evt) {
 			       // Get the right-clicked node:
 			       neighborHilite(evt.target);
@@ -338,7 +338,8 @@ function cytoscapeReady() {
 	try{
 	    var current = vis.node(data.id).color;  
 	} catch (x) {
-	    var current = currentColors[data.id] || "#222222"; // try to catch undefined BP slims		
+	    var current = (currentColors[data.id] == undefined ? "#222222" : currentColors[data.id]);
+	    currentColors[data.id] = current; // try to catch undefined BP slims		
 	}
 
 	if (selectedTerm == '') {

@@ -103,11 +103,17 @@ function getInts(gene, filter, create, nextRequest) {
 	IMBedding.loadTemplate(
 	   query,
 	  function ( data ) {
-	  	rootId = addNetwork(create, data.results.pop(), false); // do not count these.
-	        var neighbors = _.keys(Nodes);//_.select(_.keys(Nodes), function(k) { return k != rootId});
-	        //NOTE:  We purposefully double count root node here because we are dividing by 2 in fillNetwork
-                // due to bait/hit ambiguity.
-	        nextRequest(neighbors, neighbors,filter, function(genes) { getGOSlim(genes) });
+	  		var thisSearch = [];
+		   _.each(data.results, function(root) { 
+		   			var root = addNetwork(create, root); 
+		   			if(create) { create = false }
+		   			 });
+	        var neighbors = _.select(_.keys(Nodes), function(k) { return k != rootId});
+	  	try {
+	        nextRequest(neighbors,_.keys(Nodes), filter, function(genes) { getGOSlim(genes) });
+	      } catch (x) {
+	      	alert("some error: "+x);
+	      }
 
 	  }
 	);
@@ -116,7 +122,8 @@ function getInts(gene, filter, create, nextRequest) {
 function fillNetwork(geneList1, geneList2, filter, nextRequest) {
 
         //alert("Creating Query");
-        _.each(banList, function(banned) {
+        var skip = banList;
+        _.each(skip, function(banned) {
 		   geneList1 = _.without(geneList1,banned);
 		   geneList2 = _.without(geneList2,banned);
 		   });
@@ -167,23 +174,22 @@ function fillNetwork(geneList1, geneList2, filter, nextRequest) {
 		   
 		   _.each(data.results, function(root) {
 		       
-		       var rootID = addNetwork(false, root, true);
+		       var rootID = addNetwork(false, root);
 
 			      });
-
 		   nextRequest(_.keys(Nodes));
 		}
 	});
 	
 }
 
-function addNetwork(create, root, count) {
+function addNetwork(create, root) {
 
 	/* This adds all "new" nodes and new edges by ID into a graph */
 
 	//var root = graph.results.pop(); // first item in array.
 
-        if(create == true) {
+    if(create == true) {
 	    // new network
 	    Nodes = {};
 	    Edges = {};
@@ -199,6 +205,7 @@ function addNetwork(create, root, count) {
 		};
 	}
 	
+	var e = {}; // local edges
 	for ( i=0;i<root.interactions.length;i++) {
 		inx = root.interactions[i];
 		var igene = inx.interactingGenes.pop(); // theoretically could be more than one!
@@ -223,10 +230,11 @@ function addNetwork(create, root, count) {
 		    src = targ;
 		    targ = tmp;
 		}
-	        var key = pair[0]+pair[1]+inx.experiment.name;
-		if (Edges[key] == undefined) {
-		        (count == true ? (inx.role == 'Self' ? w = 1.0 : w = 0.5) : w = 0);
-			Edges[key] = {
+	    var key = pair[0]+pair[1]+inx.experiment.name;
+	    if(Edges[key]) { continue; }
+		if (e[key] == undefined) {
+		    w = 1.0;
+			e[key] = {
 			    id:					key,
 			    label:				inx.experiment.name,
 			    experimentType:	        	inx.experiment.name,
@@ -235,11 +243,13 @@ function addNetwork(create, root, count) {
 			    target: 		         	targ,
 			    weight:                             w
 			};
-		} else if (count == true) {
-		    (inx.role == 'Self' ? Edges[key].weight += 1.0 : Edges[key].weight += 0.5);  // non-self-interactions are double-counted by fillNetwork
-		    Edges[key].label = inx.experiment.name + " ("+Edges[key].weight+")";
+		} else {
+		    //(inx.role == 'Self' ? e[key].weight += 1.0 : e[key].weight += 0.5);  // non-self-interactions are double-counted by fillNetwork
+		    e[key].weight += 1.0;
+		    e[key].label = inx.experiment.name + " ("+e[key].weight+")";
 		}
 	}
+		_.extend(Edges,e);
         statNetwork(); // reports counts, etc.
         return root.secondaryIdentifier;
 	//console.log(Edges);
@@ -337,13 +347,14 @@ function getGeneList() {
 
 function createNetwork(hub, type) {
     resetFilters();
-    getInts(hub, type, true, function(genes,genes, type,goFunc){ fillNetwork(genes,genes,type,goFunc)});
+    getInts(hub, type, true, function(genes,genes2, type,goFunc){ fillNetwork(genes,genes2 ,type,goFunc)});
 }
 
 function getGOSlim (genes) {
 
     // NOTE: 'ONE OF' / values: query must be LAST in the constraints: array!!
-    //console.log(genes);
+    // should we filter this to genes that do not have slim terms yet?  
+ 
     var query ={
 	model: "genomic",
 	view: [
@@ -380,6 +391,9 @@ function getGOSlim (genes) {
 	       success:  function( data ) {
 
 		   $.each(data.results, function(i,gene) {
+		   		// technically we could filter this before query, but not sure that's faster
+		   		if (Nodes[gene.secondaryIdentifier].GO_SLIM_molecular_function == undefined  ||
+		   			_.isEmpty(Nodes[gene.secondaryIdentifier].GO_SLIM_molecular_function)) {
 			      var annot = {};
 			      var slim = {
 				  GO_SLIM_molecular_function: {},
@@ -422,6 +436,7 @@ function getGOSlim (genes) {
 				     });
 
 			      _.extend(Nodes[gene.secondaryIdentifier],annot); 
+			      }
 			  });
 		   var tot = _.reduce(_.values(currentTerms.GO_SLIM_biological_process),function(num,memo){ return num+memo;},0);
 		   CSWnetwork = convertJSON();

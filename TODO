@@ -16,7 +16,7 @@
 * Re-allow genetic interactions, etc 
 * put in interaction counts, edge limits. DONE
 * add node weights  DONE
-* add "waiting" or spinning wheel
+* add "waiting" or spinning wheel - in newer version of jquery-ui (unreleased)
 * use "ban" list for promiscuous proteins DONE
 * re-write node color storage to have mapping of terms -> nodes (faster, I hope)
 * selection based queries: given selection of nodes, find all connections between them.
@@ -26,6 +26,8 @@
 * wait for jquery-ui-layout compatible with jq 1.6 to get released or otherwise fix layout issues so that windows can move around
 * Add phenotypes, phenotype based node coloring / selection
 * Add selection based on MF/shape, BP/color, CC?, phenotype, pathway?
+* Add "find" gene by name lookup (autocomplete -> select)
+* have 2 gene entries - one == new network, other = expand network
 === Code Org ===
 * Save a bunch of JSON files to allow for no-net debugging
 * Convert json->jsonp calls

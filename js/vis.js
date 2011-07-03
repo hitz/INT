@@ -37,7 +37,7 @@ var defStyle = {
 	},
 	edges: {
 	        width: {
-		        continuousMapper: {attrName: "weight",minValue: 1, maxValue: 12, maxAttrValue: 6}
+		        continuousMapper: {attrName: "weight",minValue: 3, maxValue: 10, maxAttrValue: 6}
 			                
 		},
 		color:	{
