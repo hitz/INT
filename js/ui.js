@@ -245,7 +245,7 @@ function cytoscapeReady() {
 		    
 		    });
 
-    vis.addListener("dblclick", "nodes", function (evt) {
+    vis.addContextMenuItem("Extend Network (physical)", "nodes", function (evt) {
 			var type = "physical interactions";
 			if (!waitingNetwork) {
 			    waitingNetwork = true;
@@ -331,14 +331,14 @@ function cytoscapeReady() {
 
 
     vis["nodeColorGoMapper"] = function(data) {
-	    if (!(_.isArray(data.GO_SLIM_biological_process)) || data.GO_SLIM_biological_process.length == 0 || data.id == undefined) {
+	    if (!(_.isArray(data.GO_SLIM_biological_process)) || data.GO_SLIM_biological_process.length == 0 || data.GO_SLIM_biological_process[0] == 'None' || data.id == undefined) {
 		//console.log("BP empty");
 		return "#CCCCCC";
 	    }
 	try{
 	    var current = vis.node(data.id).color;  
 	} catch (x) {
-	    var current = (currentColors[data.id] == undefined ? "#222222" : currentColors[data.id]);
+	    var current = (currentColors[data.id] == undefined ? nodeColors["ALL_nodes"]: currentColors[data.id]);
 	    currentColors[data.id] = current; // try to catch undefined BP slims		
 	}
 
@@ -362,8 +362,9 @@ function cytoscapeReady() {
 	    currentColors[data.id] = nodeColors[selectedTerm];
 
 	}	    
-	return currentColors[data.id];
-	
+    
+    return currentColors[data.id];
+ 	
     };
 
     vis["nodeShapeGoMapper"] = function(data) {

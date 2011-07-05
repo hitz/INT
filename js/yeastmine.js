@@ -332,15 +332,21 @@ function getGeneList() {
 					}
 					];
 			});
- 			$("#search").autocomplete({
+ 			$("#search_new").autocomplete({
 		    	source: geneList,
    			 	minLength: 2,
 		    	select: function(event,ui) {
 			        createNetwork(ui.item.value,"physical interactions");
-			}
-						      
-    	        
-		});
+			       }
+			});
+ 			$("#search_add").autocomplete({
+		    	source: geneList,
+   			 	minLength: 2,
+		    	select: function(event,ui) {
+			        getInts(ui.item.value, "physical interactions", false, function(genes,genes2, type,goFunc){ fillNetwork(genes,genes2 ,type,goFunc)});
+			       }
+
+			});
 		}
 );
 }

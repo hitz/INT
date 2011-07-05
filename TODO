@@ -8,6 +8,7 @@
 * Change AddNetwork to accomodate DONE
 * make "delete" node permanent (i.e, delete from Node{} -> ban list DONE
 * Add prune option for singally connected nodes?  Track node "order"
+* delete all selected nodes
 * Allow edge color changes
 ** track edge types in add Network, default colors autogenerate checkboxes 
 * Allow node shape changes
@@ -28,6 +29,10 @@
 * Add selection based on MF/shape, BP/color, CC?, phenotype, pathway?
 * Add "find" gene by name lookup (autocomplete -> select)
 * have 2 gene entries - one == new network, other = expand network
+* collapse selected nodes into supernode (complex)
+** replace [selectedNodes] with singleNode -> edges = sum of all edges of [selectedNodes].  Set to large size.
+** allow user entered name
+** reversable
 === Code Org ===
 * Save a bunch of JSON files to allow for no-net debugging
 * Convert json->jsonp calls
