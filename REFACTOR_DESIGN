@@ -1,0 +1,110 @@
+== REFERENCES ==
+How to do references to other objects in JS???
+
+== App Object ==
+
+Basically a container for UI and Network objects.
+
+=== Fields ===
+csw: new org.cytoscapeweb.Visualization(div, options)
+ui: UI object that controls behavior
+network: Network object that holds data
+div: #id of div
+options: { CSW flash options }
+
+=== Methods ===
+setup: function() { populate gene lists; define a bunch of jQuery/DOM objects, vis init functions (if necessary) }
+
+=== Questions ===
+Should all DOM stuff be shoved into UI object?  What about new version of jquery-ui-layout stuff?   Maybe App should worry about "fixed" divs - ie., viewer(cytoscape), sidebar(control panels), info/error panels?
+
+== UI Object ==
+Interface between App (especially) App.vis() and Network
+
+=== Fields ===
+model: Model objects (i.e, YeastMine) for fetching data
+vis: Exo-cytoscape visualization data model (global props)
+waitingNetwork: ajax "busy" flag
+similar flags/spinners
+(reference to App)?
+
+=== Methods ===
+get/set Filters
+initialize / control vis style
+cytoscapeReady (set up listeners)
+displayInfo (gene/GO/Phenotype etc.)
+
+== Visualization Object ==
+App specific visualization holds data objects that get sent to CSW object.
+
+=== Fields ===
+default vis style
+default colors
+current Node colors
+current Node shape (size?)
+current Edge colors, mappings
+current filters (hidden or masked)
+visStyleBypass
+(currentGOterms?)
+
+== Network Object ==
+
+Holds network data before it's sent to CSW object
+"Graph" - generic mixed multi type (partially directed)
+
+=== Fields ===
+
+banList (list of promiscuous interactors)
+nodes: -> { AA of Node objects } - unique key
+edges: -> { AA of Edge objects } 
+subGraphs: [] (either by degree or edge type etc)
+cswNetwork (cached result of convertJSON - not sure if necessary)
+
+==== Graph stuff ====
+(collective stuff on Degree, Eccentricity, etc.)
+==== Methods ===
+addNode
+addEdge
+deleteNode
+deleteEdge
+Layout
+reDraw
+stat (return counts)
+convertJSON (concert data datastructure to CSW)
+
+== Node Object ==
+
+proxy for CSW nodes
+=== Fields ===
+(data) schema: { name: "label", type: "string"},
+{ name: "systematicName", type: "string"},
+{ name: "geneDescription", type: "string", defValue: ""},
+{ name: "headline", type: "string", defValue: ""},				 
+{ name: "GO_SLIM_molecular_function", type: "list", defValue: []},
+{ name: "GO_SLIM_biological_process", type: "list", defValue: []},
+{ name: "GO_SLIM_cellular_component", type: "list", defValue: []},
+{ name: "molecular_function", type: "list", defValue: []},
+{ name: "biological_process", type: "list", defValue: []},
+{ name: "cellular_component", type: "list", defValue: []},
+{ name: "go", type: "boolean", defValue: false}
+vnode: csw.node  - (X,Y, visual stats - size/color/shape)
+edges:  - edges that have node as source or target (or leave to CSW)
+neighbors:  - list of nodes connected directory (or leave to CSW)
+
+=== Methods ===
+getters, setters, interfaces to vnode
+
+== Edge Object ==
+proxy for CSW edges
+
+=== Fields ===
+(data) schema: { name: "label", type: "string"},
+{ name: "experimentType", type: "string"},
+{ name: "directed", type: "boolean", defValue: false},
+{ name: "weight", type: "number", devValue: 1.0},
+{ name: "interactionClass", type: "string"},
+{ name: "publication", type: "string"}
+vedge: csw.edge (source, target, visual stats - color,width, style, arrows)
+
+=== Methods ===
+getters, setters, interfaces to vedge
