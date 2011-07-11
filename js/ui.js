@@ -216,8 +216,8 @@ function displayGeneProps(info) {
 }
 
 function statNetwork() {
-    $("#nnodes").html(_.keys(Nodes).length );
-    $("#nedges").html(_.keys(Edges).length );
+    $("#nnodes").html(_.keys(this.Network.Nodes).length );
+    $("#nedges").html(_.keys(this.Network.Edges).length );
 
 }
 

@@ -1,4 +1,6 @@
 //IMBedding.setBaseUrl("http://yeastmine.yeastgenome.org/yeastmine");
+
+//TODO: Pull all UI code, Network update code out of here
 var devIM = "http://yeastmine-test.yeastgenome.org/yeastmine-dev"
 var templateUrl = devIM+"/service/template/results";
 var queryUrl = devIM+"/service/query/results";
@@ -183,77 +185,6 @@ function fillNetwork(geneList1, geneList2, filter, nextRequest) {
 	
 }
 
-function addNetwork(create, root) {
-
-	/* This adds all "new" nodes and new edges by ID into a graph */
-
-	//var root = graph.results.pop(); // first item in array.
-
-    if(create == true) {
-	    // new network
-	    Nodes = {};
-	    Edges = {};
-	}
-	
-	if(Nodes[root.secondaryIdentifier] == undefined) {
-		Nodes[root.secondaryIdentifier] = {
-			geneDescription:	root.description,
-			systematicName:		root.secondaryIdentifier,
-			label:				root.symbol,
-			id:					root.secondaryIdentifier,
-			headline:			root.headline
-		};
-	}
-	
-	var e = {}; // local edges
-	for ( i=0;i<root.interactions.length;i++) {
-		inx = root.interactions[i];
-		var igene = inx.interactingGenes.pop(); // theoretically could be more than one!
-		if (Nodes[igene.secondaryIdentifier] == undefined ) {
-			var trueName = ( igene.symbol == undefined ? igene.secondaryIdentifier: igene.symbol);
-			Nodes[igene.secondaryIdentifier] = {
-					id:					igene.secondaryIdentifier,	
-					label: 				trueName,
-					systematicName: 	igene.secondaryIdentifier,
-					geneDescription: 	igene.description,
-					headline:			igene.headline
-			};	
-		}
-		var pair = [igene.secondaryIdentifier, root.secondaryIdentifier].sort();
-	        // note: pubmedid is not stored but used for counting purposes
-
-	        var src = root.secondaryIdentifier;
-	        var targ = igene.secondaryIdentifier;
-	        if (inx.role == 'Bait') {
-		    // reverse source and target for directed edges
-		    var tmp = src;
-		    src = targ;
-		    targ = tmp;
-		}
-	    var key = pair[0]+pair[1]+inx.experiment.name;
-	    if(Edges[key]) { continue; }
-		if (e[key] == undefined) {
-		    w = 1.0;
-			e[key] = {
-			    id:					key,
-			    label:				inx.experiment.name,
-			    experimentType:	        	inx.experiment.name,
-			    interactionClass:	                inx.interactionType,
-			    source:				src,
-			    target: 		         	targ,
-			    weight:                             w
-			};
-		} else {
-		    //(inx.role == 'Self' ? e[key].weight += 1.0 : e[key].weight += 0.5);  // non-self-interactions are double-counted by fillNetwork
-		    e[key].weight += 1.0;
-		    e[key].label = inx.experiment.name + " ("+e[key].weight+")";
-		}
-	}
-		_.extend(Edges,e);
-        statNetwork(); // reports counts, etc.
-        return root.secondaryIdentifier;
-	//console.log(Edges);
-}
 function reDraw(layout, style, graph){
 
                 //alert("Drawing..");
@@ -271,41 +202,6 @@ function reDraw(layout, style, graph){
 
 }
 
-function convertJSON() {
-	/* convert YeastMine JSON into CytoscapeWeb NetworkModel */
-
-        //alert("converting network to CSW JSON");
-		
-	var schema = {
-			nodes: [ { name: "label", type: "string"},
-					 { name: "systematicName", type: "string"},
-					 { name: "geneDescription", type: "string", defValue: ""},
-					 { name: "headline", type: "string", defValue: ""},					 
-					 { name: "GO_SLIM_molecular_function", type: "list", defValue: []},
-					 { name: "GO_SLIM_biological_process", type: "list", defValue: []},
-					 { name: "GO_SLIM_cellular_component", type: "list", defValue: []},
-					 { name: "molecular_function", type: "list", defValue: []},
-					 { name: "biological_process", type: "list", defValue: []},
-					 { name: "cellular_component", type: "list", defValue: []},
-					 { name: "go", type: "boolean", defValue: false}
-					],
-			edges: [ { name: "label", type: "string"},
-					 { name: "experimentType", type: "string"},
-					 { name: "directed", type: "boolean", defValue: false},
-					 { name: "weight", type: "number", devValue: 1.0},
-					 { name: "interactionClass", type: "string"},
-					 { name: "publication", type: "string"}
-				   ]
-	};
-	
-	return {
-		dataSchema:	schema,
-		data: {
-			nodes: $.map(Nodes, function(value, key) { return value; }),
-			edges: $.map(Edges, function(value, key) { return value; })
-		}
-	};
-}	
 	
 
 function getGeneList() {
