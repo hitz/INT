@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>testNetwork</title>
+	<meta name="generator" content="Studio 3 http://aptana.com/">
+	<meta name="author" content="Benjamin Hitz">
+	<!-- Date: 2011-07-12 -->
+     <link rel="stylesheet" href="/INT/css/qunit.css" type="text/css"/>  
+     <script type="text/javascript" src="/INT/js/min/jquery-1.6.1.min.js"> </script>  
+     <script type="text/javascript" src="/INT/js/qunit.js"></script>
+     <script type="text/javascript" src="/INT/js/min/underscore-min.js"></script>
+     <script type="text/javascript" src="/INT/js/min/require.min.js"></script>
+     <script type="text/javascript" src="/INT/js/min/json2.min.js"></script>
+     <script type="text/javascript">  
+      // --- Unittest Code goes here ---  
+	$(document).ready(function(){
+    	module("Network");
+    	test("Sample test", function() {
+ 	      	expect(1);
+    	   	equals(divide(4,2),
+        		2,
+        	'Expected 2 as the result, result was: ' + divide(4,2));
+    		}
+    	);
+    	
+    	test("Array test", function() {
+    		var arrayContainer = {a: 'firstElement'};
+  			equals(arrayContainer, {a: 'firstElement'}, 'Will fail');
+  			same(arrayContainer, {a: 'firstElement'}, 'Will pass');
+  			}
+  		);
+ 	
+ 		function divide(a,b) {
+	    	return a / b;
+  		}
+  });     
+  </script>  
+   </head>  
+   <body>  
+     <h1 id="qunit-header">QUnit network.js</h1>  
+     <h2 id="qunit-banner"></h2>  
+     <h2 id="qunit-userAgent"></h2>  
+     <ol id="qunit-tests">  
+     	     </ol>  
+   </body>  
+</html>

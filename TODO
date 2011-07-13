@@ -14,8 +14,10 @@
 * Allow node shape changes
 ** autogenerate shape switchers  (note: inverted from colors)
 * Create Kinase autocomplete, TF autocomplete, others?
-* Re-allow genetic interactions, etc 
-* put in interaction counts, edge limits. DONE
+* Re-allow genetic interaction
+* Use genetic interaction (types) to directionalize physical network.  Filter by phenotype?
+* show global interaction counts, edge limits. DONE
+* fetch and show interaction counts by node 
 * add node weights  DONE
 * add "waiting" or spinning wheel - in newer version of jquery-ui (unreleased)
 * use "ban" list for promiscuous proteins DONE
@@ -27,9 +29,14 @@
 * wait for jquery-ui-layout compatible with jq 1.6 to get released or otherwise fix layout issues so that windows can move around
 * Add phenotypes, phenotype based node coloring / selection
 * Add selection based on MF/shape, BP/color, CC?, phenotype, pathway?
+* filter nodes/edges based on cellular component, other GO terms.
+* Define: modules - set of nodes that that all interact  for A find all B such that Bi<->Bj and Bi<->A
 * Add "find" gene by name lookup (autocomplete -> select)
+* Mark nodes that have had their "fetch" done - alternate border color?
 * have 2 gene entries - one == new network, other = expand network
 * collapse selected nodes into supernode (complex)
+* context menu - lock a nodes color (or selection of nodes)
+* How to filter "parallel" pathways?? (e.g,. alternate cyclins) - Positive Genetic Ints!
 ** replace [selectedNodes] with singleNode -> edges = sum of all edges of [selectedNodes].  Set to large size.
 ** allow user entered name
 ** reversable
