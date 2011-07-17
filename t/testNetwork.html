@@ -14,29 +14,36 @@
      <script type="text/javascript" src="/INT/js/min/underscore-min.js"></script>
      <script type="text/javascript" src="/INT/js/min/require.min.js"></script>
      <script type="text/javascript" src="/INT/js/min/json2.min.js"></script>
+     
+     <script type="text/javascript" src="/INT/js/network.js"></script>
      <script type="text/javascript">  
       // --- Unittest Code goes here ---  
-	$(document).ready(function(){
-    	module("Network");
-    	test("Sample test", function() {
- 	      	expect(1);
-    	   	equals(divide(4,2),
-        		2,
-        	'Expected 2 as the result, result was: ' + divide(4,2));
-    		}
+ 	$(document).ready(function(){
+ 
+ 		if ( console == undefined || console == null ){ 
+ 			console = { log: function(){} }; 
+ 		}
+
+ 	    QUnit.log = function(result, message) {
+ 		     	console.log(result +' :: '+ message);
+  		};
+  	
+   		module("Network");
+    	test("instantiate no data", function() {
+ 	      	var net = new Network({});
+ 	      	same(net.Nodes(), {}, 'Expected empty object for Nodes, found '+net.Nodes());
+  	      	same(net.Edges(), {}, 'Expected empty object for Edges, found '+net.Edges());
+  	      	ok(_.isFunction(net.addNetwork),'addNetwork is a function');
+  	      	ok(_.isFunction(net.createNetwork), 'createNetwork is a function');
+  	      	ok(_.isArray(net.banList()), 'ban list is an array '+net.banList());
+  	      	equals(_.first(net.banList()),'NAB2','first element of banList is '+_.first(net.banList()));
+  	      	ok(_.isArray(net.schema().nodes),'schema.nodes is an array '+net.schema().nodes);
+  	      	ok(_.isArray(net.schema().edges),'schema.eges is an array '+net.schema().edges);
+  	      	ok(_.isFunction(net.convertJSON),'convert JSON is a function');
+  	      }
     	);
     	
-    	test("Array test", function() {
-    		var arrayContainer = {a: 'firstElement'};
-  			equals(arrayContainer, {a: 'firstElement'}, 'Will fail');
-  			same(arrayContainer, {a: 'firstElement'}, 'Will pass');
-  			}
-  		);
- 	
- 		function divide(a,b) {
-	    	return a / b;
-  		}
-  });     
+   });     
   </script>  
    </head>  
    <body>  

@@ -40,6 +40,9 @@
 ** replace [selectedNodes] with singleNode -> edges = sum of all edges of [selectedNodes].  Set to large size.
 ** allow user entered name
 ** reversable
+* layout - cell Donut?
+* Use node borders to indicate essentiality (phenotype)??
+* consider GO/phenotype "list" queries; e.g, show all genetic interactions between all TFs, or within a pathway.
 === Code Org ===
 * Save a bunch of JSON files to allow for no-net debugging
 * Convert json->jsonp calls

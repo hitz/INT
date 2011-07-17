@@ -17,7 +17,7 @@ var Edge = function(data){
 var Network = function(initData) {
 
 	/* definition of schema for CSW network */
-	this.schema = {
+	var schema = {
 			nodes: [ { name: "label", type: "string"},
 					 { name: "systematicName", type: "string"},
 					 { name: "geneDescription", type: "string", defValue: ""},
@@ -40,12 +40,12 @@ var Network = function(initData) {
 	};
 	
 	/* list of nodes not to expand / both gene (symbol) and systematic names are included  */
-	this.banList  = ['NAB2','UBI4','GIS2','RPN11','HEK2','SMT3','SSB1','RPN10','YGL122C','YLL039C','YNL255C','YFR004W','YBL032W','YDR510W','YDL229W','YHR200W','RPN1',
+	var banList  = ['NAB2','UBI4','GIS2','RPN11','HEK2','SMT3','SSB1','RPN10','YGL122C','YLL039C','YNL255C','YFR004W','YBL032W','YDR510W','YDL229W','YHR200W','RPN1',
 'HSP82','YPL240C','YHR027C','UBP3','YER151C','RSP5','YER125W'];
 
-	this.nodes = {};
-	this.edges = {};
-	this.initialWeight = 1.0; // initial weight of edges, increased by counting
+	var nodes = {};
+	var edges = {};
+	var initialWeight = 1.0; // initial weight of edges, increased by counting
 	if (initData.interactions != undefined && _.isArray(initData.interactions)) rootId = this.createNetwork(initData);
 	
 
@@ -121,15 +121,19 @@ var Network = function(initData) {
 	}
 		
 	return { // public functions
-		Nodes: function() {return this.nodes },
-		Edges: function() {return this.edges },
+		createNetwork: function(data) {return createNetwork(data)},
+		addNetwork: function(rootNode) { return addNetwork(rootNode)},
+		schema: function() {return schema},
+		banList: function() {return banList},
+		Nodes: function() {return nodes },
+		Edges: function() {return edges },
 	    convertJSON: function() {
 		/* convert YeastMine JSON into CytoscapeWeb NetworkModel */
  		 	return {
-				dataSchema:	this.schema,
+				dataSchema:	schema,
 				data: {
-					nodes: $.map(this.nodes, function(value, key) { return value; }),
-					edges: $.map(this.edges, function(value, key) { return value; })
+					nodes: $.map(nodes, function(value, key) { return value; }),
+					edges: $.map(edges, function(value, key) { return value; })
 				}
 			};
 		}

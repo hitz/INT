@@ -8,7 +8,7 @@
 	<meta name="generator" content="Studio 3 http://aptana.com/">
 	<meta name="author" content="Benjamin Hitz">
 	<!-- Date: 2011-07-12 -->
-     <link rel="stylesheet" href="core/qunit.css" type="text/css"/>  
+     <link rel="stylesheet" href="/INT/css/qunit.css" type="text/css"/>  
      <script type="text/javascript" src="/INT/js/min/jquery-1.6.1.min.js"> </script>  
      <script type="text/javascript" src="/INT/js/qunit.js"></script>
      <script type="text/javascript" src="/INT/js/min/underscore-min.js"></script>
@@ -16,6 +16,33 @@
      <script type="text/javascript" src="/INT/js/min/json2.min.js"></script>
      <script type="text/javascript">  
       // --- Unittest Code goes here ---  
+		if ( console == undefined || console == null ){ 
+ 			console = { log: function(){} }; 
+ 		}
+
+ 	    QUnit.log = function(result, message) {
+ 		     	console.log(result +' :: '+ message);
+  		};
+  	
+   		module("Example");
+    	test("Sample test", function() {
+ 	      	expect(1);
+    	   	equals(divide(4,2),
+        		2,
+        	'Expected 2 as the result, result was: ' + divide(4,2));
+    		}
+    	);
+    	
+    	test("Array test", function() {
+    		var arrayContainer = {a: 'firstElement'};
+  			equals(arrayContainer, {a: 'firstElement'}, 'Will fail');
+  			same(arrayContainer, {a: 'firstElement'}, 'Will pass');
+  			}
+  		);
+ 	
+ 		function divide(a,b) {
+	    	return a / b;
+  		}
      </script>  
    </head>  
    <body>  
