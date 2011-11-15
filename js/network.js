@@ -16,7 +16,9 @@ var Edge = function(data){
 
 var Network = function(initData) {
 
-	/* definition of schema for CSW network */
+	/* definition of schema for CSW network 
+	 *  Needs to be generalized for other network (pathway, GI, etc.)
+	 */
 	var schema = {
 			nodes: [ { name: "label", type: "string"},
 					 { name: "systematicName", type: "string"},

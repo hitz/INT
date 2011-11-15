@@ -16,7 +16,8 @@
      <script type="text/javascript" src="/INT/js/min/json2.min.js"></script>
      
      <script type="text/javascript" src="/INT/js/network.js"></script>
-     <script type="text/javascript">  
+      <script type="text/javascript" src="/INT/js/Model_mock.js"></script>
+    <script type="text/javascript">  
       // --- Unittest Code goes here ---  
  	$(document).ready(function(){
  
@@ -42,7 +43,17 @@
   	      	ok(_.isFunction(net.convertJSON),'convert JSON is a function');
   	      }
     	);
-    	
+    	module("Model_mock");
+    	test("getGO",function() {
+    		var resultHolder= {};
+    		var callback = function(data) { resultHolder = data };
+    		var expected = {"rootClass":"Gene","modelName":"genomic","start":0,"views":["Gene.secondaryIdentifier","Gene.symbol","Gene.goAnnotation.qualifier","Gene.goAnnotation.ontologyTerm.identifier","Gene.goAnnotation.ontologyTerm.name","Gene.goAnnotation.ontologyTerm.namespace"],"results":[
+{"symbol":"MF(ALPHA)1","goAnnotation":[{"ontologyTerm":{"objectId":459012692,"name":"pheromone-dependent signal transduction involved in conjugation with cellular fusion","class":"GOTerm","identifier":"GO:0000750","namespace":"biological_process"},"objectId":461052549,"class":"GOAnnotation","qualifier":null},{"ontologyTerm":{"objectId":459013188,"name":"mating pheromone activity","class":"GOTerm","identifier":"GO:0000772","namespace":"molecular_function"},"objectId":461052548,"class":"GOAnnotation","qualifier":null},{"ontologyTerm":{"objectId":459013189,"name":"pheromone activity","class":"GOTerm","identifier":"GO:0005186","namespace":"molecular_function"},"objectId":461052547,"class":"GOAnnotation","qualifier":null},{"ontologyTerm":{"objectId":459020538,"name":"extracellular region","class":"GOSlimTerm","identifier":"GO:0005576","namespace":"cellular_component"},"objectId":461052551,"class":"GOAnnotation","qualifier":null},{"ontologyTerm":{"objectId":459109396,"name":"mating","class":"GOTerm","identifier":"GO:0007618","namespace":"biological_process"},"objectId":461052550,"class":"GOAnnotation","qualifier":null},{"ontologyTerm":{"objectId":459006126,"name":"sexual reproduction","class":"GOTerm","identifier":"GO:0019953","namespace":"biological_process"},"objectId":461052552,"class":"GOAnnotation","qualifier":null}],"objectId":455023210,"class":"ORF","secondaryIdentifier":"YPL187W"}
+],"executionTime":"2011.07.07 07:20::01","wasSuccessful":true,"error":null,"statusCode":200};
+	        var mock = new Model
+	        mock.getGO('MF(ALPHA)1');
+	        same(resultHolder, expected);
+    	})
    });     
   </script>  
    </head>  

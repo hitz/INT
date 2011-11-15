@@ -43,6 +43,9 @@
 * layout - cell Donut?
 * Use node borders to indicate essentiality (phenotype)??
 * consider GO/phenotype "list" queries; e.g, show all genetic interactions between all TFs, or within a pathway.
+* Represent genes(rnas?) as separate nodes - genetic interactions between genes, regulatory protein->gene, or protein->rna
+* PEPTIDASES - STE13 - not captured by ht datasets?
+* Group nodes into metanodes-> Complexes (update to csw source in SVN!)
 === Code Org ===
 * Save a bunch of JSON files to allow for no-net debugging
 * Convert json->jsonp calls

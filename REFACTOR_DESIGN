@@ -37,6 +37,22 @@ displayInfo (gene/GO/Phenotype etc.)
 == Visualization Object ==
 App specific visualization holds data objects that get sent to CSW object.
 
+== Model Object ==
+
+Object that provides data to build network and annotate; from yeastmine or other.
+
+=== Fields ===
+
+=== Methods ===
+getGeneList : returns list of gene names
+getGo(genes): get all go annotations for genes
+getGoSlim(genes, (slim)): get GO slim annotations for genes (to be implemented: Slim)
+getInts(root, filter, nextReq) query type?
+fillNetwork(genes, moregenes, filter, nextRequest) - query type?
+=== yeastmine ===
+login?
+createList?
+
 === Fields ===
 default vis style
 default colors
