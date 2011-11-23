@@ -373,14 +373,14 @@ function cytoscapeReady() {
             return "VEE";
 	}
 
-	var parallelogram = [ "DNA binding", "translation regulator activity", "transcription regulator activity" ];
-	var ellipse = [ "carrier activity", "electron carrier activity", "transporter activity", "ion transporter activity", "channel or pore class transporter activity", "permease activity", "protein transporter activity", "integrase activity", "structural molecule activity", "receptor activity", "antioxidant activity" ];
-	var triangle = [ "signal transducer activity" ];
+	var parallelogram = [ "DNA binding", "translation regulator activity", "transcription regulator activity", "protein binding transcription factor activity", "nucleic acid binding transcription factor activity","transcription factor binding","histone binding" ];
+	var ellipse = [ "carrier activity", "electron carrier activity", "transporter activity", "ion transporter activity", "channel or pore class transporter activity", "permease activity", "protein transporter activity", "integrase activity", "structural molecule activity", "receptor activity", "antioxidant activity","structural constituent of ribosome","translation factor activity, nucleic acid binding","transmembrane transporter activity" ];
+	var triangle = [ "signal transducer activity", "GTPase activity" ];
 	var hexagon = [ "phosphoprotein phosphatase activity" ];
 	var octagon = [ "protein kinase activity", "kinase activity" ];
-	var rectangle = [ "enzyme regula`tor activity", "chaperone regulator activity", "motor activity"];
-	var roundrect = [ "RNA binding", "nucleic acid binding",, "binding", "protein binding"];
-	var diamond = [ "hydrolase activity", "isomerase activity", "lyase activity", "aromatase activity", "helicase activity", "transferase activity", "catalytic activity", "ligase activity", "peptidase activity", "oxidoreductase activity", "nucleotidyltransferase activity" ];
+	var rectangle = [ "enzyme regulator activity", "chaperone regulator activity", "motor activity","ATPase activity","triplet codon-amino acide adaptor activity"];
+	var roundrect = [ "RNA binding","rRNA binding", "nucleic acid binding","enzyme binding", "binding", "protein binding", "mRNA binding","cytoskeletal protein binding","lipid binding","protein binding, bridging","small conjugating protein binding","ion binding","RNA modification guide activity","unfolded protein binding"];
+	var diamond = [ "hydrolase activity", "isomerase activity", "lyase activity", "aromatase activity", "helicase activity", "transferase activity", "catalytic activity", "ligase activity", "peptidase activity", "oxidoreductase activity", "nucleotidyltransferase activity","methyltransferase activity","transferace activity, transferring acyl groups","transferase activity, transferring glycosyl groups","transferace activity, transferring alkyl or aryl (other than methyl) groups","hydrolase activity, acting on glycosyl bonds","hydrolase activity, acting on carbon-nitrogen (but not peptide) bonds" ];
 
 	if ( _.intersect(octagon, data.GO_SLIM_molecular_function).length > 0 ) {
 		 return "OCTAGON";
