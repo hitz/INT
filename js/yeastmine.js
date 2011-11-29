@@ -136,6 +136,7 @@ function fillNetwork(geneList1, geneList2, filter, nextRequest) {
 			   "Gene.interactions.interactingGenes.secondaryIdentifier",
 			   "Gene.interactions.interactingGenes.symbol",
 			   "Gene.interactions.type.name",
+			   "Gene.interactions.experimentType",
 			   "Gene.interactions.interactionType",
 			   "Gene.interactions.annotationType",
 			   "Gene.interactions.phenotype",
@@ -230,14 +231,14 @@ function addNetwork(create, root) {
 		    src = targ;
 		    targ = tmp;
 		}
-	    var key = pair[0]+pair[1]+inx.experiment.name;
+	    var key = pair[0]+pair[1]+inx.experimentType;
 	    if(Edges[key]) { continue; }
 		if (e[key] == undefined) {
 		    w = 1.0;
 			e[key] = {
 			    id:					key,
-			    label:				inx.experiment.name,
-			    experimentType:	        	inx.experiment.name,
+			    label:				inx.experimentType,
+			    experimentType:	        	inx.experimentType,
 			    interactionClass:	                inx.interactionType,
 			    source:				src,
 			    target: 		         	targ,
@@ -246,7 +247,7 @@ function addNetwork(create, root) {
 		} else {
 		    //(inx.role == 'Self' ? e[key].weight += 1.0 : e[key].weight += 0.5);  // non-self-interactions are double-counted by fillNetwork
 		    e[key].weight += 1.0;
-		    e[key].label = inx.experiment.name + " ("+e[key].weight+")";
+		    e[key].label = inx.experimentType + " ("+e[key].weight+")";
 		}
 	}
 		_.extend(Edges,e);
