@@ -7,7 +7,7 @@ var banList = ['NAB2','UBI4','GIS2','RPN11','HEK2','SMT3','SSB1','RPN10','YGL122
 
 var defStyle = {
 	global: {
-		backgroundColor:  	"#FFFFCC"
+		backgroundColor:  	"#F0F0F0"
 	},
 	nodes: {
 		color: {

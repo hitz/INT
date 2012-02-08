@@ -2,9 +2,9 @@
 <html>
 <head>
 	<title> Interaction Server</title> <!-- : /share/cvs/org/yeastgenome/templates/Reports/LocusReport/InteractionServer/Attic/site_css.tmpl,v  -->
-<link href="http://www.yeastgenome.org/css/Site.css" rel="stylesheet" type="text/css" ./>
+<link href="http://www.yeastgenome.org/css/Site_wp.css" rel="stylesheet" type="text/css" ./>
 <!--link href="http://yeastgenome-hitz-dev.stanford.edu/css/InteractionServer.css" rel="stylesheet" type="text/css" /> -->
-<link href="/INT/css/sunny/jquery-ui-1.8.13.custom.css" rel="stylesheet" type="text/css" /> 
+<link href="/INT/css/jquery-ui.css" rel="stylesheet" type="text/css" /> 
 <!--link href="http://yeastgenome-hitz-dev.stanford.edu/css/jquery-layout-default.css" --
   --rel="stylesheet" type="text/css" /> -->
 <link href="/INT/css/farbtastic.css"  rel="stylesheet" type="text/css" />
@@ -14,64 +14,29 @@
 </head>
  <body>
 
-<div id="wrapper"> <!-- : /share/cvs/org/yeastgenome/templates/header.tmpl,v  -->      
-	<div id="header_top">
- 	<hr>
-   	<div class="float" id="logo"><a href="http://www.yeastgenome.org/"><img alt="SGD" src="http://www.yeastgenome.org/images/SGD_logo.gif" ></a> </div>
-   	<div class="float inline" id="quicksearch">
-	<ul>
-  		<li><form method="get" action="http://www.yeastgenome.org/cgi-bin/search/quickSearch.fpl">
-            <p><input type="text" name="query"  size="13" ></p>
-            <p><input type="submit" name="Submit" value="Search" ></p>
-            </form></li>
-    </ul>
-	</div>
-    <div class="float inline" id="nav_aid">
-  	<ul>
-		<li><a href="http://www.yeastgenome.org/sitemap.html">Site Map</a> | </li>
-		<li><a href="http://www.yeastgenome.org/SearchContents.shtml">Search Options</a> | </li>
-		<li><a href="http://www.yeastgenome.org/HelpContents.shtml">Help</a> | </li>
-		<li><a href="http://www.yeastgenome.org/">Home</a> | </li>
-		<li><a type="application/rss+xml" href="http://www.yeastgenome.org/xml/news_feed.xml"><img alt='RSS' class='bottom' src="http://www.yeastgenome.org/images/rss.gif">&nbsp;</a> </li>
-	</ul>
-	</div><!-- end of navigation aid -->
-    <div class="inline" id="tool_bar">
-	 <ul>
-		<li>&nbsp; <!-- spacer kludge --> </li>
-		<li><a href="http://www.yeastgenome.org/ComContents.shtml">Community Info</a></li>
-		<li><a href="http://www.yeastgenome.org/SubmitContents.shtml">Submit Data</a></li>
-		<li><a href="http://www.yeastgenome.org/cgi-bin/blast-sgd.pl">BLAST</a></li>
-		<li><a href="http://www.yeastgenome.org/cgi-bin/web-primer">Primers</a></li>
-		<li><a href="http://www.yeastgenome.org/cgi-bin/PATMATCH/nph-patmatch">PatMatch</a></li>
-		<li><a href="http://www.yeastgenome.org/cgi-bin/seqTools">Gene/Seq Resources</a></li>
-		<li><a href="http://www.yeastgenome.org/cgi-bin/search/featureSearch">Advanced Search</a></li>
-		<li><a href="http://yeastgenome-devwiki.stanford.edu/">Community Wiki</a></li>
-	 </ul>
-	</div><!-- end of tool bar -->
-
-    <div class="spacer"></div>
-    <hr>
-
-  </div> <!-- end of header -->
+<div id="wrapper"> <!-- : /share/cvs/org/yeastgenome/templates/header.tmpl,v  -->  
+ <div id="head_wrapper"></div>
  <div id="main_page">
   <div id="viewer">
 
-    <div id="cytoscapeweb_container" style="width: 70%; float: right;">
+    <div id="cytoscapeweb_container" style="width: 1300px; float: right;">
             <div id="cytoscapeweb" style="height: 800px">
             Cytoscape Web will replace the contents of this div with your graph.
             <embed id="CytoscapeWeb1" width="100%" height="100%" align="middle" type="application/x-shockwave-flash" flashvars="id=CytoscapeWeb1" wmode="opaque" pluginspage="http://www.adobe.com/go/getflashplayer" allowscriptaccess="always" name="cytoscapeweb" bgcolor="#CCCCFF" quality="high" src="/INT/swf/CytoscapeWeb.swf">
             </div>
     </div>
-    <div id="sidebar" style="width: 30%;">
+    <div id="sidebar_container" style="width: 290px;; height: 300px; padding: 4px;" class="ui-widget-content">
+      <div id="sidebar">
     	<h3><a href="#">Network Info</a></h3>
     	<div>	
-	  <div id="network_info" class="inline">
+	  <div id="network_info">
       		<input id="networkReset" type="reset" name="networkResetButton" value="Reset Network" >
    		 <div id='search_box' class="ui-widget">
-		   <label for="search_new">Enter Gene (new network): </label>
+		   <p><label for="search_new">Enter Gene (new network): </label>
 		   <input id="search_new" size=6>
-		   <label for="search_add">Enter Gene (add to network): </label>
+		   </p><p><label for="search_add">Enter Gene (add to network): </label>
 		   <input id="search_add" size=6>
+		   </p>
 		 </div>
 		 <div id="net_stats">Nodes: <span id="nnodes" class="b i">0</span> Edges: <span id="nedges" class="b i">0</span></div>
 	  </div>
@@ -99,55 +64,59 @@
 	  </div>
 	</div>
     	<h3><a href="#">Node Shape</a></h3>
-    	<div id="node_shape"></div>
-    	<h3><a href="#">Edges</a></h3>
-    	<div id="edge_style"></div>
+    	<div id="node_shape">
+         <table>
+	  <thead><tr><th>Shape</th><th>Molecular Function</th></tr></thead>
+    	  <tbody>
+             <tr><td class='shape octagon'></td><td>Protein kinases</td></tr>
+	     <tr><td class='shape hexagon'></td><td>Protein phosphatases</td></tr>	
+	     <tr><td class='shape parallelogram'></td><td>DNA binding
+	     and transcription</td></tr>	
+	     <tr><td class='shape triangle'></td><td>Signal
+	     tranducers and GTPases</td></tr>	
+	     <tr><td class='shape diamond'></td><td>(Other) Enzymes</td></tr>	
+	     <tr><td class='shape rectangle'></td><td>Regulators and
+	     motor proteins</td></tr>	
+	     <tr><td class='shape roundrect'></td><td>RNA, protein
+	     and ion binding</td></tr>	
+	     <tr><td class='shape ellipse'></td><td>Everything else</td></tr>	
+	     <tr><td class='shape vee'></td><td>Molecular function
+	     mapping error</td></tr>	
+          </tbody>
+        </table> 
+	</div>
+	<h3><a href="#">Edges</a></h3>
+    	<div id="edge_style">         <table>
+	  <thead><tr><th>Shape</th><th>Molecular Function</th></tr></thead>
+    	  <tbody>
+             <tr><td class='shape arrow'></td><td>Biochemical Activity</td></tr>
+	     <tr><td class='shape none_th'></td><td>Two-hybrid</td></tr>	
+	     <tr><td class='shape none_phys'></td><td>Physical interactions</td></tr>	
+	     <tr><td class='shape diamond'></td><td>Protein-RNA interaction</td></tr>	
+          </tbody>
+        </table> 
+</div>
+      </div>
+      <span class="ui-icon ui-icon-grip-dotted-horizontal" style="margin:2px auto;"></span>
     </div>
   </div> 	
 </div> 
-<div class='spacer'></div>
- <div id="footer">
-    <hr>
-
-	<form method="post" action="http:/www.yeastgenome.org/cgi-bin/suggestion" enctype="" name="suggestion">
-
-	<div class='inline'><span class='left'><a href="http://www.yeastgenome.org/"><img src="http://www.yeastgenome.org/images/arrow_small_up.gif" alt="arrow">SGD Home</a></span>
-    
-	<span class='right'><label><a href="javascript:document.suggestion.submit()">Send a Message to the SGD Curators<img src="http://www.yeastgenome.org/images/mail.gif" alt="mail"></a></label></span>
-	</div>
-
-     </form>
-     <div class="spacer">&nbsp;</div>
-     <hr>
-     <p>SGD<sup>tm</sup> pages Database Copyright &#169; 1997-2010 The
-     Board of Trustees of Leland Stanford Junior
-     University. Permission to use the information contained in this
-     database was given by the researchers/institutes who contributed
-     or published the information. Users of the database are solely
-     responsible for compliance with any copyright restrictions,
-     including those applying to the author abstracts. Documents from
-     this server are provided "AS-IS" without any warranty, expressed
-     or implied. The SGD project at Stanford University is supported
-     by a Genome Research Resource Grant from the US National Human
-     Genome Research Institute, part of the US National Institutes of
-     Health.
-     </p>
-</div> <!-- end of footer -->
-
+<div id="foot_wrapper"></div> 
 </div> <!-- end of wrapper -->
 <!-- bunch of js files --> 
 <!-- jquery 1.6.1 for ajax-->
 <script type="text/javascript" src="/INT/js/min/jquery-1.6.1.min.js"></script>
-
 <!-- jquery ui custom (sunny) -->
-<script type="text/javascript" src="/INT/js/min/jquery-ui-1.8.13.custom.min.js"></script> 
-
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script> 
+<!--script type="text/javascript" src="http://www.yeastgenome.org/javascript/jquery-ui.min.js"></script-->
 <!-- jquery layout -->
 <!-- script type="text/javascript"  src="http://yeastgenome-hitz-dev.stanford.edu/javascript/jquery.layout-latest.js"></script>  -->
 
 <!-- jquery-jsonp (from another online repository) -->
 <script src="http://jquery-jsonp.googlecode.com/files/jquery.jsonp-2.1.4.min.js" type="text/javascript"></script>
 
+<!-- js files for quicksearch / header footer load after jquery/jquery-ui-->
+<script src="/INT/js/header_footer.js" type="text/javascript"></script>
 <!-- Imbedding is a small JS API for Intermine Webservices-->
 <!--script src="http://www.intermine.org/lib/imbedding/0.2/imbedding.min.js"  type="text/javascript"></script-->
 <script src="/INT/js/imbedding.js" type="text/javascript"></script>

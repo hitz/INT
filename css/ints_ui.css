@@ -1,5 +1,37 @@
 /*  styling info for INTS widgets */
-    .property input.colour_sample_bg {
+
+    body {
+       width: 1600px;
+    }
+    #networkReset {
+       width: 100px;
+       margin: 4px;
+    }
+    #search_box input {
+       float: right;
+    }
+    #node_shape .shape { background: #fff url("/INT/images/node_shapes.png") center center no-repeat; height: 50px; width: 50px;}
+    #node_shape .shape.parallelogram { background-position: 0 0; }
+    #node_shape .shape.ellipse { background-position: -50px 0; }
+    #node_shape .shape.triangle { background-position: -100px 0; }
+    #node_shape .shape.octagon { background-position: -150px 0; }
+    #node_shape .shape.diamond { background-position: -200px 0; }
+    #node_shape .shape.roundrect { background-position: -250px 0; }
+    #node_shape .shape.rectangle { background-position: -300px 0; }
+    #node_shape .shape.hexagon { background-position: -350px 0; }
+    #node_shape .shape.vee { background-position: -400px 0; }   
+
+    #edge_style .shape { background: #fff url("/INT/images/arrow_shape_transparent.png") center center no-repeat; height: 50px; width: 50px; }
+    #edge_style .shape.diamond { background-position: 0 0; background-color: #773300;}
+    #edge_style .shape.delta { background-position: -50px 0; }
+    #edge_style .shape.arrow { background-position: -100px 0; background-color: #000000; }
+    #edge_style .shape.circle { background-position: -150px 0; }
+    #edge_style .shape.t { background-position: -200px 0; }
+    #edge_style .shape.none { background-position: -250px 0;}
+    #edge_style .shape.none_th { background-position: -250px 0; background-color: #CCCCCC; }
+    #edge_style .shape.none_phys { background-position: -250px 0; background-color: #6262FC; }
+
+     .property input.colour_sample_bg {
        background-image:url("/INT/images/input_for_colour_picker/bg.png");
        background-position:right center;
        background-repeat:repeat-y;

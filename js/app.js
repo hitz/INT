@@ -20,7 +20,7 @@ var selectedTerm = '';
 // ON LOAD
 $(function() {
 
-     getGeneList(); 
+    getGeneList(); 
      // template might be is slightly faster
      // sets up gene list autocomplete
 
@@ -149,10 +149,14 @@ $(function() {
          {
 	 collapsable: true,
 	 active:      0,
-	 autoHeight:  false
+	 //autoHeight:  false, 
+         fillSpace:   true
 	 });
 
-    //$( "#sidebar_container").resizeable(); a clever idea but failed first copule of tries.
+    $( "#sidebar_container").resizable({
+	minHeight: 200,
+	resize: function() { $("#sidebar").accordion( "resize" )}
+    }); 
     //$( "#sidebar_container").draggable();
 
     // note: You have to call this once on load even with no data or it acts funny.
