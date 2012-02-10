@@ -156,7 +156,7 @@ $(function() {
     $( "#sidebar_container").resizable({
 	minHeight: 200,
 	resize: function() { $("#sidebar").accordion( "resize" )}
-    }); 
+    });  
     //$( "#sidebar_container").draggable();
 
     // note: You have to call this once on load even with no data or it acts funny.

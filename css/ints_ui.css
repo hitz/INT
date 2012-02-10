@@ -31,6 +31,56 @@
     #edge_style .shape.none_th { background-position: -250px 0; background-color: #CCCCCC; }
     #edge_style .shape.none_phys { background-position: -250px 0; background-color: #6262FC; }
 
+    #sidebar .ui-accordion .ui-accordion-content {
+      padding: 1.0em 0.2em;
+    }
+
+#gene_info_tabs div.ui-tabs-panel { padding: 0.1em; }
+table.summary_mini {
+    border: 0 none;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    width: auto;
+}
+html > body table.summary_mini {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+}
+table.summary_mini th {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #D9E2F8;
+    font-weight: bold;
+    margin: 0;
+    min-width: 90px;
+    padding: 3px;
+    text-align: left;
+    vertical-align: top;
+    width: 90px;
+}
+table.summary_mini td {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    margin: 0;
+    padding: 3px;
+    text-align: left;
+    vertical-align: top;
+    width: auto;
+}
+
      .property input.colour_sample_bg {
        background-image:url("/INT/images/input_for_colour_picker/bg.png");
        background-position:right center;

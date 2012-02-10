@@ -20,6 +20,57 @@ var rootId;
 var CSWnetwork = {};
 /* use hash to keep track of current network */
 
+function getPheno(genes) {
+		/* Get Phenotype data for an array of genes */
+                
+                var query = {
+					model: "genomic",
+					view: [
+						"Gene.secondaryIdentifier",
+						"Gene.symbol",
+						"Gene.phenotypes.observable",
+					        "Gene.phenotypes.qualifier",
+						"Gene.phenotypes.experimentType",
+						"Gene.phenotypes.mutantType",
+						"Gene.phenotypes.chemical",
+					        "Gene.phenotypes.reporter",
+						],
+					constraints: [
+						{ path: "Gene.secondaryIdentifier", op: "ONE OF", values: genes}
+					]
+				};
+
+                 IMBedding.loadQuery(
+		     query,
+		     {format: jsonMethod},
+		     function( data ) {
+			$.each(data.results, function(i,gene) {
+
+				   try {
+				       var annot = _.reduce(gene.phenotypes,
+							    function(a,pa) {
+								
+								( a['phenotype'][pa.mutantType] ? a['phenotype'][pa.mutantType].push(pa) : a['phenotype'][pa.mutantType] = [pa]);									            return a;
+							    },
+							    {
+								pheno: true,
+								phenotype: {}
+							    }
+							   );
+ 				       _.extend(Nodes[gene.secondaryIdentifier],annot);
+
+				   } catch (x) {
+				       alert("getPheno error: "+x+" "+gene.secondaryIdentifier+" "+pa.observable);
+				   }
+
+		             showPheno(gene.secondaryIdentifier);
+
+		       }
+	              );
+		     }
+		 );
+}
+
 function getGO(genes) {
 		/* Get GO data for an array of genes */
                 
@@ -225,20 +276,23 @@ function addNetwork(create, root) {
 
 	        var src = root.secondaryIdentifier;
 	        var targ = igene.secondaryIdentifier;
+                if (src == targ && inx.experimentType != 'Biochemical Activity') continue;
 	        if (inx.role == 'Bait') {
 		    // reverse source and target for directed edges
 		    var tmp = src;
 		    src = targ;
 		    targ = tmp;
 		}
-	    var key = pair[0]+pair[1]+inx.experimentType;
+            var edgeType = inx.experimentType;
+            if ($.inArray(edgeType, ['Biochemical Activity','Two-hybrid','Protein-RNA','Affinity Capture-RNA'])<0) edgeType = 'Physical';
+	    var key = pair[0]+pair[1]+edgeType;
 	    if(Edges[key]) { continue; }
 		if (e[key] == undefined) {
 		    w = 1.0;
 			e[key] = {
 			    id:					key,
-			    label:				inx.experimentType,
-			    experimentType:	        	inx.experimentType,
+			    label:				edgeType,
+			    experimentType:	        	edgeType,
 			    interactionClass:	                inx.interactionType,
 			    source:				src,
 			    target: 		         	targ,
@@ -247,7 +301,7 @@ function addNetwork(create, root) {
 		} else {
 		    //(inx.role == 'Self' ? e[key].weight += 1.0 : e[key].weight += 0.5);  // non-self-interactions are double-counted by fillNetwork
 		    e[key].weight += 1.0;
-		    e[key].label = inx.experimentType + " ("+e[key].weight+")";
+		    e[key].label = edgeType + " ("+e[key].weight+")";
 		}
 	}
 		_.extend(Edges,e);
@@ -288,7 +342,9 @@ function convertJSON() {
 					 { name: "molecular_function", type: "list", defValue: []},
 					 { name: "biological_process", type: "list", defValue: []},
 					 { name: "cellular_component", type: "list", defValue: []},
-					 { name: "go", type: "boolean", defValue: false}
+					 { name: "go", type: "boolean", defValue: false},
+					 { name: "pheno", type: "boolean", defValue: false},
+					 { name: "phenotype", type: "list", defValue: []}
 					],
 			edges: [ { name: "label", type: "string"},
 					 { name: "experimentType", type: "string"},

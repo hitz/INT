@@ -145,6 +145,8 @@ function showGo(id) {
 	var rows = "";
 	var data = Nodes[id][aspect];
 
+	var first = data.shift();
+	if (first != aspect) rows += "<td>"+first+"</td></tr>";
 	_.each(data, function(term) {
 		   if (term != aspect) {  // skip unknowns
 		       rows += "<tr><th></th><td>" + term + "</td></tr>";
@@ -159,13 +161,46 @@ function showGo(id) {
 
     var go =  "<table class='summary_mini'><tbody>";
     go += "<tr><th>";
-    go += "<tr><th>Molecular Function</th><td></td></tr>" + goRows(id, 'molecular_function');
-    go += "<tr><th>Biological Process</th><td></td></tr>" + goRows(id, 'biological_process');
-    go += "<tr><th>Cellular Component</th><td></td></tr>" + goRows(id, 'cellular_component');
+    go += "<tr><th>Molecular Function</th>" + goRows(id, 'molecular_function');
+    go += "<tr><th>Biological Process</th>" + goRows(id, 'biological_process');
+    go += "<tr><th>Cellular Component</th>" + goRows(id, 'cellular_component');
     go += "</tbody></table>";
 
 
     $("#info_go").html(go);
+
+}
+
+
+function showPheno(id) {
+
+
+    var pheno =  "<table class='summary_mini'><tbody>";
+
+    function substitutePhenotype(pa) {
+	
+	var ob = pa.observable;
+	ob = ob.replace(/chemical compound/i,pa.chemical);
+	ob = ob.replace(/chemicals/,pa.chemical);
+	ob = ob.replace(/(protein\/peptide)|(protein)|(RNA)/i, pa.reporter);
+	if (ob.search(/auxotrophy/i) > -1) ob = pa.chemical+" "+ob;
+
+	var qa = '';
+	if(pa.qualifier != 'none') qa = ": "+pa.qualifier;
+
+	return ob+qa;
+	
+    }
+    
+    _.each(Nodes[id].phenotype, function(pa, mt){
+	       var first = pa.shift();
+	       pheno += "<tr><th>"+first.mutantType+"</th><td>"+substitutePhenotype(first)+"</td></tr>"; 
+	       _.each(pa, function(p) { pheno += "<tr><th></th><td>"+substitutePhenotype(p)+"</td></tr>"; });
+	   });
+											    
+     pheno += "</tbody></table>";
+
+     $("#info_pheno").html(pheno);
 
 }
 
@@ -204,14 +239,12 @@ function displayGeneProps(info) {
 	 getGO([info.systematicName]); // NON FUNCTIONAL BECAUSE QUERY IS ASYNCHRONOUS!!!
      }
  
-     var pheno =  commonHead;
+     if (Nodes && Nodes[info.systematicName] && Nodes[info.systematicName].pheno) {
+	 showPheno(info.systematicName);	     
+     } else { 
+	 getPheno([info.systematicName]); // NON FUNCTIONAL BECAUSE QUERY IS ASYNCHRONOUS!!!
+     }
 
-     pheno += "<tr><th class='b'>Phenotypes</th><td></td></tr>";
-     for (var i=0; i<info.PHENOTYPE.length; i++) { pheno += "<tr><th></th><td>" + info.PHENOTYPE[i] +"</td></tr>";}
-
-     pheno += "</tbody></table>";
-
-     $("#info_pheno").html(pheno);
      // would like to click something to open the accordiion but not sure how!
 }
 
