@@ -30,6 +30,7 @@
     	<h3><a href="#">Network Info</a></h3>
     	<div>	
 	  <div id="network_info">
+                <a id="net_info_help_button" class="help" name="top" href="#/"><img alt="Help" src="http://www.yeastgenome.org/images/icon_help_circle_dark.png"></a>
       		<input id="networkReset" type="reset" name="networkResetButton" value="Reset Network" >
    		 <div id='search_box' class="ui-widget">
 		   <p><label for="search_new">Enter Gene (new network): </label>
@@ -43,6 +44,7 @@
 	</div>
    	<h3><a href="#">Gene Info</a></h3>
     	<div>	
+           <a id="gene_info_help_button" class="help" name="top" href="#/"><img alt="Help" src="http://www.yeastgenome.org/images/icon_help_circle_dark.png"></a>
 	  <div id="gene_info_tabs">
 	    <ul>
 	      <li><a href="#info_basic">Basic Info</a></li>
@@ -56,6 +58,8 @@
 	</div>
      	<h3><a href="#">Node Color</a></h3>
     	<div>
+                <a id="node_color_help_button" class="help" name="top" href="#/"><img alt="Help" src="http://www.yeastgenome.org/images/icon_help_circle_dark.png"></a>
+
 	  <div class="property" type="colour" property="ALL">
 	    <label class="style_head" for="color_all_nodes">Color all nodes</label>
     	    <input id="color_all_nodes" type="text" name="ALL_nodes" value="#CCCCCC"> 
@@ -65,6 +69,7 @@
 	</div>
     	<h3><a href="#">Node Shape</a></h3>
     	<div id="node_shape">
+                <a id="node_shape_help_button" class="help" name="top" href="#/"><img alt="Help" src="http://www.yeastgenome.org/images/icon_help_circle_dark.png"></a>
          <table>
 	  <thead><tr><th>Shape</th><th>Molecular Function</th></tr></thead>
     	  <tbody>
@@ -86,7 +91,10 @@
         </table> 
 	</div>
 	<h3><a href="#">Edges</a></h3>
-    	<div id="edge_style">         <table>
+    	<div id="edge_style">       
+           <a id="edge_help_button" class="help" name="top" href="#/"><img alt="Help" src="http://www.yeastgenome.org/images/icon_help_circle_dark.png"></a>
+  
+       <table>
 	  <thead><tr><th>Shape</th><th>Molecular Function</th></tr></thead>
     	  <tbody>
              <tr><td class='shape arrow'></td><td>Biochemical Activity</td></tr>
@@ -95,16 +103,143 @@
 	     <tr><td class='shape diamond'></td><td>Protein-RNA interaction</td></tr>	
           </tbody>
         </table> 
-</div>
-      </div>
+       </div>
+	<h3><a href="#">HELP</a></h3>
+    	<div id="help">
+	  <div id="help_tabs">
+	    <ul>
+	      <li><a href="#help_intro">Introduction</a></li>
+	      <li><a href="#help_viewer">Network Viewer</a></li>
+            </ul>
+	    <div id="help_intro">
+            <p>Welcome to the alpha release of the SGD interactions
+            viewer!<p>
+            <p>This viewer shows "slices" of the Yeast BioGRID
+            physical interaction network in a manner designed to
+            convey biological insight.  You must have the <a href="http://get.adobe.com/flashplayer/">ADOBE FLASH</a>
+            plugin for your browswer installed.</p>
+            <p>To get started, enter a gene name (Standard or
+            Systematic) in the Enter Gene (new network): box under the
+            Network Info tab.
+	    <p>The viewer
+	    uses <a href="http://cytoscapeweb.cytoscape.org">CytoscapeWeb</a>
+	    and <a href="http://yeastmine.yeastgenome.org">YeastMine</a>,
+	    with the interaction network assigned in a way that
+	    conveys Gene function and bilogical process.<p>
+            <p>The network viewer will show up in the empty space to
+            the right of the control panel.  The control panel can be
+            lengthened or shortened by pulling on the edges.</p>
+            <p><em>ALL</em> comments, suggestions and bug reports are
+            appreciated, you can report them on the
+            GitHub <a href="https://github.com/hitz/INT/issues">tracker</a>,
+            or send an email to sgd-helpdes@lists.stanford.edu</p>
+	    </div>
+	    <div id="help_viewer">
+	    <p>The SGD Interactions viewer uses the protein-protein
+	    interaction network from BioGRID to draw graphs.
+	    Interacting "genes" (usually proteins but in some cases
+	    RNA) are represented by "nodes" - the colored shapes that
+	    you see, labeled with their Standard Gene name.  The
+	    interactions between genes are represented by lines or
+	    arrows for differnt types of experiments.</p>
+	    <p> Some general controls for panning and zooming the
+	    viewer can be found in the lower right hand corner of the
+	    display window.  There are <em>mouse-over</em> tooltips if
+	    you are confused by the icons there</p>
+            <p> Nodes can be pulled around by <em>click-dragging</em>
+            them if they are selected. You can click and drag outside
+            a node (in the viewer) to create a "box selection" of
+            nodes.  To select a single node, <em>click</em> on it in the viewer.
+	    Orange higlights are drawn around all selected nodes.
+	     <em>right clicking (option-click on a mac)</em> a
+	    node will bring up a context menu with options
+	    to</p><p><ul>
+		<li><em>Delete</em> a node from the current network</li>
+		<li><em>Expand</em>the network around this node</li>
+		<li><em>Select</em> the first neigbors of the node</li>
+           </ul></p>
+	    <p><em>right-clicking</em> anywhere in the viewer will
+	    allow you to try some alternative network layouts of the
+	    current network. </p><p> The Reset Network button in the Network
+	    Info panel will re-run the initial layout algorithm (and
+	    repaint the original colors.  There are also some flash
+	    player options in the context menu, use them at your own peril.</p>
+	   </div>
+        </div> <!-- end help_tabs -->
+      </div> <!-- end help -->
+    </div> <!-- end  sidebar accordion-->
       <span class="ui-icon ui-icon-grip-dotted-horizontal" style="margin:2px auto;"></span>
-    </div>
-  </div> 	
-</div> 
+    </div> <!-- end sidebar -->
+  </div> <!-- end viewer -->	
+</div> <!-- end main page -->
 <div id="foot_wrapper"></div> 
 </div> <!-- end of wrapper -->
-<!-- bunch of js files --> 
-<!-- jquery 1.6.1 for ajax-->
+<div id="help_net_info" class="modal_help">
+<p>This interface is used to control network creation and addition.
+Networks are currently composed of a gene and all it's <em>physical</em>
+interacting neigbors
+(from <a href="http://thebiogrid.com/">BioGrid</a>).</p><p>"Edges" or
+interactions between the neighbors are also drawn, but each neighbor
+likely has additional neighbors.</p>
+<p>Enter a yeast gene standard or systematic name (names will
+autocomplete) in the "new network" box to create a new network
+  (destroying any existing network).  Doing
+the same in "add to network box" will get an additional gene's network
+(neighbor or not).</p>
+<p> Currently, perfomance of the alpha version of the SGD Network
+  viewer will degrade once several 100s of nodes and edges are drawn.</p>
+<p>Adding to the network is also available from the
+gene (node) context (right-click) menu.</p>
+<p>The Reset Network button will restore the original "party" colors
+  and force-directed layout./<p>
+</div>
+<div id="help_gene_info">
+<p>When a gene (node) is <em>clicked</em> in the viewer a mini SGD locus page
+appears here. <em>Click</em> on one of the three tabs to see General, GO, or
+  Phenotype information.</p>
+</div>
+<div id="help_node_color">
+<p>The SGD Interaction Viewer (alpha) colors nodes based on their Yeast
+GO Slim Biological Process(es).  Because most genes belong to more
+than one Biological Process, there is no unique way to color them.
+When the network is initially generated, colors vis-a-vis biological
+processes are assigned in an essentially arbitrary but reproducable
+manner.</p>
+<p>The node coloring interface will let you "paint" a specific
+  biological process with a color of your choosing.  It is often
+  informative to first color ALL nodes a neutral shade prior to
+  painting.</p>
+<p>The black numbers in brackets next to each Process indicate the
+  number of nodes in the current network that will be painted</p>
+<p>The "Reset Network" button in the Network Info tab will reset the
+  current network to the original "rainbow" color scheme</p>
+<p><em>Mousing over</em> a node (hold for a brief moment) will show you the GO
+  SLIM terms assigned to that node.  The full GO annotations are
+  available from Gene Info window when a node is <em>clicked</em>.</p>
+<p>Nodes with a black border are "Black listed" because they have many
+  hundreds of physical interactions that may not be specific or informative.</p>
+</div>
+<div id="help_node_shape">
+<p>Node shapes are assigned by the Molecular Function of the gene they
+  represent,
+  according to the priority shown, top to bottom (i.e,. Protein
+  Kinases are both Kinases and Signal tranducers and Enzymes, but they
+  are assigned the Octogon shape.</p> 
+</div>
+<div id="help_edges">
+<p>Each edge ("interaction") represents one or more experiments
+  linking two genes (nodes).  There are currently 4 types of
+  experiments displayed, with purple representing the majority of
+  physical interactions in Biogrid.  "Self" or "dimer" interactions
+  are ignored except for Biochemical
+  Activity.  <a href="http://wiki.thebiogrid.org/doku.php/experimental_systems">More
+  BioGRID interaction types...</a></p>
+<p>The thickness of each edge is proportional the the number of unique
+  experiments supporting this interaction.  Exact numbers can be found
+  by <em>mousing over</em> the edge (or looking at the relevant gene
+  in SGD<p>
+</div>
+<!-- bunch of js files -->  <!-- jquery 1.6.1 for ajax-->
 <script type="text/javascript" src="/INT/js/min/jquery-1.6.1.min.js"></script>
 <!-- jquery ui custom (sunny) -->
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script> 

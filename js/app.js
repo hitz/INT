@@ -144,6 +144,8 @@ $(function() {
 	}); 
 			     
     $( "#gene_info_tabs" ).tabs();
+
+    $( "#help_tabs").tabs();
   
     $( "#sidebar" ).accordion(
          {
@@ -158,6 +160,93 @@ $(function() {
 	resize: function() { $("#sidebar").accordion( "resize" )}
     });  
     //$( "#sidebar_container").draggable();
+
+
+    $( "#help_net_info").dialog({
+				 title: 'Network Info Help',
+				  autoOpen: false,
+				  modal: true,
+				  buttons: { 
+				      Ok: function(){
+					  $( this ).dialog( "close" );
+				      }
+				  },
+				  width:  400,
+				  });
+
+    $( '#net_info_help_button').click(function(){
+				      $( "#help_net_info" ).dialog( "open" );
+				      return false;
+				      });
+
+    $( "#help_gene_info").dialog({
+				 title: 'Gene Info Help',
+				  autoOpen: false,
+				  modal: true,
+				  buttons: { 
+				      Ok: function(){
+					  $( this ).dialog( "close" );
+				      }
+				  },
+				  width:  400,
+				  });
+
+    $( '#gene_info_help_button').click(function(){
+				      $( "#help_gene_info" ).dialog( "open" );
+				      return false;
+				      });
+
+    $( "#help_node_color").dialog({
+				 title: 'Node Color Help',
+				  autoOpen: false,
+				  modal: true,
+				  buttons: { 
+				      Ok: function(){
+					  $( this ).dialog( "close" );
+				      }
+				  },
+				  width:  400,
+				  });
+
+    $( '#node_color_help_button').click(function(){
+				      $( "#help_node_color" ).dialog( "open" );
+				      return false;
+				      });
+
+    $( "#help_node_shape").dialog({
+				 title: 'Node Shape Help',
+				  autoOpen: false,
+				  modal: true,
+				  buttons: { 
+				      Ok: function(){
+					  $( this ).dialog( "close" );
+				      }
+				  },
+				  width:  400,
+				  });
+
+
+    $( '#node_shape_help_button').click(function(){
+				      $( "#help_node_shape" ).dialog( "open" );
+				      return false;
+				      });
+
+    $( "#help_edges").dialog({
+				 title: 'Edges Help',
+				  autoOpen: false,
+				  modal: true,
+				  buttons: { 
+				      Ok: function(){
+					  $( this ).dialog( "close" );
+				      }
+				  },
+				  width:  400,
+				  });
+
+   $( '#edge_help_button').click(function(){
+				      $( "#help_edges" ).dialog( "open" );
+				      return false;
+				      });
 
     // note: You have to call this once on load even with no data or it acts funny.
     // Could add some kind of "fakenetwork" help button thing.

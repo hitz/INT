@@ -10,6 +10,14 @@
     #search_box input {
        float: right;
     }
+
+    .modal_help {
+        font-size: 14px;
+    }
+
+    #gene_info_tabs { padding-left: 1em; padding-right: 1em;}
+    #help_viewer ul { padding: 18px;}
+    .ui-widget-content > p a { a:link, a:visited: #11278B;}
     #node_shape .shape { background: #fff url("/INT/images/node_shapes.png") center center no-repeat; height: 50px; width: 50px;}
     #node_shape .shape.parallelogram { background-position: 0 0; }
     #node_shape .shape.ellipse { background-position: -50px 0; }
