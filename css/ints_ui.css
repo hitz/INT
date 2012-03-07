@@ -11,6 +11,10 @@
        float: right;
     }
 
+    #search_box p {
+       padding: 3px 0;
+    }
+
     .modal_help {
         font-size: 14px;
     }
@@ -145,9 +149,10 @@ table.summary_mini td {
         border:2px solid #C1C1C1;
         width: 7em;
     }
+    
     #net_stats {
         display: block;
-	padding: 6px;
+	padding: 6px 0;
     }
     #net_stats span {
         padding: 0px 8px;
