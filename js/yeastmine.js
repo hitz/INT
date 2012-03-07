@@ -44,6 +44,7 @@ function getPheno(genes) {
 		     query,
 		     {format: jsonMethod},
 		     function( data ) {
+			if (data.results.length == 0) showPheno(null); // just for no results, creates a blank entry
 			$.each(data.results, function(i,gene) {
 
 				   try {

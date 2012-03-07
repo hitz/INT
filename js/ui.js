@@ -192,11 +192,19 @@ function showPheno(id) {
 	
     }
     
-    _.each(Nodes[id].phenotype, function(pa, mt){
+    if(!id) {
+
+	pheno += "<tr><th>No mutants</th><td><td></tr><tr><th></th><td></td></tr>";
+	
+    } else {
+	console.log("Phenotype for: "+Nodes[id].label+"( "+id+" )");
+	_.each(Nodes[id].phenotype, function(pa, mt){
 	       var first = pa.shift();
 	       pheno += "<tr><th>"+first.mutantType+"</th><td>"+substitutePhenotype(first)+"</td></tr>"; 
 	       _.each(pa, function(p) { pheno += "<tr><th></th><td>"+substitutePhenotype(p)+"</td></tr>"; });
 	   });
+	
+    }
 											    
      pheno += "</tbody></table>";
 
@@ -233,17 +241,17 @@ function displayGeneProps(info) {
 
      $("#info_basic").html(basic);
 
-     if (Nodes && Nodes[info.systematicName] && Nodes[info.systematicName].go) {
-	 showGo(info.systematicName);	     
-     } else { 
-	 getGO([info.systematicName]); // NON FUNCTIONAL BECAUSE QUERY IS ASYNCHRONOUS!!!
-     }
+     //if (Nodes && Nodes[info.systematicName] && Nodes[info.systematicName].go) {
+	// showGo(info.systematicName);	     
+     //} else { 
+	 getGO([info.systematicName]); // CACHING NON FUNCTIONAL BECAUSE QUERY IS ASYNCHRONOUS!!!
+     //}
  
-     if (Nodes && Nodes[info.systematicName] && Nodes[info.systematicName].pheno) {
-	 showPheno(info.systematicName);	     
-     } else { 
-	 getPheno([info.systematicName]); // NON FUNCTIONAL BECAUSE QUERY IS ASYNCHRONOUS!!!
-     }
+     //if (Nodes && Nodes[info.systematicName] && Nodes[info.systematicName].pheno) {
+	// showPheno(info.systematicName);	     
+     //} else { 
+	 getPheno([info.systematicName]); // CACHING NON FUNCTIONAL BECAUSE QUERY IS ASYNCHRONOUS!!!
+    // }
 
      // would like to click something to open the accordiion but not sure how!
 }
@@ -287,6 +295,14 @@ function cytoscapeReady() {
 			}
 			// note: last functioni in chain must add the listener back!
 		    });
+
+    vis.addContextMenuItem("Go to SGD locus page","nodes", function( evt) {
+			       var feat = evt.target.data.id+"";
+ 
+            //This method opens a new browser window.
+			       window.open("http://www.yeastgenome.org/cgi-bin/locus.fpl?locus="+feat);			   
+
+			   });
 
     function neighborHilite(node) {
 	// Get the first neighbors of that node:
